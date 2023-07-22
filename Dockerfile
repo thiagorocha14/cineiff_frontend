@@ -18,4 +18,4 @@ COPY . /app
 EXPOSE 4200
 
 # Run the app
-CMD ["ng", "serve", "--host", "0.0.0.0", "--disable-host-check"]
+CMD ["ng", "serve", "--host", "0.0.0.0", "--disable-host-check", "--poll", "1"]

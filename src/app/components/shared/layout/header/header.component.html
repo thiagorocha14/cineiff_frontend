@@ -1,0 +1,22 @@
+<header
+  class="flex pr-4 pl-4 w-100 flex-row items-center whitespace-nowrap h-16 bg-zinc-800"
+[hidden]="(router.url === '/login' || router.url === '/register') ? true : false"
+>
+  <span class="mr-2 text-white">
+    CINEIFF
+  </span>
+  <button
+    mat-button
+    routerLink="/"
+    [color]="(router.url === '/') ? 'accent' : 'primary'">
+    Início
+  </button>
+  <button mat-button
+    routerLink="/agenda"
+    [color]="(router.url === '/agenda') ? 'accent' : 'primary'"
+  >
+    Calendário
+  </button>
+  <span class="fill-remaining-space"></span>
+  <button mat-button routerLink="/login" color="primary">Login</button>
+</header>

@@ -11,15 +11,22 @@ import { FormsModule } from '@angular/forms';
 //http service module
 import { HttpClientModule } from '@angular/common/http';
 
-//material modules
-import { MatCardModule } from '@angular/material/card';
-import { MatInputModule } from '@angular/material/input';
+import { HeaderComponent } from './components/shared/layout/header/header.component';
+
+import { AppMaterialModule } from './app-material.module';
+import { HomeComponent } from './components/pages/public/home/home.component';
+import { CalendarComponent } from './components/pages/public/calendar/calendar.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HeaderComponent,
+    HomeComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +35,8 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     //http service module
     HttpClientModule,
-    //material modules
-    MatCardModule,
-    MatInputModule
+    AppMaterialModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]

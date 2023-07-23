@@ -4,6 +4,10 @@
 @use '@angular/material' as mat;
 // Plus imports for other components in your app.
 
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
@@ -12,8 +16,13 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$cineiff_frontend-primary: mat.define-palette(mat.$indigo-palette);
-$cineiff_frontend-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$cineiff_frontend-primary: mat.define-palette(mat.$gray-palette);
+$cineiff_frontend-primary-dark: mat.define-palette(mat.$gray-palette, 700, 500, 900);
+$cineiff_frontend-primary-light: mat.define-palette(mat.$gray-palette, 100, 300, 400);
+
+$cineiff_frontend-accent: mat.define-palette(mat.$orange-palette);
+$cineiff_frontend-accent-dark: mat.define-palette(mat.$orange-palette, 700, 500, 900);
+$cineiff_frontend-accent-light: mat.define-palette(mat.$orange-palette, 100, 300, 400);
 
 // The warn palette is optional (defaults to red).
 $cineiff_frontend-warn: mat.define-palette(mat.$red-palette);
@@ -23,10 +32,17 @@ $cineiff_frontend-warn: mat.define-palette(mat.$red-palette);
 $cineiff_frontend-theme: mat.define-light-theme((
   color: (
     primary: $cineiff_frontend-primary,
+    primary-dark: $cineiff_frontend-primary-dark,
+    primary-light: $cineiff_frontend-primary-light,
     accent: $cineiff_frontend-accent,
+    accent-dark: $cineiff_frontend-accent-dark,
+    accent-light: $cineiff_frontend-accent-light,
     warn: $cineiff_frontend-warn,
   )
 ));
+
+//Aplying color to the background of the app
+$cineiff_frontend-app-background: mat.get-color-from-palette($cineiff_frontend-theme, background);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -37,3 +53,5 @@ $cineiff_frontend-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+

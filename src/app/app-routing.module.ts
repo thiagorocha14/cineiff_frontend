@@ -5,9 +5,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/pages/auth/login/login.component';
 import { RegisterComponent } from './components/pages/auth/register/register.component';
 
+//public components
+import { HomeComponent } from './components/pages/public/home/home.component';
+import { CalendarComponent } from './components/pages/public/calendar/calendar.component';
+
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'cadastro', component: RegisterComponent },
+  { path: '',  component: HomeComponent },
+  { path: 'agenda',  component: CalendarComponent },
 ];
 
 @NgModule({

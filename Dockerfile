@@ -8,8 +8,8 @@ WORKDIR /app
 COPY package.json /app/package.json
 
 # Install dependencies
-RUN npm install
-RUN npm install -g @angular/cli@16.0.0
+# RUN npm install
+# RUN npm install -g @angular/cli@16.0.0
 
 # Copy source code
 COPY . /app
@@ -18,4 +18,5 @@ COPY . /app
 EXPOSE 4200
 
 # Run the app
-CMD ["ng", "serve", "--host", "0.0.0.0", "--disable-host-check", "--poll", "1"]
+# CMD ["ng", "serve", "--host", "0.0.0.0", "--disable-host-check", "--poll", "1"]
+CMD bash -c "npm install && npm install -g @angular/cli@16.0.0 && ng serve --host 0.0.0.0 --disable-host-check --poll 1"

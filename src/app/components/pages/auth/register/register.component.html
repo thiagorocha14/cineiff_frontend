@@ -1,1 +1,62 @@
-<p>register works!</p>
+
+<div class="wrapper">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>CineIFF</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput name="email" placeholder="Email" [(ngModel)]="email" autocomplete="email">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Senha</mat-label>
+          <input matInput type="password" name="password" placeholder="Senha" [(ngModel)]="password" autocomplete="new-password">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Confirmação de senha</mat-label>
+          <input matInput type="password" name="confirm-password" placeholder="Senha" [(ngModel)]="confirmPassword">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Nome completo</mat-label>
+          <input matInput type="password" name="nome" placeholder="Nome completo" [(ngModel)]="name">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Documento</mat-label>
+          <input matInput type="password" name="documento" placeholder="Documento" [(ngModel)]="documento">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Telefone</mat-label>
+          <input matInput type="password" name="telefone" placeholder="Telefone" [(ngModel)]="telefone" autocomplete="tel">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Instituição</mat-label>
+          <input matInput type="password" name="instituicao" placeholder="Instituição que pertence" [(ngModel)]="instituicao" autocomplete="organization">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Matrícula</mat-label>
+          <input matInput type="password" name="password" placeholder="Matrícula na instituição" [(ngModel)]="matricula">
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <span>
+        Já tem uma conta?
+        <a routerLink="/login">
+          Entre!
+        </a>
+      </span>
+      <button mat-raised-button color="primary" (click)="register()">Cadastrar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

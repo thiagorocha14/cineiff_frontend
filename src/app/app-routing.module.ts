@@ -8,12 +8,13 @@ import { RegisterComponent } from './components/pages/auth/register/register.com
 //public components
 import { HomeComponent } from './components/pages/public/home/home.component';
 import { CalendarComponent } from './components/pages/public/calendar/calendar.component';
+import { authGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'cadastro', component: RegisterComponent },
-  { path: '',  component: HomeComponent },
-  { path: 'agenda',  component: CalendarComponent },
+  { path: '',  component: HomeComponent, canActivate: [authGuard] },
+  { path: 'agenda',  component: CalendarComponent, canActivate: [authGuard] },
 ];
 
 @NgModule({

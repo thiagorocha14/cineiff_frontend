@@ -1,23 +1,32 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Login</mat-card-title>
-  </mat-card-header>
 
-  <mat-card-content>
-    <form>
-      <mat-form-field appearance="fill">
-        <mat-label>Email</mat-label>
-        <input matInput name="email" placeholder="Enter your email" [(ngModel)]="email">
-      </mat-form-field>
+<div class="wrapper">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>CineIFF</mat-card-title>
+    </mat-card-header>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Password</mat-label>
-        <input matInput type="password" name="password" placeholder="Enter your password" [(ngModel)]="password">
-      </mat-form-field>
-    </form>
-  </mat-card-content>
+    <mat-card-content>
+      <form>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput name="email" placeholder="Entre com seu email" [(ngModel)]="email" autocomplete="email">
+        </mat-form-field>
 
-  <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="login()">Login</button>
-  </mat-card-actions>
-</mat-card>
+        <mat-form-field appearance="fill">
+          <mat-label>Senha</mat-label>
+          <input matInput type="password" name="password" placeholder="Entre com sua senha" [(ngModel)]="password" autocomplete="current-password">
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <span>
+        Não tem uma conta?
+        <a routerLink="/cadastro">
+          Cadastre-se!
+        </a>
+      </span>
+      <button mat-raised-button color="primary" (click)="login()">Entrar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

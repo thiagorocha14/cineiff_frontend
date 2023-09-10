@@ -18,6 +18,8 @@ import { HomeComponent } from './components/pages/public/home/home.component';
 import { CalendarComponent } from './components/pages/public/calendar/calendar.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FormComponent as EventosFormComponent } from './components/pages/public/eventos/form/form.component';
+import { FormComponent as ReservaFormComponent } from './components/pages/public/reserva/form/form.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     RegisterComponent,
     HeaderComponent,
     HomeComponent,
-    CalendarComponent
+    CalendarComponent,
+    EventosFormComponent,
+    ReservaFormComponent
   ],
   imports: [
     BrowserModule,

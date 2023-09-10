@@ -17,6 +17,18 @@
   >
     Calendário
   </button>
+  <button mat-button
+    routerLink="/eventos"
+    [color]="(router.url === '/eventos') ? 'accent' : 'primary'"
+  >
+    Eventos
+  </button>
+  <button mat-button
+    routerLink="/reserva"
+    [color]="(router.url === '/reserva') ? 'accent' : 'primary'"
+  >
+    Reserva
+  </button>
   <span class="fill-remaining-space"></span>
   <button mat-button routerLink="/login" color="primary">Login</button>
 </header>

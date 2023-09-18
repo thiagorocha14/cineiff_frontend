@@ -14,13 +14,12 @@ export class FormComponent implements OnInit{
 
   ngOnInit(): void {
     this.formReserva = this.formBuilder.group({
-      nome: ['', Validators.required],
-      email: ['', Validators.required],
-      telefone: ['', Validators.required],
-      data: ['', Validators.required],
-      hora: ['', Validators.required],
-      pessoas: ['', Validators.required],
-      mensagem: ['', Validators.required]
+      nome: ['', [Validators.required]],
+      justificativa: ['', [Validators.required]],
+      telefone: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      instituicao: ['', [Validators.required]],
+      publico_alvo: ['', [Validators.required]],
     });
   }
 

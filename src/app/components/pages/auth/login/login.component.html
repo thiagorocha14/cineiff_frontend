@@ -1,32 +1,15 @@
+<div class="min-h-screen flex items-center justify-center">
+  <form [formGroup]="formLogin" (ngSubmit)="login()" class="w-full max-w-md p-4 border rounded shadow-lg bg-white">
+    <mat-form-field class="w-full">
+      <mat-label>Email</mat-label>
+      <input matInput name="email" placeholder="Entre com seu email" formControlName="email" autocomplete="email" required>
+    </mat-form-field>
 
-<div class="wrapper">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>CineIFF</mat-card-title>
-    </mat-card-header>
+    <mat-form-field class="w-full">
+      <mat-label>Senha</mat-label>
+      <input matInput type="password" name="password" placeholder="Entre com sua senha" formControlName="password" autocomplete="current-password" required>
+    </mat-form-field>
 
-    <mat-card-content>
-      <form>
-        <mat-form-field appearance="fill">
-          <mat-label>Email</mat-label>
-          <input matInput name="email" placeholder="Entre com seu email" [(ngModel)]="email" autocomplete="email">
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Senha</mat-label>
-          <input matInput type="password" name="password" placeholder="Entre com sua senha" [(ngModel)]="password" autocomplete="current-password">
-        </mat-form-field>
-      </form>
-    </mat-card-content>
-
-    <mat-card-actions>
-      <span>
-        Não tem uma conta?
-        <a routerLink="/cadastro">
-          Cadastre-se!
-        </a>
-      </span>
-      <button mat-raised-button color="primary" (click)="login()">Entrar</button>
-    </mat-card-actions>
-  </mat-card>
+    <button mat-raised-button class="text-white float-right" color="accent" type="submit">Login</button>
+  </form>
 </div>

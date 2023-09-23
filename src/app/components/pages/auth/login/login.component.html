@@ -3,13 +3,19 @@
     <mat-form-field class="w-full">
       <mat-label>Email</mat-label>
       <input matInput name="email" placeholder="Entre com seu email" formControlName="email" autocomplete="email" required>
+      <mat-error *ngIf="erros['email']">
+        {{ erros['email'] }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full">
       <mat-label>Senha</mat-label>
       <input matInput type="password" name="password" placeholder="Entre com sua senha" formControlName="password" autocomplete="current-password" required>
+      <mat-error *ngIf="erros['password']">
+        {{ erros['password'] }}
+      </mat-error>
     </mat-form-field>
 
-    <button mat-raised-button class="text-white float-right" color="accent" type="submit">Login</button>
+    <button mat-raised-button [appPromisedBtn]="loading" class="text-white float-right" color="accent" type="submit">Login</button>
   </form>
 </div>

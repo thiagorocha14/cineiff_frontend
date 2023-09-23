@@ -16,10 +16,14 @@ import { HeaderComponent } from './components/shared/layout/header/header.compon
 import { AppMaterialModule } from './app-material.module';
 import { HomeComponent } from './components/pages/public/home/home.component';
 import { CalendarComponent } from './components/pages/public/calendar/calendar.component';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FormComponent as EventosFormComponent } from './components/pages/public/eventos/form/form.component';
 import { FormComponent as ReservaFormComponent } from './components/pages/public/reserva/form/form.component';
+
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
+import { PromisedBtnDirective } from './directives/promised-btn/promised-btn.directive';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +34,8 @@ import { FormComponent as ReservaFormComponent } from './components/pages/public
     HomeComponent,
     CalendarComponent,
     EventosFormComponent,
-    ReservaFormComponent
+    ReservaFormComponent,
+    PromisedBtnDirective
   ],
   imports: [
     BrowserModule,

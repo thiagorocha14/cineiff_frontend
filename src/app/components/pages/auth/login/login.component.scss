@@ -1,35 +1,40 @@
 mat-card {
-  display: grid;
-  grid-template-areas: 'header' 'form' 'footer';
-  grid-gap: 1rem;
-  padding: 1rem;
+    display: grid;
+    grid-template-areas: 'header' 'form' 'footer';
+    grid-gap: 1rem;
+    padding: 1rem;
 }
 
 mat-card-header {
-  grid-area: header;
+    grid-area: header;
 }
 
 mat-card-content {
-  grid-area: form;
+    grid-area: form;
 }
 
 mat-card-actions {
-  grid-area: footer;
-  display: flex;
-  justify-content: space-between;
+    grid-area: footer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mat-error {
+    color: red;
+    font-size: 0.75rem;
 }
 
 a {
-  color: blue;
+    color: blue;
 }
 
 a:hover {
-  color: darkblue;
-  text-decoration: underline;
+    color: darkblue;
+    text-decoration: underline;
 }
 
 form {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
 }

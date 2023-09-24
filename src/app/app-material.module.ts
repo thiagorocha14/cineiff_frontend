@@ -7,17 +7,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MatError } from '@angular/material/form-field';
 
 @NgModule({
-  exports: [
-    MatToolbarModule,
-    MatCardModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatIconModule,
-    ReactiveFormsModule
-  ],
+    exports: [
+        MatToolbarModule,
+        MatCardModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatIconModule,
+        ReactiveFormsModule,
+    ],
 })
 export class AppMaterialModule {}

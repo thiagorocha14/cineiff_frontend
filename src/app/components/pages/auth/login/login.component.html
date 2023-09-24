@@ -1,21 +1,46 @@
 <div class="min-h-screen flex items-center justify-center">
-  <form [formGroup]="formLogin" (ngSubmit)="login()" class="w-full max-w-md p-4 border rounded shadow-lg bg-white">
-    <mat-form-field class="w-full">
-      <mat-label>Email</mat-label>
-      <input matInput name="email" placeholder="Entre com seu email" formControlName="email" autocomplete="email" required>
-      <mat-error *ngIf="erros['email']">
-        {{ erros['email'] }}
-      </mat-error>
-    </mat-form-field>
+    <form
+        [formGroup]="formLogin"
+        (ngSubmit)="login()"
+        class="w-full max-w-md p-4 border rounded shadow-lg bg-white">
+        <mat-form-field class="w-full">
+            <mat-label>Email</mat-label>
+            <input
+                matInput
+                name="email"
+                placeholder="Entre com seu email"
+                formControlName="email"
+                autocomplete="email"
+                required
+                [class.is-invalid]="erros['email']" />
+            <mat-hint class="mat-error p-0" *ngIf="erros['email']">
+                {{ erros['email'][0] }}
+            </mat-hint>
+        </mat-form-field>
 
-    <mat-form-field class="w-full">
-      <mat-label>Senha</mat-label>
-      <input matInput type="password" name="password" placeholder="Entre com sua senha" formControlName="password" autocomplete="current-password" required>
-      <mat-error *ngIf="erros['password']">
-        {{ erros['password'] }}
-      </mat-error>
-    </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Senha</mat-label>
+            <input
+                matInput
+                type="password"
+                name="password"
+                placeholder="Entre com sua senha"
+                formControlName="password"
+                autocomplete="current-password"
+                required
+                [class.is-invalid]="erros['password']" />
+            <mat-hint class="mat-error p-0" *ngIf="erros['password']">
+                {{ erros['password'][0] }}
+            </mat-hint>
+        </mat-form-field>
 
-    <button mat-raised-button [appPromisedBtn]="loading" class="text-white float-right" color="accent" type="submit">Login</button>
-  </form>
+        <button
+            mat-raised-button
+            [appPromisedBtn]="loading"
+            class="text-white float-right"
+            color="accent"
+            type="submit">
+            Login
+        </button>
+    </form>
 </div>

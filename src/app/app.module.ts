@@ -9,7 +9,7 @@ import { RegisterComponent } from './components/pages/auth/register/register.com
 import { FormsModule } from '@angular/forms';
 
 //http service module
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { HeaderComponent } from './components/shared/layout/header/header.component';
 
@@ -23,31 +23,42 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 import { PromisedBtnDirective } from './directives/promised-btn/promised-btn.directive';
-
+import { LoadingComponent } from './components/shared/utils/loading/loading.component';
+import { TokenInterceptorService } from './interceptors/token-interceptor.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    HeaderComponent,
-    HomeComponent,
-    CalendarComponent,
-    EventosFormComponent,
-    ReservaFormComponent,
-    PromisedBtnDirective
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    //http service module
-    HttpClientModule,
-    AppMaterialModule,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        RegisterComponent,
+        HeaderComponent,
+        HomeComponent,
+        CalendarComponent,
+        EventosFormComponent,
+        ReservaFormComponent,
+        PromisedBtnDirective,
+        LoadingComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        //http service module
+        HttpClientModule,
+        AppMaterialModule,
+        CalendarModule.forRoot({
+            provide: DateAdapter,
+            useFactory: adapterFactory,
+        }),
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptorService,
+            multi: true,
+        },
+    ],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

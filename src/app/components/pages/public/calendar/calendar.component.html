@@ -1,72 +1,64 @@
 <div class="flex justify-between items-center p-6">
     <div class="flex justify-center items-center">
-      <button
-        mat-icon-button
-        mwlCalendarPreviousView
-        [view]="view"
-        [(viewDate)]="viewDate"
-        (viewDateChange)="closeOpenMonthViewDay()"
-      >
-        <mat-icon>keyboard_arrow_left</mat-icon>
-      </button>
-      <button
-        mat-icon-button
-        mwlCalendarToday
-        [(viewDate)]="viewDate"
-      >
-        <mat-icon>today</mat-icon>
-      </button>
-      <button
-        mat-icon-button
-        mwlCalendarNextView
-        [view]="view"
-        [(viewDate)]="viewDate"
-        (viewDateChange)="closeOpenMonthViewDay()"
-      >
-        <mat-icon>keyboard_arrow_right</mat-icon>
-      </button>
+        <button
+            mat-icon-button
+            mwlCalendarPreviousView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="closeOpenMonthViewDay()">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <button mat-icon-button mwlCalendarToday [(viewDate)]="viewDate">
+            <mat-icon>today</mat-icon>
+        </button>
+        <button
+            mat-icon-button
+            mwlCalendarNextView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="closeOpenMonthViewDay()">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
     </div>
     <div>
-      <h2 class="uppercase font-bold">{{ viewDate | calendarDate:(view + 'ViewTitle'):'pt' }}</h2>
+        <h2 class="uppercase font-bold">
+            {{ viewDate | calendarDate: view + 'ViewTitle' : 'pt' }}
+        </h2>
     </div>
     <div class="flex justify-center items-center">
-      <button
-        mat-button
-        (click)="setView(CalendarView.Month)"
-        [color]="view === CalendarView.Month ? 'accent' : 'primary'"
-        (click)="view = CalendarView.Month"
-      >
-        Mês
-        <mat-icon>view_module</mat-icon>
-      </button>
-      <button
-        mat-button
-        (click)="setView(CalendarView.Week)"
-        [color]="view === CalendarView.Week ? 'accent' : 'primary'"
-        (click)="view = CalendarView.Week"
-      >
-        Semana
-        <mat-icon>view_week</mat-icon>
-      </button>
-  </div>
+        <button
+            mat-button
+            (click)="setView(CalendarView.Month)"
+            [color]="view === CalendarView.Month ? 'accent' : 'primary'"
+            (click)="view = CalendarView.Month">
+            Mês
+            <mat-icon>view_module</mat-icon>
+        </button>
+        <button
+            mat-button
+            (click)="setView(CalendarView.Week)"
+            [color]="view === CalendarView.Week ? 'accent' : 'primary'"
+            (click)="view = CalendarView.Week">
+            Semana
+            <mat-icon>view_week</mat-icon>
+        </button>
+    </div>
 </div>
 <div [ngSwitch]="view" class="overflow-y-scroll block h-4/5">
-  <mwl-calendar-month-view
-      *ngSwitchCase="'month'"
-      [viewDate]="viewDate"
-      [events]="events"
-      [refresh]="refresh"
-      [activeDayIsOpen]="activeDayIsOpen"
-      (dayClicked)="dayClicked($event.day)"
-      (eventTimesChanged)="eventTimesChanged($event)"
-    >
-  </mwl-calendar-month-view>
+    <mwl-calendar-month-view
+        *ngSwitchCase="'month'"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        [activeDayIsOpen]="activeDayIsOpen"
+        (dayClicked)="dayClicked($event.day)"
+        (eventTimesChanged)="eventTimesChanged($event)">
+    </mwl-calendar-month-view>
     <mwl-calendar-week-view
-    *ngSwitchCase="CalendarView.Week"
-    [viewDate]="viewDate"
-    [events]="events"
-    [refresh]="refresh"
-    (eventTimesChanged)="eventTimesChanged($event)"
-  >
-  </mwl-calendar-week-view>
+        *ngSwitchCase="CalendarView.Week"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        (eventTimesChanged)="eventTimesChanged($event)">
+    </mwl-calendar-week-view>
 </div>

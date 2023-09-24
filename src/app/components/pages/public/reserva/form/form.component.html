@@ -1,35 +1,40 @@
 <div class="min-h-screen flex items-center justify-center">
-  <form [formGroup]="formReserva" (ngSubmit)="solicitarReserva()" class="w-full max-w-md p-4 border rounded shadow-lg bg-white">
-    <mat-form-field class="w-full">
-      <mat-label>Nome</mat-label>
-      <input matInput placeholder="Nome" formControlName="nome" required>
-    </mat-form-field>
+    <form
+        [formGroup]="formReserva"
+        (ngSubmit)="solicitarReserva()"
+        class="w-full max-w-md p-4 border rounded shadow-lg bg-white">
+        <mat-form-field class="w-full">
+            <mat-label>Nome</mat-label>
+            <input matInput placeholder="Nome" formControlName="nome" required />
+        </mat-form-field>
 
-    <mat-form-field class="w-full">
-      <mat-label>Justificativa</mat-label>
-      <input matInput placeholder="Justificativa" formControlName="justificativa" required>
-    </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Justificativa</mat-label>
+            <input matInput placeholder="Justificativa" formControlName="justificativa" required />
+        </mat-form-field>
 
-    <mat-form-field class="w-full">
-      <mat-label>Telefone</mat-label>
-      <input matInput placeholder="Telefone" formControlName="telefone" required>
-    </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Telefone</mat-label>
+            <input matInput placeholder="Telefone" formControlName="telefone" required />
+        </mat-form-field>
 
-    <mat-form-field class="w-full">
-      <mat-label>Email</mat-label>
-      <input matInput type="email" placeholder="Email" formControlName="email" required>
-    </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" placeholder="Email" formControlName="email" required />
+        </mat-form-field>
 
-    <mat-form-field class="w-full">
-      <mat-label>Instituição</mat-label>
-      <input matInput placeholder="Instituição" formControlName="instituicao" required>
-    </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Instituição</mat-label>
+            <input matInput placeholder="Instituição" formControlName="instituicao" required />
+        </mat-form-field>
 
-    <mat-form-field class="w-full">
-      <mat-label>Público Alvo</mat-label>
-      <input matInput placeholder="Público Alvo" formControlName="publico_alvo" required>
-    </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Público Alvo</mat-label>
+            <input matInput placeholder="Público Alvo" formControlName="publico_alvo" required />
+        </mat-form-field>
 
-    <button mat-raised-button class="text-white float-right" color="accent" type="submit">Enviar Solicitação</button>
-  </form>
+        <button mat-raised-button class="text-white float-right" color="accent" type="submit">
+            Enviar Solicitação
+        </button>
+    </form>
 </div>

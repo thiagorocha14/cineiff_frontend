@@ -13,16 +13,16 @@ import { FormComponent as EventosFormComponent } from './components/pages/public
 import { FormComponent as ReservaFormComponent } from './components/pages/public/reserva/form/form.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'cadastro', component: RegisterComponent },
-  { path: '',  component: HomeComponent},
-  { path: 'agenda',  component: CalendarComponent},
-  { path: 'eventos',  component: EventosFormComponent},
-  { path: 'reserva',  component: ReservaFormComponent}
+    { path: 'login', component: LoginComponent },
+    { path: 'cadastrar', component: RegisterComponent },
+    { path: '', component: HomeComponent },
+    { path: 'agenda', component: CalendarComponent },
+    { path: 'eventos', component: EventosFormComponent },
+    { path: 'reserva', component: ReservaFormComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
 })
 export class AppRoutingModule {}

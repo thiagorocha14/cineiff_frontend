@@ -26,6 +26,14 @@ import { PromisedBtnDirective } from './directives/promised-btn/promised-btn.dir
 import { LoadingComponent } from './components/shared/utils/loading/loading.component';
 import { TokenInterceptorService } from './interceptors/token-interceptor.service';
 
+import { MatNativeDateModule } from '@angular/material/core';
+import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule
+} from '@angular-material-components/datetime-picker';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -44,13 +52,16 @@ import { TokenInterceptorService } from './interceptors/token-interceptor.servic
         AppRoutingModule,
         BrowserAnimationsModule,
         FormsModule,
-        //http service module
         HttpClientModule,
         AppMaterialModule,
         CalendarModule.forRoot({
             provide: DateAdapter,
             useFactory: adapterFactory,
         }),
+        NgxMatMomentModule,
+        NgxMatDatetimePickerModule,
+        NgxMatTimepickerModule,
+        NgxMatNativeDateModule,
     ],
     providers: [
         {

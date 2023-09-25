@@ -1,40 +1,97 @@
 <div class="min-h-screen flex items-center justify-center">
-    <form
-        [formGroup]="formReserva"
-        (ngSubmit)="solicitarReserva()"
-        class="w-full max-w-md p-4 border rounded shadow-lg bg-white">
-        <mat-form-field class="w-full">
-            <mat-label>Nome</mat-label>
-            <input matInput placeholder="Nome" formControlName="nome" required />
-        </mat-form-field>
+  <form
+    [formGroup]="formReserva"
+    (ngSubmit)="solicitarReserva()"
+    class="w-full max-w-md p-4 border rounded shadow-lg bg-white">
 
-        <mat-form-field class="w-full">
-            <mat-label>Justificativa</mat-label>
-            <input matInput placeholder="Justificativa" formControlName="justificativa" required />
-        </mat-form-field>
+    <section>
+      <h2 class="text-xl font-semibold mb-4">Dados da reserva</h2>
 
-        <mat-form-field class="w-full">
-            <mat-label>Telefone</mat-label>
-            <input matInput placeholder="Telefone" formControlName="telefone" required />
-        </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>Título</mat-label>
+        <input matInput placeholder="Título do evento" formControlName="titulo" required />
+      </mat-form-field>
 
-        <mat-form-field class="w-full">
-            <mat-label>Email</mat-label>
-            <input matInput type="email" placeholder="Email" formControlName="email" required />
-        </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>Descrição</mat-label>
+        <textarea matInput placeholder="Descrição" formControlName="descricao" required></textarea>
+      </mat-form-field>
 
-        <mat-form-field class="w-full">
-            <mat-label>Instituição</mat-label>
-            <input matInput placeholder="Instituição" formControlName="instituicao" required />
-        </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>Justificativa</mat-label>
+        <textarea matInput placeholder="Justificativa" formControlName="justificativa" required></textarea>
+      </mat-form-field>
 
-        <mat-form-field class="w-full">
-            <mat-label>Público Alvo</mat-label>
-            <input matInput placeholder="Público Alvo" formControlName="publico_alvo" required />
-        </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>Público Alvo</mat-label>
+        <input matInput placeholder="Público Alvo" formControlName="publico_alvo" required />
+      </mat-form-field>
 
-        <button mat-raised-button class="text-white float-right" color="accent" type="submit">
-            Enviar Solicitação
-        </button>
-    </form>
+      <mat-form-field>
+        <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" formControlName="inicio">
+        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+          [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond" [touchUi]="touchUi"
+          [color]="color" [enableMeridian]="enableMeridian">
+        </ngx-mat-datetime-picker>
+      </mat-form-field>
+
+      <!-- <mat-form-field class="w-full">
+        <mat-label>Início</mat-label>
+        <input matInput placeholder="Data de início" formControlName="inicio" required />
+      </mat-form-field> -->
+
+      <!-- <mat-form-field class="w-full">
+        <input matInput [ngxMatDatetimePicker]="picker2" placeholder="Choose a date" formControlName="fim">
+        <mat-datepicker-toggle matSuffix for="picker2"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #picker2 [showSpinners]="true" [showSeconds]="true"
+          [touchUi]="false" [enableMeridian]="true"
+          [disableMinute]="false" [hideTime]="false">
+        </ngx-mat-datetime-picker>
+     </mat-form-field> -->
+
+      <!-- <mat-form-field class="w-full">
+        <mat-label>Fim</mat-label>
+        <input matInput placeholder="Data de fim" formControlName="fim" required />
+      </mat-form-field> -->
+
+      <!-- <mat-form-field class="w-full">
+        <button type="button" md-button (click)="imgFileInput.click()">Anexo</button>
+        <input hidden type="file" #imgFileInput (change)="previewImage($event)"/>
+      </mat-form-field> -->
+    </section>
+
+    <section class="mt-6">
+      <h2 class="text-xl font-semibold mb-4">Dados pessoais</h2>
+
+      <mat-form-field class="w-full">
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="Nome" formControlName="nomeSolicitante" required />
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>Documento</mat-label>
+        <input matInput placeholder="Documento" formControlName="documento" required />
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>Telefone</mat-label>
+        <input matInput placeholder="Telefone" formControlName="telefone" required type="tel"/>
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="Email" formControlName="email" required type="email" />
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>Instituição</mat-label>
+        <input matInput placeholder="Instituição" formControlName="instituicao" required />
+      </mat-form-field>
+    </section>
+
+    <button mat-raised-button class="text-white float-right mt-6" color="accent" type="submit">
+      Enviar Solicitação
+    </button>
+  </form>
 </div>

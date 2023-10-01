@@ -27,39 +27,42 @@
         <input matInput placeholder="Público Alvo" formControlName="publico_alvo" required />
       </mat-form-field>
 
-      <mat-form-field>
-        <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" formControlName="inicio">
-        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
-        <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
-          [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond" [touchUi]="touchUi"
-          [color]="color" [enableMeridian]="enableMeridian">
-        </ngx-mat-datetime-picker>
+      <mat-form-field class="w-full">
+        <mat-label>Filme</mat-label>
+        <mat-select>
+          <mat-option>Selecione um filme</mat-option>
+          <!-- <mat-option *ngFor="let filme of filmes" [value]="filme.id">{{ filme.nome }}</mat-option> -->
+        </mat-select>
       </mat-form-field>
 
-      <!-- <mat-form-field class="w-full">
-        <mat-label>Início</mat-label>
-        <input matInput placeholder="Data de início" formControlName="inicio" required />
-      </mat-form-field> -->
+      <div class="form-field relative">
+        <label for="fileInput" class="block text-sm font-medium text-gray-700">Anexo</label>
+        <input id="fileInput" type="file" class="hidden">
+        <div class="mt-2 flex items-center space-x-2">
+          <input type="text" readonly class="flex-1 bg-white border border-gray-300 rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-300 ease-in-out">
+          <label for="fileInput" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 cursor-pointer transition duration-300 ease-in-out">
+            Selecionar
+          </label>
+        </div>
+      </div>
 
-      <!-- <mat-form-field class="w-full">
-        <input matInput [ngxMatDatetimePicker]="picker2" placeholder="Choose a date" formControlName="fim">
-        <mat-datepicker-toggle matSuffix for="picker2"></mat-datepicker-toggle>
-        <ngx-mat-datetime-picker #picker2 [showSpinners]="true" [showSeconds]="true"
-          [touchUi]="false" [enableMeridian]="true"
-          [disableMinute]="false" [hideTime]="false">
-        </ngx-mat-datetime-picker>
-     </mat-form-field> -->
-
-      <!-- <mat-form-field class="w-full">
-        <mat-label>Fim</mat-label>
-        <input matInput placeholder="Data de fim" formControlName="fim" required />
-      </mat-form-field> -->
-
-      <!-- <mat-form-field class="w-full">
-        <button type="button" md-button (click)="imgFileInput.click()">Anexo</button>
-        <input hidden type="file" #imgFileInput (change)="previewImage($event)"/>
-      </mat-form-field> -->
     </section>
+    <section class="mt-6">
+      <h2 class="text-xl font-semibold mb-4">Data e Hora</h2>
+
+      <div class="form-field w-full mb-4">
+        <label for="inicio" class="block text-sm font-medium text-gray-700">Início</label>
+        <input id="inicio" placeholder="Data de início" formControlName="inicio" type="datetime-local"
+          class="border border-gray-300 rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-300 ease-in-out w-full">
+      </div>
+
+      <div class="form-field w-full">
+        <label for="fim" class="block text-sm font-medium text-gray-700">Fim</label>
+        <input id="fim" placeholder="Data de fim" formControlName="fim" type="datetime-local"
+          class="border border-gray-300 rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-300 ease-in-out w-full">
+      </div>
+    </section>
+
 
     <section class="mt-6">
       <h2 class="text-xl font-semibold mb-4">Dados pessoais</h2>

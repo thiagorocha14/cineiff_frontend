@@ -37,9 +37,9 @@
 
       <div class="form-field relative">
         <label for="fileInput" class="block text-sm font-medium text-gray-700">Anexo</label>
-        <input id="fileInput" type="file" class="hidden">
+        <input id="fileInput" type="file" class="hidden" accept="image/*" (change)="fileChange($event)">
         <div class="mt-2 flex items-center space-x-2">
-          <input type="text" readonly class="flex-1 bg-white border border-gray-300 rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-300 ease-in-out">
+          <input type="text" #fileName readonly class="flex-1 bg-white border border-gray-300 rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-300 ease-in-out">
           <label for="fileInput" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 cursor-pointer transition duration-300 ease-in-out">
             Selecionar
           </label>

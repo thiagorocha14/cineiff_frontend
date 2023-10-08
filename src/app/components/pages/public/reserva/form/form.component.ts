@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { SolicitacaoService } from 'src/app/services/solicitacao.service';
@@ -12,7 +12,7 @@ import * as moment from 'moment';
 export class FormComponent implements OnInit {
     formReserva: FormGroup = new FormGroup({});
 
-    @ViewChild('picker') picker?: any
+    @ViewChild('fileName') inputFileName?: ElementRef;
 
     public date: any;
     public disabled = false;
@@ -63,36 +63,12 @@ export class FormComponent implements OnInit {
         }
     }
 
-    toggleMinDate(evt: any) {
-      if (evt.checked) {
-        this._setMinDate();
-      } else {
-        this.minDate = null;
+    fileChange(event: any) {
+      console.log(event.target.files[0]);
+      this.formReserva.patchValue({ anexo: event.target.files[0] });
+
+      if (this.formReserva.get('anexo')?.value) {
+        this.inputFileName!.nativeElement!.value = this.formReserva.get('anexo')?.value.name;
       }
-    }
-
-    toggleMaxDate(evt: any) {
-      if (evt.checked) {
-        this._setMaxDate();
-      } else {
-        this.maxDate = null;
-      }
-    }
-
-    closePicker() {
-      this.picker.cancel();
-    }
-
-    private _setMinDate() {
-      const now = new Date();
-      this.minDate = new Date();
-      this.minDate.setDate(now.getDate() - 1);
-    }
-
-
-    private _setMaxDate() {
-      const now = new Date();
-      this.maxDate = new Date();
-      this.maxDate.setDate(now.getDate() + 1);
     }
 }

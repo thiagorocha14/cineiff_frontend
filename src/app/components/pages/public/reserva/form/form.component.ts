@@ -14,6 +14,8 @@ export class FormComponent implements OnInit {
 
     @ViewChild('fileName') inputFileName?: ElementRef;
 
+    loading = false;
+
     public date: any;
     public disabled = false;
     public showSpinners = true;
@@ -28,22 +30,25 @@ export class FormComponent implements OnInit {
     public maxDate: any;
 
     constructor(
-      private formBuilder: FormBuilder,
-      private solicitacaoService: SolicitacaoService
+        private formBuilder: FormBuilder,
+        private solicitacaoService: SolicitacaoService
     ) {}
 
     ngOnInit(): void {
         this.date = new Date();
         this.formReserva = this.formBuilder.group({
-            titulo: ['', [Validators.required]],
+            nome_evento: ['', [Validators.required]],
             descricao: ['', [Validators.required]],
             justificativa: ['', [Validators.required]],
             publico_alvo: ['', [Validators.required]],
             inicio: ['', [Validators.required]],
             fim: ['', [Validators.required]],
             anexo: [''],
-            nomeSolicitante: ['', [Validators.required]],
-            documento: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(14)]],
+            nome_solicitante: ['', [Validators.required]],
+            documento: [
+                '',
+                [Validators.required, Validators.minLength(11), Validators.maxLength(14)],
+            ],
             telefone: ['', [Validators.required]],
             email: ['', [Validators.required, Validators.email]],
             instituicao: ['', [Validators.required]],
@@ -52,23 +57,26 @@ export class FormComponent implements OnInit {
 
     solicitarReserva() {
         if (this.formReserva.valid) {
-          this.solicitacaoService.solicitarReserva(this.formReserva.value).subscribe({
-            next: (res) => {
-              console.log(res);
-            },
-            error: (err) => {
-              console.log(err);
-            }
-          });
+            this.loading = true;
+            this.solicitacaoService.solicitarReserva(this.formReserva.value).subscribe({
+                next: res => {
+                    console.log(res);
+                    this.loading = false;
+                },
+                error: err => {
+                    console.log(err);
+                    this.loading = false;
+                },
+            });
         }
     }
 
     fileChange(event: any) {
-      console.log(event.target.files[0]);
-      this.formReserva.patchValue({ anexo: event.target.files[0] });
+        console.log(event.target.files[0]);
+        this.formReserva.patchValue({ anexo: event.target.files[0] });
 
-      if (this.formReserva.get('anexo')?.value) {
-        this.inputFileName!.nativeElement!.value = this.formReserva.get('anexo')?.value.name;
-      }
+        if (this.formReserva.get('anexo')?.value) {
+            this.inputFileName!.nativeElement!.value = this.formReserva.get('anexo')?.value.name;
+        }
     }
 }

@@ -16,8 +16,8 @@ import { HeaderComponent } from './components/shared/layout/header/header.compon
 import { AppMaterialModule } from './app-material.module';
 import { HomeComponent } from './components/pages/public/home/home.component';
 import { CalendarComponent } from './components/pages/public/calendar/calendar.component';
-import { FormComponent as EventosFormComponent } from './components/pages/public/eventos/form/form.component';
 import { FormComponent as ReservaFormComponent } from './components/pages/public/reserva/form/form.component';
+import { IndexComponent as ReservaIndexComponent } from './components/pages/public/reserva/index/index.component';
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -29,9 +29,9 @@ import { TokenInterceptorService } from './interceptors/token-interceptor.servic
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
 import {
-  NgxMatDatetimePickerModule,
-  NgxMatNativeDateModule,
-  NgxMatTimepickerModule
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule,
+    NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
 
 @NgModule({
@@ -42,8 +42,8 @@ import {
         HeaderComponent,
         HomeComponent,
         CalendarComponent,
-        EventosFormComponent,
         ReservaFormComponent,
+        ReservaIndexComponent,
         PromisedBtnDirective,
         LoadingComponent,
     ],

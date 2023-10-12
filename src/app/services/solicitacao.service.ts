@@ -3,15 +3,25 @@ import { solicitarReserva } from '../types/solicitacao/solicitarReserva';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class SolicitacaoService {
+    constructor(private http: HttpClient) {}
+    readonly baseUrl = 'http://localhost:8000/api/solicitacao-reserva';
 
-  constructor(private http: HttpClient) { }
-  readonly baseUrl = 'http://localhost:8000/api/solicitacao';
+    public solicitarReserva(data: solicitarReserva) {
+        return this.http.post(`${this.baseUrl}`, data);
+    }
 
-  public solicitarReserva(data: solicitarReserva)
-  {
-    return this.http.post(`${this.baseUrl}/solicitar-reserva`, data);
-  }
+    public listarSolicitacoes() {
+        return this.http.get(`${this.baseUrl}`);
+    }
+
+    public aprovarSolicitacao(solicitacao: solicitarReserva) {
+        return this.http.put(`${this.baseUrl}/${solicitacao.id}`, {});
+    }
+
+    public reprovarSolicitacao(solicitacao: solicitarReserva) {
+        return this.http.delete(`${this.baseUrl}/${solicitacao.id}`);
+    }
 }

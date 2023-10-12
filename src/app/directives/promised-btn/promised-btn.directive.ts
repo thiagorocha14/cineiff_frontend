@@ -4,7 +4,7 @@ import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
     selector: '[appPromisedBtn]',
 })
 export class PromisedBtnDirective {
-    @Input() appPromisedBtn: Promise<any> | boolean = false;
+    @Input() appPromisedBtn: Promise<any> | boolean | undefined = false;
 
     constructor(
         private el: ElementRef,

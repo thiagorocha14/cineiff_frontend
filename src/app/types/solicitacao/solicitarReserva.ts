@@ -1,11 +1,14 @@
 export type solicitarReserva = {
-    titulo: string;
+    id?: number;
+    nome_evento: string;
     descricao: string;
     justificativa: string;
     publico_alvo: string;
-    nomeSolicitante: string;
+    nome_solicitante: string;
     documento: string;
     telefone: string;
     email: string;
     instituicao: string;
-}
+    status?: string;
+    loading?: boolean;
+};

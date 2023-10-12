@@ -13,22 +13,23 @@
     </button>
     <button
         mat-button
-        routerLink="/eventos"
-        [color]="router.url === '/eventos' ? 'accent' : 'primary'">
-        Eventos
+        *ngIf="isLogged()"
+        routerLink="/reservas"
+        [color]="router.url === '/reservas' ? 'accent' : 'primary'">
+        Reservas Pendententes
     </button>
     <button
         mat-button
-        routerLink="/reserva"
-        [color]="router.url === '/reserva' ? 'accent' : 'primary'">
-        Reserva
+        routerLink="/reservar"
+        [color]="router.url === '/reservar' ? 'accent' : 'primary'">
+        Reservar
     </button>
     <span class="fill-remaining-space"></span>
     <button
         mat-button
         *ngIf="isLogged() && isAdmin()"
         routerLink="/cadastrar"
-        [color]="router.url === '/reserva' ? 'accent' : 'primary'">
+        [color]="router.url === '/cadastrar' ? 'accent' : 'primary'">
         Cadastrar Usuários
     </button>
     <button mat-button *ngIf="!isLogged()" routerLink="/login" color="primary">

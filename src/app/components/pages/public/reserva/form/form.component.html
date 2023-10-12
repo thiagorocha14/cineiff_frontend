@@ -1,100 +1,148 @@
 <div class="min-h-screen flex items-center justify-center">
-  <form
-    [formGroup]="formReserva"
-    (ngSubmit)="solicitarReserva()"
-    class="w-full max-w-md p-4 border rounded shadow-lg bg-white">
+    <form
+        [formGroup]="formReserva"
+        (ngSubmit)="solicitarReserva()"
+        class="w-full max-w-md p-4 border rounded shadow-lg bg-white">
+        <section>
+            <h2 class="text-xl font-semibold mb-4">Dados da reserva</h2>
 
-    <section>
-      <h2 class="text-xl font-semibold mb-4">Dados da reserva</h2>
+            <mat-form-field class="w-full">
+                <mat-label>Título</mat-label>
+                <input
+                    matInput
+                    placeholder="Título do evento"
+                    formControlName="nome_evento"
+                    required />
+            </mat-form-field>
 
-      <mat-form-field class="w-full">
-        <mat-label>Título</mat-label>
-        <input matInput placeholder="Título do evento" formControlName="titulo" required />
-      </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Descrição</mat-label>
+                <textarea
+                    matInput
+                    placeholder="Descrição"
+                    formControlName="descricao"
+                    required></textarea>
+            </mat-form-field>
 
-      <mat-form-field class="w-full">
-        <mat-label>Descrição</mat-label>
-        <textarea matInput placeholder="Descrição" formControlName="descricao" required></textarea>
-      </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Justificativa</mat-label>
+                <textarea
+                    matInput
+                    placeholder="Justificativa"
+                    formControlName="justificativa"
+                    required></textarea>
+            </mat-form-field>
 
-      <mat-form-field class="w-full">
-        <mat-label>Justificativa</mat-label>
-        <textarea matInput placeholder="Justificativa" formControlName="justificativa" required></textarea>
-      </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Público Alvo</mat-label>
+                <input
+                    matInput
+                    placeholder="Público Alvo"
+                    formControlName="publico_alvo"
+                    required />
+            </mat-form-field>
 
-      <mat-form-field class="w-full">
-        <mat-label>Público Alvo</mat-label>
-        <input matInput placeholder="Público Alvo" formControlName="publico_alvo" required />
-      </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Filme</mat-label>
+                <mat-select>
+                    <mat-option>Selecione um filme</mat-option>
+                    <!-- <mat-option *ngFor="let filme of filmes" [value]="filme.id">{{ filme.nome }}</mat-option> -->
+                </mat-select>
+            </mat-form-field>
 
-      <mat-form-field class="w-full">
-        <mat-label>Filme</mat-label>
-        <mat-select>
-          <mat-option>Selecione um filme</mat-option>
-          <!-- <mat-option *ngFor="let filme of filmes" [value]="filme.id">{{ filme.nome }}</mat-option> -->
-        </mat-select>
-      </mat-form-field>
+            <div class="form-field relative">
+                <label for="fileInput" class="block text-sm font-medium text-gray-700">Anexo</label>
+                <input
+                    id="fileInput"
+                    type="file"
+                    class="hidden"
+                    accept="image/*"
+                    (change)="fileChange($event)" />
+                <div class="mt-2 flex items-center space-x-2">
+                    <input
+                        type="text"
+                        #fileName
+                        readonly
+                        class="flex-1 bg-white border border-gray-300 rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-300 ease-in-out" />
+                    <label
+                        for="fileInput"
+                        class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 cursor-pointer transition duration-300 ease-in-out">
+                        Selecionar
+                    </label>
+                </div>
+            </div>
+        </section>
+        <section class="mt-6">
+            <h2 class="text-xl font-semibold mb-4">Data e Hora</h2>
 
-      <div class="form-field relative">
-        <label for="fileInput" class="block text-sm font-medium text-gray-700">Anexo</label>
-        <input id="fileInput" type="file" class="hidden" accept="image/*" (change)="fileChange($event)">
-        <div class="mt-2 flex items-center space-x-2">
-          <input type="text" #fileName readonly class="flex-1 bg-white border border-gray-300 rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-300 ease-in-out">
-          <label for="fileInput" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 cursor-pointer transition duration-300 ease-in-out">
-            Selecionar
-          </label>
-        </div>
-      </div>
+            <div class="form-field w-full mb-4">
+                <label for="inicio" class="block text-sm font-medium text-gray-700">Início</label>
+                <input
+                    id="inicio"
+                    placeholder="Data de início"
+                    formControlName="inicio"
+                    type="datetime-local"
+                    class="border border-gray-300 rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-300 ease-in-out w-full" />
+            </div>
 
-    </section>
-    <section class="mt-6">
-      <h2 class="text-xl font-semibold mb-4">Data e Hora</h2>
+            <div class="form-field w-full">
+                <label for="fim" class="block text-sm font-medium text-gray-700">Fim</label>
+                <input
+                    id="fim"
+                    placeholder="Data de fim"
+                    formControlName="fim"
+                    type="datetime-local"
+                    class="border border-gray-300 rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-300 ease-in-out w-full" />
+            </div>
+        </section>
 
-      <div class="form-field w-full mb-4">
-        <label for="inicio" class="block text-sm font-medium text-gray-700">Início</label>
-        <input id="inicio" placeholder="Data de início" formControlName="inicio" type="datetime-local"
-          class="border border-gray-300 rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-300 ease-in-out w-full">
-      </div>
+        <section class="mt-6">
+            <h2 class="text-xl font-semibold mb-4">Dados pessoais</h2>
 
-      <div class="form-field w-full">
-        <label for="fim" class="block text-sm font-medium text-gray-700">Fim</label>
-        <input id="fim" placeholder="Data de fim" formControlName="fim" type="datetime-local"
-          class="border border-gray-300 rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-300 ease-in-out w-full">
-      </div>
-    </section>
+            <mat-form-field class="w-full">
+                <mat-label>Nome</mat-label>
+                <input matInput placeholder="Nome" formControlName="nome_solicitante" required />
+            </mat-form-field>
 
+            <mat-form-field class="w-full">
+                <mat-label>Documento</mat-label>
+                <input matInput placeholder="Documento" formControlName="documento" required />
+            </mat-form-field>
 
-    <section class="mt-6">
-      <h2 class="text-xl font-semibold mb-4">Dados pessoais</h2>
+            <mat-form-field class="w-full">
+                <mat-label>Telefone</mat-label>
+                <input
+                    matInput
+                    placeholder="Telefone"
+                    formControlName="telefone"
+                    required
+                    type="tel" />
+            </mat-form-field>
 
-      <mat-form-field class="w-full">
-        <mat-label>Nome</mat-label>
-        <input matInput placeholder="Nome" formControlName="nomeSolicitante" required />
-      </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Email</mat-label>
+                <input
+                    matInput
+                    type="email"
+                    placeholder="Email"
+                    formControlName="email"
+                    required
+                    type="email" />
+            </mat-form-field>
 
-      <mat-form-field class="w-full">
-        <mat-label>Documento</mat-label>
-        <input matInput placeholder="Documento" formControlName="documento" required />
-      </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Instituição</mat-label>
+                <input matInput placeholder="Instituição" formControlName="instituicao" required />
+            </mat-form-field>
+        </section>
 
-      <mat-form-field class="w-full">
-        <mat-label>Telefone</mat-label>
-        <input matInput placeholder="Telefone" formControlName="telefone" required type="tel"/>
-      </mat-form-field>
-
-      <mat-form-field class="w-full">
-        <mat-label>Email</mat-label>
-        <input matInput type="email" placeholder="Email" formControlName="email" required type="email" />
-      </mat-form-field>
-
-      <mat-form-field class="w-full">
-        <mat-label>Instituição</mat-label>
-        <input matInput placeholder="Instituição" formControlName="instituicao" required />
-      </mat-form-field>
-    </section>
-
-    <button mat-raised-button class="text-white float-right mt-6" color="accent" type="submit">
-      Enviar Solicitação
-    </button>
-  </form>
+        <button
+            mat-raised-button
+            [appPromisedBtn]="loading"
+            class="text-white float-right mt-6"
+            color="accent"
+            type="submit">
+            Enviar Solicitação
+        </button>
+    </form>
 </div>

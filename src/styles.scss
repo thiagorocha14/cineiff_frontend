@@ -29,6 +29,17 @@ $cineiff_frontend-theme: mat.define-light-theme(
 $cineiff_frontend-app-background: mat.get-color-from-palette($cineiff_frontend-theme, background);
 @include mat.all-component-themes($cineiff_frontend-theme);
 
+@layer components {
+    .badge-success {
+        @apply bg-green-700 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full;
+    }
+    .badge-danger {
+        @apply bg-red-700 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full;
+    }
+    .badge-dark {
+        @apply bg-gray-700 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full;
+    }
+}
 
 html,
 body {

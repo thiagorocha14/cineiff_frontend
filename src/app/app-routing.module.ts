@@ -9,16 +9,16 @@ import { RegisterComponent } from './components/pages/auth/register/register.com
 import { HomeComponent } from './components/pages/public/home/home.component';
 import { CalendarComponent } from './components/pages/public/calendar/calendar.component';
 // import { authGuard } from './guard/auth.guard';
-import { FormComponent as EventosFormComponent } from './components/pages/public/eventos/form/form.component';
 import { FormComponent as ReservaFormComponent } from './components/pages/public/reserva/form/form.component';
+import { IndexComponent as ReservaIndexComponent } from './components/pages/public/reserva/index/index.component';
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'cadastrar', component: RegisterComponent },
     { path: '', component: HomeComponent },
     { path: 'agenda', component: CalendarComponent },
-    { path: 'eventos', component: EventosFormComponent },
-    { path: 'reserva', component: ReservaFormComponent },
+    { path: 'reservar', component: ReservaFormComponent },
+    { path: 'reservas', component: ReservaIndexComponent },
 ];
 
 @NgModule({

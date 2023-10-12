@@ -1,0 +1,139 @@
+<!-- export type solicitarReserva = {
+    nome_evento: string;
+    descricao: string;
+    justificativa: string;
+    publico_alvo: string;
+    nome_solicitante: string;
+    documento: string;
+    telefone: string;
+    email: string;
+    instituicao: string;
+    status?: string;
+} -->
+<div class="min-h-screen flex items-center justify-center">
+    <section class="w-full max-w-8xl p-4 border rounded shadow-lg bg-white">
+        <div class="relative shadow-md sm:rounded-lg">
+            <table class="items-center table-fixed bg-transparent w-full border-collapse">
+                <thead>
+                    <tr>
+                        <th
+                            class="px-6 bg-gray-50 text-gray-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Título
+                        </th>
+                        <th
+                            class="px-6 bg-gray-50 text-gray-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Descrição
+                        </th>
+                        <th
+                            class="px-6 bg-gray-50 text-gray-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Justificativa
+                        </th>
+                        <th
+                            class="px-6 bg-gray-50 text-gray-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Público Alvo
+                        </th>
+                        <th
+                            class="px-6 bg-gray-50 text-gray-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Nome Solicitante
+                        </th>
+                        <th
+                            class="px-6 bg-gray-50 text-gray-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Documento
+                        </th>
+                        <th
+                            class="px-6 bg-gray-50 text-gray-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Telefone
+                        </th>
+                        <th
+                            class="px-6 bg-gray-50 text-gray-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Email
+                        </th>
+                        <th
+                            class="px-6 bg-gray-50 text-gray-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Instituição
+                        </th>
+                        <th
+                            class="px-6 bg-gray-50 text-gray-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+                            Status
+                        </th>
+                        <th
+                            class="px-6 bg-gray-50 text-gray-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Opções
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let solicitacao of solicitacoes">
+                        <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                            {{ solicitacao.nome_evento }}
+                        </td>
+                        <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                            {{ solicitacao.descricao }}
+                        </td>
+                        <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                            {{ solicitacao.justificativa }}
+                        </td>
+                        <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                            {{ solicitacao.publico_alvo }}
+                        </td>
+                        <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                            {{ solicitacao.nome_solicitante }}
+                        </td>
+                        <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                            {{ solicitacao.documento }}
+                        </td>
+                        <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                            {{ solicitacao.telefone }}
+                        </td>
+                        <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                            {{ solicitacao.email }}
+                        </td>
+                        <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                            {{ solicitacao.instituicao }}
+                        </td>
+                        <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                            <span
+                                [class]="retornaClasseStatus(solicitacao.status)"
+                                class="uppercase">
+                                {{ solicitacao.status }}
+                            </span>
+                        </td>
+                        <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 flex flex-row place-items-center">
+                            <button
+                                mat-raised-button
+                                color="accent"
+                                [appPromisedBtn]="solicitacao.loading"
+                                class="text-white float-right mt-6"
+                                *ngIf="solicitacao.status === 'pendente'"
+                                matTooltip="Aprovar a solicitação"
+                                (click)="aprovarSolicitacao(solicitacao)">
+                                <mat-icon class="text-white">check</mat-icon>
+                            </button>
+                            <button
+                                mat-raised-button
+                                color="primary"
+                                class="text-white float-right mt-6"
+                                [appPromisedBtn]="solicitacao.loading"
+                                *ngIf="solicitacao.status === 'pendente'"
+                                matTooltip="Rejeitar a solicitação"
+                                (click)="reprovarSolicitacao(solicitacao)">
+                                <mat-icon class="text-white">close</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>

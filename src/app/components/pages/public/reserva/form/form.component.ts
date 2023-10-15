@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { SolicitacaoService } from 'src/app/services/solicitacao.service';
 import * as moment from 'moment';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
     selector: 'app-form',
@@ -31,6 +32,7 @@ export class FormComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
+        private toastService: ToastService,
         private solicitacaoService: SolicitacaoService
     ) {}
 
@@ -60,11 +62,12 @@ export class FormComponent implements OnInit {
             this.loading = true;
             this.solicitacaoService.solicitarReserva(this.formReserva.value).subscribe({
                 next: res => {
-                    console.log(res);
+                    this.toastService.showToastBottomCenter('Solicitação criada com sucesso!');
+                    this.formReserva.reset();
                     this.loading = false;
                 },
                 error: err => {
-                    console.log(err);
+                    this.toastService.showToastBottomCenter('Erro ao criar solicitação!');
                     this.loading = false;
                 },
             });

@@ -1,18 +1,20 @@
-<div class="flex justify-between items-center p-6">
+<div class="flex justify-between items-center p-6 bg-black">
     <div class="flex justify-center items-center">
         <button
             mat-icon-button
+            color="accent"
             mwlCalendarPreviousView
             [view]="view"
             [(viewDate)]="viewDate"
             (viewDateChange)="closeOpenMonthViewDay()">
             <mat-icon>keyboard_arrow_left</mat-icon>
         </button>
-        <button mat-icon-button mwlCalendarToday [(viewDate)]="viewDate">
+        <button mat-icon-button mwlCalendarToday color="accent" [(viewDate)]="viewDate">
             <mat-icon>today</mat-icon>
         </button>
         <button
             mat-icon-button
+            color="accent"
             mwlCalendarNextView
             [view]="view"
             [(viewDate)]="viewDate"
@@ -21,7 +23,7 @@
         </button>
     </div>
     <div>
-        <h2 class="uppercase font-bold">
+        <h2 class="uppercase font-bold text-orange-500">
             {{ viewDate | calendarDate: view + 'ViewTitle' : 'pt' }}
         </h2>
     </div>

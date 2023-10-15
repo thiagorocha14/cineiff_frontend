@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingService } from 'src/app/services/loading.service';
 import { SolicitacaoService } from 'src/app/services/solicitacao.service';
 import { solicitarReserva } from 'src/app/types/solicitacao/solicitarReserva';
 
@@ -10,19 +11,25 @@ import { solicitarReserva } from 'src/app/types/solicitacao/solicitarReserva';
 export class IndexComponent implements OnInit {
     solicitacoes: solicitarReserva[] = [];
 
-    constructor(private solicitacaoService: SolicitacaoService) {}
+    constructor(
+        private solicitacaoService: SolicitacaoService,
+        private loadingService: LoadingService
+    ) {}
 
     ngOnInit(): void {
         this.buscarSolicitacoes();
     }
 
     buscarSolicitacoes() {
+        this.loadingService.showLoading();
         this.solicitacaoService.listarSolicitacoes().subscribe({
             next: res => {
                 this.solicitacoes = res as solicitarReserva[];
+                this.loadingService.hideLoading();
             },
             error: err => {
                 console.log(err);
+                this.loadingService.hideLoading();
             },
         });
     }

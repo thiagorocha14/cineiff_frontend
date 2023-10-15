@@ -4,6 +4,10 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+@import url('https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@500&display=swap');
+
+@import "./styles/angular-calendar.css";
+
 @include mat.core();
 $cineiff_frontend-primary: mat.define-palette(mat.$gray-palette);
 $cineiff_frontend-primary-dark: mat.define-palette(mat.$gray-palette, 700, 500, 900);
@@ -40,6 +44,11 @@ $cineiff_frontend-app-background: mat.get-color-from-palette($cineiff_frontend-t
         @apply bg-gray-700 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full;
     }
 }
+@layer base {
+  * {
+    font-family: 'AR One Sans', 'Helvetica Neue', sans-serif;
+  }
+}
 
 html,
 body {
@@ -47,7 +56,8 @@ body {
 }
 body {
     margin: 0;
-    font-family: Roboto, 'Helvetica Neue', sans-serif;
+    font-family: 'AR One Sans', 'Helvetica Neue', sans-serif;
+    background-color: black;
 }
 
 .spinner {
@@ -69,3 +79,7 @@ body {
     }
 }
 
+.success-snackbar{
+    background-color: rgb(249 115 22 / 1);;
+    color: white;
+}

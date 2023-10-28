@@ -11,13 +11,13 @@
         [color]="router.url === '/agenda' ? 'accent' : 'primary'">
         Calendário
     </button>
-    <button
+    <!-- <button
         mat-button
         *ngIf="isLogged()"
         routerLink="/reservas"
         [color]="router.url === '/reservas' ? 'accent' : 'primary'">
         Reservas Pendententes
-    </button>
+    </button> -->
     <button
         mat-button
         routerLink="/reservar"
@@ -27,11 +27,31 @@
     <span class="fill-remaining-space"></span>
     <button
         mat-button
+        [matMenuTriggerFor]="menu"
         *ngIf="isLogged() && isAdmin()"
-        routerLink="/cadastrar"
-        [color]="router.url === '/cadastrar' ? 'accent' : 'primary'">
-        Cadastrar Usuários
+        color="primary">
+        <mat-icon>arrow_drop_down</mat-icon> Opções administrativas
     </button>
+    <mat-menu #menu="matMenu">
+      <button
+          mat-menu-item
+          *ngIf="isLogged() && isAdmin()"
+          routerLink="/cadastrar">
+          Cadastrar usuários
+      </button>
+      <button
+          mat-menu-item
+          *ngIf="isLogged()"
+          routerLink="/reservas">
+          Reservas Pendententes
+      </button>
+      <button
+          mat-menu-item
+          *ngIf="isLogged()"
+          routerLink="/filmes">
+          Gerenciar filmes
+      </button>
+    </mat-menu>
     <button mat-button *ngIf="!isLogged()" routerLink="/login" color="primary">
         Área Administrativa
     </button>

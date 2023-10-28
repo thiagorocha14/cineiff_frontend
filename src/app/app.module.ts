@@ -26,13 +26,14 @@ import { PromisedBtnDirective } from './directives/promised-btn/promised-btn.dir
 import { LoadingComponent } from './components/shared/utils/loading/loading.component';
 import { TokenInterceptorService } from './interceptors/token-interceptor.service';
 
-import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
 import {
     NgxMatDatetimePickerModule,
     NgxMatNativeDateModule,
     NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
+import { IndexComponent } from './components/pages/public/filmes/index/index.component';
+import { FormComponent } from './components/pages/public/filmes/form/form.component';
 
 @NgModule({
     declarations: [
@@ -46,6 +47,8 @@ import {
         ReservaIndexComponent,
         PromisedBtnDirective,
         LoadingComponent,
+        IndexComponent,
+        FormComponent,
     ],
     imports: [
         BrowserModule,

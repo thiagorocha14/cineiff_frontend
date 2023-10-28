@@ -12,6 +12,9 @@ import { CalendarComponent } from './components/pages/public/calendar/calendar.c
 import { FormComponent as ReservaFormComponent } from './components/pages/public/reserva/form/form.component';
 import { IndexComponent as ReservaIndexComponent } from './components/pages/public/reserva/index/index.component';
 
+import { IndexComponent as FilmesIndexComponent } from './components/pages/public/filmes/index/index.component';
+import { FormComponent as FilmesFormComponent } from './components/pages/public/filmes/form/form.component';
+
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'cadastrar', component: RegisterComponent },
@@ -19,6 +22,9 @@ const routes: Routes = [
     { path: 'agenda', component: CalendarComponent },
     { path: 'reservar', component: ReservaFormComponent },
     { path: 'reservas', component: ReservaIndexComponent },
+    { path: 'filmes', component: FilmesIndexComponent},
+    { path: 'filmes/cadastrar', component: FilmesFormComponent},
+    { path: 'filmes/editar/:id', component: FilmesFormComponent},
 ];
 
 @NgModule({

@@ -75,7 +75,6 @@ export class FormComponent implements OnInit {
     }
 
     fileChange(event: any) {
-        console.log(event.target.files[0]);
         this.formReserva.patchValue({ anexo: event.target.files[0] });
 
         if (this.formReserva.get('anexo')?.value) {

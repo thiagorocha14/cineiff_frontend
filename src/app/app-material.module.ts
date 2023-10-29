@@ -14,6 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
     exports: [
@@ -30,7 +31,8 @@ import { MatMenuModule } from '@angular/material/menu';
         MatRadioModule,
         MatSelectModule,
         MatSnackBarModule,
-        MatMenuModule
+        MatMenuModule,
+        NgxMatSelectSearchModule,
     ],
 })
 export class AppMaterialModule {}

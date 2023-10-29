@@ -1,9 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { SolicitacaoService } from 'src/app/services/solicitacao.service';
 import * as moment from 'moment';
 import { ToastService } from 'src/app/services/toast.service';
+import { Filme } from 'src/app/types/filme/filme';
+import { FilmesService } from 'src/app/services/filmes.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-form',
@@ -29,11 +32,17 @@ export class FormComponent implements OnInit {
     public color: ThemePalette = 'primary';
     public minDate: any;
     public maxDate: any;
+    public filmeControl: FormControl<null | Filme> = new FormControl<null | Filme>(null);
+    public filtroFilmeControl: FormControl<null | string> = new FormControl<string>('');
+    public filmes: Filme[] = [];
+    public filmesFiltrados: Filme[] = [];
+    protected _onDestroy = new Subject<void>();
 
     constructor(
         private formBuilder: FormBuilder,
         private toastService: ToastService,
-        private solicitacaoService: SolicitacaoService
+        private solicitacaoService: SolicitacaoService,
+        private filmeService: FilmesService,
     ) {}
 
     ngOnInit(): void {
@@ -54,6 +63,18 @@ export class FormComponent implements OnInit {
             telefone: ['', [Validators.required]],
             email: ['', [Validators.required, Validators.email]],
             instituicao: ['', [Validators.required]],
+        });
+
+        this.buscarFilmes();
+
+        this.filtroFilmeControl.valueChanges
+            .pipe(takeUntil(this._onDestroy))
+            .subscribe(() => {
+                this.filtrarFilmes();
+            });
+
+        this.filmeControl.valueChanges.subscribe(() => {
+            this.formReserva.patchValue({ filme_id: this.filmeControl.value?.id });
         });
     }
 
@@ -80,5 +101,31 @@ export class FormComponent implements OnInit {
         if (this.formReserva.get('anexo')?.value) {
             this.inputFileName!.nativeElement!.value = this.formReserva.get('anexo')?.value.name;
         }
+    }
+
+    buscarFilmes() {
+        this.filmeService.buscarFilmes().subscribe({
+            next: res => {
+                this.filmes = res;
+                this.filmesFiltrados = res;
+            },
+            error: err => {
+                this.toastService.showToastBottomCenter('Erro ao buscar filmes!');
+            },
+        });
+    }
+
+    filtrarFilmes() {
+        const pesquisa = this.filtroFilmeControl.value;
+
+        if (pesquisa) {
+          this.filmesFiltrados = this.filmes.filter(filme => {
+              return filme.nome.toLowerCase().includes(pesquisa.toLowerCase());
+          });
+
+          return;
+        }
+
+        this.filmesFiltrados = this.filmes;
     }
 }

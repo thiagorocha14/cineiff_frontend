@@ -44,11 +44,19 @@
                             required />
                     </mat-form-field>
 
-                    <mat-form-field class="w-full">
-                        <mat-label>Filme</mat-label>
-                        <mat-select>
-                            <mat-option>Selecione um filme</mat-option>
-                            <!-- <mat-option *ngFor="let filme of filmes" [value]="filme.id">{{ filme.nome }}</mat-option> -->
+                    <mat-form-field class="w-full" *ngIf="filmesFiltrados && filmesFiltrados.length > 0">
+                        <mat-select [formControl]="filmeControl" placeholder="Filme" #singleSelect>
+                            <mat-option>
+                                <ngx-mat-select-search
+                                    placeholderLabel="Filtrar filmes"
+                                    noEntriesFoundLabel="'Filme não encontrado'"
+                                    [formControl]="filtroFilmeControl">
+                                </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option *ngIf="filmeControl.value">Limpar seleção</mat-option>
+                            <mat-option *ngFor="let filme of filmesFiltrados" [value]="filme">
+                                {{ filme.nome }}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
 

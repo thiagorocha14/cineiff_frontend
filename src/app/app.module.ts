@@ -34,6 +34,7 @@ import {
 } from '@angular-material-components/datetime-picker';
 import { IndexComponent } from './components/pages/public/filmes/index/index.component';
 import { FormComponent } from './components/pages/public/filmes/form/form.component';
+import { CarouselComponent } from './components/shared/layout/carousel/carousel.component';
 
 @NgModule({
     declarations: [
@@ -49,6 +50,7 @@ import { FormComponent } from './components/pages/public/filmes/form/form.compon
         LoadingComponent,
         IndexComponent,
         FormComponent,
+        CarouselComponent,
     ],
     imports: [
         BrowserModule,

@@ -1,93 +1,93 @@
 <div class="min-h-[calc(100vh-4rem)] flex items-center justify-center">
-  <section class="m-12">
-    <div class="shadow-md flex flex-row sm:rounded-lg bg-transparent w-full bg-zinc-800" *ngIf="filmes.length > 0">
-        <mat-form-field appearance="fill" class="w-full bg-zinc-600">
-            <mat-label>Pesquisar por nome</mat-label>
-            <input
-                matInput
-                [(ngModel)]="nomeFilme"
-                (keyup)="filtrar()"
-                placeholder="Digite o nome do filme">
-        </mat-form-field>
-        <button routerLink="cadastrar" class="text-white hover:bg-zinc-500">
-            <span class="material-icons text-white">add_circle_outline</span>
-            Cadastrar
-        </button>
-    </div>
-    <div class="relative shadow-md sm:rounded-lg">
-          <table
-              *ngIf="filmes.length > 0"
-              class="items-center table-fixed bg-transparent w-full border-collapse border border-solid border-x-gray-100">
-              <thead>
-                  <tr>
-                      <th
-                          class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                          Nome
-                      </th>
-                      <th
-                          class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                          Sinopse
-                      </th>
-                      <th
-                          class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                          Classificação indicativa
-                      </th>
-                      <th
-                          class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                          Duração em minutos
-                      </th>
-                      <th
-                          class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                          Opções
-                      </th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr
-                      *ngFor="let filme of filmes"
-                      class="bg-zinc-600 odd:bg-zinc-700 text-white hover:bg-zinc-500 hover:cursor-pointer">
-                      <td
-                          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                          {{ filme.nome }}
-                      </td>
-                      <td
-                          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                          {{ filme.sinopse }}
-                      </td>
-                      <td
-                          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                          {{ filme.classificacao_indicativa }}
-                      </td>
-                      <td
-                          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                          {{ filme.duracao_minutos }}
-                      </td>
-                      <td
-                          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 flex flex-row place-items-center">
-                          <button
-                              mat-fab
-                              extended
-                              color="accent"
-                              [appPromisedBtn]="filme.loading"
-                              class="text-white float-right mt-6"
-                              matTooltip="Editar o filme"
-                              routerLink="editar/{{ filme.id }}">
-                              <mat-icon class="text-white">edit</mat-icon>
-                          </button>
-                          <button
-                              mat-fab
-                              extended
-                              color="primary"
-                              class="text-white float-right mt-6"
-                              [appPromisedBtn]="filme.loading"
-                              matTooltip="Excluir o filme"
-                              (click)="excluir(filme)">
-                              <mat-icon class="text-white">close</mat-icon>
-                          </button>
-                      </td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-  </section>
+    <section class="m-12">
+        <div class="shadow-md flex flex-row sm:rounded-lg bg-transparent w-full bg-zinc-800">
+            <mat-form-field appearance="fill" class="w-full bg-zinc-600">
+                <mat-label>Pesquisar por nome</mat-label>
+                <input
+                    matInput
+                    [(ngModel)]="nomeFilme"
+                    (keyup)="filtrar()"
+                    placeholder="Digite o nome do filme" />
+            </mat-form-field>
+            <button routerLink="cadastrar" class="text-white hover:bg-zinc-500">
+                <span class="material-icons text-white">add_circle_outline</span>
+                Cadastrar
+            </button>
+        </div>
+        <div class="relative shadow-md sm:rounded-lg">
+            <table
+                *ngIf="filmes.length > 0"
+                class="items-center table-fixed bg-transparent w-full border-collapse border border-solid border-x-gray-100">
+                <thead>
+                    <tr>
+                        <th
+                            class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Nome
+                        </th>
+                        <th
+                            class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Sinopse
+                        </th>
+                        <th
+                            class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Classificação indicativa
+                        </th>
+                        <th
+                            class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Duração em minutos
+                        </th>
+                        <th
+                            class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Opções
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let filme of filmes"
+                        class="bg-zinc-600 odd:bg-zinc-700 text-white hover:bg-zinc-500 hover:cursor-pointer">
+                        <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                            {{ filme.nome }}
+                        </td>
+                        <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                            {{ filme.sinopse }}
+                        </td>
+                        <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                            {{ filme.classificacao_indicativa }}
+                        </td>
+                        <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                            {{ filme.duracao_minutos }}
+                        </td>
+                        <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 flex flex-row place-items-center">
+                            <button
+                                mat-fab
+                                extended
+                                color="accent"
+                                [appPromisedBtn]="filme.loading"
+                                class="text-white float-right mt-6"
+                                matTooltip="Editar o filme"
+                                routerLink="editar/{{ filme.id }}">
+                                <mat-icon class="text-white">edit</mat-icon>
+                            </button>
+                            <button
+                                mat-fab
+                                extended
+                                color="primary"
+                                class="text-white float-right mt-6"
+                                [appPromisedBtn]="filme.loading"
+                                matTooltip="Excluir o filme"
+                                (click)="excluir(filme)">
+                                <mat-icon class="text-white">close</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 </div>

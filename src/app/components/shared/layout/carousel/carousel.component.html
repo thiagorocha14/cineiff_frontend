@@ -1,0 +1,52 @@
+<section class="w-screen h-96 overflow-x-hidden">
+    <div class="relative w-full h-full">
+        <div [@animSlider]="actual_item">
+            <ng-container *ngFor="let item of items; let i = index">
+                <div class="absolute w-full h-full" *ngIf="i === actual_item">
+                    <img
+                        alt="{{ item.title }}"
+                        class="w-full h-full object-cover"
+                        src="{{ item.image }}" />
+                    <div class="absolute bottom-14 w-full text-center flex flex-col">
+                        <span class="text-2xl text-white rounded-full text-shadow-md">
+                            {{ item.title }}
+                        </span>
+                        <span class="text-lg text-white rounded-full text-shadow-md">
+                            {{ item.description }}
+                        </span>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <div class="absolute left-0 text-center h-full">
+            <button
+                (click)="prev()"
+                class="text-white p-4 text-shadow-md h-full hover:from-black/5 hover:bg-gradient-to-l hover:to-black/60">
+                <mat-icon class="text-2xl">chevron_left</mat-icon>
+            </button>
+        </div>
+        <div class="absolute right-0 text-center h-full">
+            <button
+                (click)="next()"
+                class="text-white p-4 text-shadow-md h-full hover:from-black/5 hover:bg-gradient-to-r hover:to-black/60">
+                <mat-icon class="text-2xl">chevron_right</mat-icon>
+            </button>
+        </div>
+        <div class="absolute bottom-2 w-full text-center">
+            <div class="flex flex-row justify-center">
+                <div *ngFor="let item of items; let i = index">
+                    <div
+                        *ngIf="i === actual_item; else not_actual_item"
+                        class="w-8 h-2 rounded-full bg-white mx-1 hover:cursor-pointer hover:scale-110 hover:shadow-md"></div>
+                    <ng-template #not_actual_item>
+                        <div
+                            (click)="set(i)"
+                            (keyup.enter)="set(i)"
+                            tabindex="0"
+                            class="w-8 h-2 rounded-full bg-black/40 mx-1 hover:cursor-pointer hover:scale-110 hover:shadow-md"></div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

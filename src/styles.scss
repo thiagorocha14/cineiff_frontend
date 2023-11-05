@@ -43,6 +43,18 @@ $cineiff_frontend-app-background: mat.get-color-from-palette($cineiff_frontend-t
     .badge-dark {
         @apply bg-gray-700 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full;
     }
+
+    .page-size{
+        @apply min-h-[calc(100vh-4rem)];
+    }
+
+    .w-page-size{
+        @apply w-[calc(100vw-25%)];
+    }
+
+    .h-page-size{
+        @apply h-[calc(100vh-8rem)];
+    }
 }
 @layer base {
   * {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/services/loading.service';
 import { SolicitacaoService } from 'src/app/services/solicitacao.service';
 import { solicitarReserva } from 'src/app/types/solicitacao/solicitarReserva';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogReservaComponent } from './dialog-reserva/dialog-reserva.component';
 
 @Component({
     selector: 'app-index',
@@ -13,7 +15,8 @@ export class IndexComponent implements OnInit {
 
     constructor(
         private solicitacaoService: SolicitacaoService,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private dialog: MatDialog
     ) {}
 
     ngOnInit(): void {
@@ -56,6 +59,17 @@ export class IndexComponent implements OnInit {
             error: err => {
                 console.log(err);
             },
+        });
+    }
+
+    abrirDialogReserva(solicitacao: solicitarReserva) {
+        const dialogRef = this.dialog.open(DialogReservaComponent, {
+            width: '60vw',
+            data: solicitacao,
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            this.buscarSolicitacoes();
         });
     }
 

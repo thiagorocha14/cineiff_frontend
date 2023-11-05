@@ -1,8 +1,16 @@
-<div class="min-h-[calc(100vh-4rem)] flex items-center justify-center">
+<div class="page-size flex items-center justify-center">
     <form
         [formGroup]="formReserva"
         (ngSubmit)="solicitarReserva()"
-        class="w-full mx-40 p-4 border rounded shadow-lg bg-white">
+        class="w-page-size p-4 border rounded shadow-lg bg-white">
+        <header class="w-full flex flex-col justify-center items-start">
+            <h1 class="text-4xl font-semibold text-center text-zinc-800 mb-2">Solicitar Reserva</h1>
+            <small class="text-left text-gray-500 block">
+                Preencha o formulário abaixo para solicitar uma reserva, após o envio, sua
+                solicitação será analisada e você receberá um email com a resposta.
+            </small>
+        </header>
+        <hr class="border-gray-300 my-4" />
         <main class="flex flex-row gap-8 justify-around items-start">
             <section>
                 <div>
@@ -44,7 +52,9 @@
                             required />
                     </mat-form-field>
 
-                    <mat-form-field class="w-full" *ngIf="filmesFiltrados && filmesFiltrados.length > 0">
+                    <mat-form-field
+                        class="w-full"
+                        *ngIf="filmesFiltrados && filmesFiltrados.length > 0">
                         <mat-select [formControl]="filmeControl" placeholder="Filme" #singleSelect>
                             <mat-option>
                                 <ngx-mat-select-search

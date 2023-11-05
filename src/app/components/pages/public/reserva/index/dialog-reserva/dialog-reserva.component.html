@@ -1,0 +1,121 @@
+<header class="px-3 py-2">
+    <h1 class="text-2xl font-bold text-zinc-800">
+        Solicitação de Reserva do Cineteatro - {{ solicitacao.nome_evento }}
+    </h1>
+</header>
+<div mat-dialog-content>
+    <header>
+        <h2 class="text-xl font-bold mb-4 text-zinc-800">Informações do Evento</h2>
+    </header>
+    <div class="flex flex-row justify-between mt-4">
+        <div class="flex flex-col">
+            <span class="text-lg font-bold text-zinc-700">Nome Evento:</span>
+            <span>{{ solicitacao.nome_evento }}</span>
+        </div>
+        <div class="flex flex-col">
+            <span class="text-lg font-bold text-zinc-700">Descrição:</span>
+            <span>{{ solicitacao.descricao }}</span>
+        </div>
+        <div class="flex flex-col">
+            <span class="text-lg font-bold text-zinc-700">Justificativa:</span>
+            <span>{{ solicitacao.justificativa }}</span>
+        </div>
+    </div>
+    <hr class="border-gray-300 my-4" />
+    <header>
+        <h2 class="text-xl font-bold mb-4 text-zinc-800">Informações da Reserva</h2>
+    </header>
+    <div class="flex flex-row justify-between">
+        <div class="flex flex-row gap-3 items-center">
+            <div class="flex flex-col">
+                <span class="text-lg font-bold text-zinc-700">Inicio:</span>
+                <div class="flex flex-col gap-2">
+                    <div class="flex flex-row items-center gap-2">
+                        <span class="font-semibold">Data:</span>
+                        <span>{{ solicitacao.inicio | date: 'dd/MM/yyyy' }}</span>
+                    </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <span class="font-semibold">Horário:</span>
+                        <span>{{ solicitacao.inicio | date: 'HH:mm' }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-lg font-bold text-zinc-700">Fim:</span>
+                <div class="flex flex-col gap-2">
+                    <div class="flex flex-row items-center gap-2">
+                        <span class="font-semibold">Data:</span>
+                        <span>{{ solicitacao.fim | date: 'dd/MM/yyyy' }}</span>
+                    </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <span class="font-semibold">Horário:</span>
+                        <span>{{ solicitacao.fim | date: 'HH:mm' }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col">
+            <span class="text-lg font-bold text-zinc-700">Status:</span>
+            <span class="uppercase">
+                {{ solicitacao.status }}
+            </span>
+        </div>
+        <!-- <div class="flex flex-col" *ngIf="solicitacao.filme_id">
+            <span class=" text-lg font-bold text-zinc-700">Filme:</span>
+            <span>{{ solicitacao.filme }}</span>
+        </div> -->
+        <div class="flex flex-col">
+            <span class="text-lg font-bold text-zinc-700">Público alvo:</span>
+            <span>{{ solicitacao.publico_alvo }}</span>
+        </div>
+    </div>
+    <hr class="border-gray-300 my-4" />
+    <header>
+        <h2 class="text-xl font-bold mb-4 text-zinc-800">Informações do Solicitante</h2>
+    </header>
+    <div class="flex flex-row justify-between mb-4">
+        <div class="flex flex-col">
+            <span class="text-lg font-bold text-zinc-700">Solicitante:</span>
+            <span>{{ solicitacao.nome_solicitante }}</span>
+        </div>
+        <div class="flex flex-col">
+            <span class="text-lg font-bold text-zinc-700">Documento:</span>
+            <span>{{ solicitacao.documento }}</span>
+        </div>
+        <div class="flex flex-col">
+            <span class="text-lg font-bold text-zinc-700">Telefone:</span>
+            <span>{{ solicitacao.telefone }}</span>
+        </div>
+        <div class="flex flex-col">
+            <span class="text-lg font-bold text-zinc-700">Email:</span>
+            <span>{{ solicitacao.email }}</span>
+        </div>
+        <div class="flex flex-col">
+            <span class="text-lg font-bold text-zinc-700">Instituição:</span>
+            <span>{{ solicitacao.instituicao }}</span>
+        </div>
+    </div>
+    <hr class="border-gray-300 my-4" />
+</div>
+
+<div class="flex flex-row w-full justify-between px-3 py-2">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <div class="flex flex-row gap-2">
+        <button
+            mat-raised-button
+            color="primary"
+            class="text-white"
+            [appPromisedBtn]="solicitacao.loading"
+            (click)="reprovarSolicitacao()">
+            Rejeitar
+        </button>
+        <button
+            mat-raised-button
+            color="accent"
+            class="text-white"
+            [appPromisedBtn]="solicitacao.loading"
+            (click)="reprovarSolicitacao()">
+            Aprovar
+        </button>
+    </div>
+</div>

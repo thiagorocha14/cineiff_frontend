@@ -42,7 +42,7 @@ export class FormComponent implements OnInit {
         private formBuilder: FormBuilder,
         private toastService: ToastService,
         private solicitacaoService: SolicitacaoService,
-        private filmeService: FilmesService,
+        private filmeService: FilmesService
     ) {}
 
     ngOnInit(): void {
@@ -67,11 +67,9 @@ export class FormComponent implements OnInit {
 
         this.buscarFilmes();
 
-        this.filtroFilmeControl.valueChanges
-            .pipe(takeUntil(this._onDestroy))
-            .subscribe(() => {
-                this.filtrarFilmes();
-            });
+        this.filtroFilmeControl.valueChanges.pipe(takeUntil(this._onDestroy)).subscribe(() => {
+            this.filtrarFilmes();
+        });
 
         this.filmeControl.valueChanges.subscribe(() => {
             this.formReserva.patchValue({ filme_id: this.filmeControl.value?.id });
@@ -119,11 +117,11 @@ export class FormComponent implements OnInit {
         const pesquisa = this.filtroFilmeControl.value;
 
         if (pesquisa) {
-          this.filmesFiltrados = this.filmes.filter(filme => {
-              return filme.nome.toLowerCase().includes(pesquisa.toLowerCase());
-          });
+            this.filmesFiltrados = this.filmes.filter(filme => {
+                return filme.nome.toLowerCase().includes(pesquisa.toLowerCase());
+            });
 
-          return;
+            return;
         }
 
         this.filmesFiltrados = this.filmes;

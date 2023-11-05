@@ -1,125 +1,75 @@
-<!-- export type solicitarReserva = {
-    nome_evento: string;
-    descricao: string;
-    justificativa: string;
-    publico_alvo: string;
-    nome_solicitante: string;
-    documento: string;
-    telefone: string;
-    email: string;
-    instituicao: string;
-    status?: string;
-} -->
-<div class="min-h-[calc(100vh-4rem)] flex items-center justify-center">
-    <section class="m-12">
-        <div class="relative shadow-md sm:rounded-lg">
-            <table
-                *ngIf="solicitacoes.length > 0"
-                class="items-center table-fixed bg-transparent w-full border-collapse border border-solid border-x-gray-100">
-                <thead>
-                    <tr>
-                        <th
-                            class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                            Título
-                        </th>
-                        <th
-                            class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                            Descrição
-                        </th>
-                        <th
-                            class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                            Justificativa
-                        </th>
-                        <th
-                            class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                            Público Alvo
-                        </th>
-                        <th
-                            class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                            Nome Solicitante
-                        </th>
-                        <th
-                            class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                            Documento
-                        </th>
-                        <th
-                            class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                            Telefone
-                        </th>
-                        <th
-                            class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                            Email
-                        </th>
-                        <th
-                            class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                            Instituição
-                        </th>
-                        <th
-                            class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
-                            Status
-                        </th>
-                        <th
-                            class="px-6 bg-zinc-800 text-orange-500 align-middle border border-solid border-gray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                            Opções
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr
-                        *ngFor="let solicitacao of solicitacoes"
-                        class="bg-zinc-600 odd:bg-zinc-700 text-white hover:bg-zinc-500 hover:cursor-pointer">
-                        <td
-                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                            {{ solicitacao.nome_evento }}
-                        </td>
-                        <td
-                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                            {{ solicitacao.descricao }}
-                        </td>
-                        <td
-                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                            {{ solicitacao.justificativa }}
-                        </td>
-                        <td
-                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                            {{ solicitacao.publico_alvo }}
-                        </td>
-                        <td
-                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                            {{ solicitacao.nome_solicitante }}
-                        </td>
-                        <td
-                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                            {{ solicitacao.documento }}
-                        </td>
-                        <td
-                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                            {{ solicitacao.telefone }}
-                        </td>
-                        <td
-                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                            {{ solicitacao.email }}
-                        </td>
-                        <td
-                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                            {{ solicitacao.instituicao }}
-                        </td>
-                        <td
-                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                            <span
-                                [class]="retornaClasseStatus(solicitacao.status)"
-                                class="uppercase">
-                                {{ solicitacao.status }}
-                            </span>
-                        </td>
-                        <td
-                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 flex flex-row place-items-center">
+<div class="page-size flex items-center justify-center">
+    <section
+        class="w-page-size h-page-size px-4 py-2 border border-zinc-600 rounded shadow-lg bg-zinc-800">
+        <header class="w-full flex flex-col justify-center items-start">
+            <h1 class="text-4xl font-semibold text-center text-orange-400 mb-2">Reservas</h1>
+            <small class="text-left text-zinc-400 block">
+                Confira as reservas de eventos que foram solicitadas. É possível aprovar ou
+                rejeitar.
+            </small>
+        </header>
+        <hr class="border-orange-300 my-2" />
+        <table class="items-center overflow-auto table-fixed bg-transparent w-full">
+            <thead>
+                <tr class="bg-black">
+                    <th
+                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase whitespace-nowrap font-semibold text-left">
+                        Título
+                    </th>
+                    <th
+                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase whitespace-nowrap font-semibold text-left">
+                        Descrição
+                    </th>
+                    <th
+                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase whitespace-nowrap font-semibold text-left">
+                        Nome Solicitante
+                    </th>
+                    <th
+                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase whitespace-nowrap font-semibold text-left">
+                        Instituição
+                    </th>
+                    <th
+                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase whitespace-nowrap font-semibold text-center">
+                        Status
+                    </th>
+                    <th
+                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase whitespace-nowrap font-semibold text-center">
+                        Opções
+                    </th>
+                </tr>
+            </thead>
+            <tbody *ngIf="solicitacoes.length > 0; else semSolicitacoes">
+                <tr
+                    *ngFor="let solicitacao of solicitacoes"
+                    (click)="abrirDialogReserva(solicitacao)"
+                    class="bg-zinc-900 odd:bg-zinc-950 text-white hover:bg-zinc-700 hover:cursor-pointer">
+                    <td class="px-2 border-t-0 align-middle text-sm whitespace-nowrap py-2">
+                        {{ solicitacao.nome_evento }}
+                    </td>
+                    <td class="px-2 border-t-0 align-middle text-sm whitespace-nowrap py-2">
+                        {{ solicitacao.descricao }}
+                    </td>
+                    <td class="px-2 border-t-0 align-middle text-sm whitespace-nowrap py-2">
+                        {{ solicitacao.nome_solicitante }}
+                    </td>
+                    <td class="px-2 border-t-0 align-middle text-sm whitespace-nowrap py-2">
+                        {{ solicitacao.instituicao }}
+                    </td>
+                    <td
+                        class="px-2 border-t-0 align-middle text-sm whitespace-nowrap py-2 text-center">
+                        <span [class]="retornaClasseStatus(solicitacao.status)" class="uppercase">
+                            {{ solicitacao.status }}
+                        </span>
+                    </td>
+                    <td
+                        class="px-2 border-t-0 align-middle text-sm whitespace-nowrap py-2 text-center">
+                        <div class="flex flex-row justify-center items-center">
                             <button
                                 mat-fab
                                 extended
                                 color="accent"
                                 [appPromisedBtn]="solicitacao.loading"
-                                class="text-white float-right mt-6"
+                                class="text-white float-right"
                                 *ngIf="solicitacao.status === 'pendente'"
                                 matTooltip="Aprovar a solicitação"
                                 (click)="aprovarSolicitacao(solicitacao)">
@@ -129,17 +79,23 @@
                                 mat-fab
                                 extended
                                 color="primary"
-                                class="text-white float-right mt-6"
+                                class="text-white float-right"
                                 [appPromisedBtn]="solicitacao.loading"
                                 *ngIf="solicitacao.status === 'pendente'"
                                 matTooltip="Rejeitar a solicitação"
                                 (click)="reprovarSolicitacao(solicitacao)">
                                 <mat-icon class="text-white">close</mat-icon>
                             </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <ng-template #semSolicitacoes>
+                <tr class="bg-zinc-900">
+                    <td colspan="6" class="text-center py-2 text-gray-300">Não há solicitações</td>
+                </tr>
+            </ng-template>
+        </table>
+        <!-- </div> -->
     </section>
 </div>

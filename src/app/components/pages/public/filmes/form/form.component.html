@@ -1,86 +1,75 @@
 <div class="min-h-[calc(100vh-4rem)] flex items-center justify-center">
-  <form
-      [formGroup]="formFilme"
-      (ngSubmit)="cadastrarFilme()"
-      class="w-full mx-40 p-4 border rounded shadow-lg bg-white">
-      <main class="flex flex-row gap-8 justify-around items-start">
-          <section>
-              <div>
-                  <h2 class="text-xl font-semibold mb-4 text-zinc-800">Dados do filme</h2>
+    <form
+        [formGroup]="formFilme"
+        (ngSubmit)="cadastrarFilme()"
+        class="w-ful max-w-md p-4 border rounded shadow-lg bg-white">
+        <header class="w-full flex flex-col justify-center items-start">
+            <h1 class="text-4xl font-semibold text-center text-zinc-800 mb-2">Cadastrar filme.</h1>
+            <small class="text-left text-gray-500 block">
+                Preencha com os dados do filme que deseja cadastrar, após o envio, seu filme será
+                exibido para que os usuários possam reservar.
+            </small>
+        </header>
+        <hr class="border-gray-300 my-2" />
+        <mat-form-field class="w-full">
+            <mat-label>Nome</mat-label>
+            <input matInput placeholder="Nome" formControlName="nome" required />
+        </mat-form-field>
 
-                  <mat-form-field class="w-full">
-                      <mat-label>Nome</mat-label>
-                      <input
-                          matInput
-                          placeholder="Nome"
-                          formControlName="nome"
-                          required />
-                  </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Sinopse</mat-label>
+            <input matInput placeholder="Sinopse" formControlName="sinopse" required />
+        </mat-form-field>
 
-                  <mat-form-field class="w-full">
-                      <mat-label>Sinopse</mat-label>
-                      <input
-                          matInput
-                          placeholder="Sinopse"
-                          formControlName="sinopse"
-                          required />
-                  </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Classificação indicativa</mat-label>
+            <input
+                matInput
+                placeholder="Classificação indicativa"
+                formControlName="classificacao_indicativa"
+                required
+                type="number"
+                min="0" />
+        </mat-form-field>
 
-                  <mat-form-field class="w-full">
-                      <mat-label>Classificação indicativa</mat-label>
-                      <input
-                          matInput
-                          placeholder="Classificação indicativa"
-                          formControlName="classificacao_indicativa"
-                          required
-                          type="number"
-                          min="0" />
-                  </mat-form-field>
-
-                  <mat-form-field class="w-full">
-                      <mat-label>Duração em minutos</mat-label>
-                      <input
-                          matInput
-                          type="number"
-                          placeholder="Duração em minutos"
-                          formControlName="duracao_minutos"
-                          min="0"
-                          required />
-                  </mat-form-field>
-                  <div class="form-field relative">
-                    <label for="fileInput" class="block text-sm font-medium text-zinc-900"
-                        >Anexo</label
-                    >
-                    <input
-                        id="fileInput"
-                        type="file"
-                        class="hidden"
-                        accept="image/*"
-                        (change)="fileChange($event)" />
-                    <div class="mt-2 flex items-center space-x-2">
-                        <input
-                            type="text"
-                            #fileName
-                            readonly
-                            class="flex-1 bg-white border border-gray-300 rounded px-3 py-2 outline-none focus:border-zinc-500 focus:ring focus:ring-zinc-200 transition duration-300 ease-in-out" />
-                        <label
-                            for="fileInput"
-                            class="bg-zinc-500 text-white py-2 px-4 rounded hover:bg-zinc-700 cursor-pointer transition duration-300 ease-in-out">
-                            Selecionar
-                        </label>
-                    </div>
-                </div>
-              </div>
-          </section>
-      </main>
-
-      <button
-          mat-raised-button
-          [appPromisedBtn]="loading"
-          class="text-white float-right mt-6"
-          color="accent"
-          type="submit">
-          Cadastrar filme
-      </button>
-  </form>
+        <mat-form-field class="w-full">
+            <mat-label>Duração em minutos</mat-label>
+            <input
+                matInput
+                type="number"
+                placeholder="Duração em minutos"
+                formControlName="duracao_minutos"
+                min="0"
+                required />
+        </mat-form-field>
+        <div class="form-field relative">
+            <label for="fileInput" class="block text-sm font-medium text-zinc-900">Anexo</label>
+            <input
+                id="fileInput"
+                type="file"
+                class="hidden"
+                accept="image/*"
+                (change)="fileChange($event)" />
+            <div class="mt-2 flex items-center space-x-2">
+                <input
+                    type="text"
+                    #fileName
+                    readonly
+                    class="flex-1 bg-white border border-gray-300 rounded px-3 py-2 outline-none focus:border-zinc-500 focus:ring focus:ring-zinc-200 transition duration-300 ease-in-out" />
+                <label
+                    for="fileInput"
+                    class="bg-zinc-500 text-white py-2 px-4 rounded hover:bg-zinc-700 cursor-pointer transition duration-300 ease-in-out">
+                    Selecionar
+                </label>
+            </div>
+        </div>
+        <button
+            mat-raised-button
+            [appPromisedBtn]="loading"
+            class="text-white float-right mt-6"
+            color="accent"
+            type="submit">
+            Cadastrar filme
+        </button>
+    </form>
 </div>

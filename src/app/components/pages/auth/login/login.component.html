@@ -3,6 +3,13 @@
         [formGroup]="formLogin"
         (ngSubmit)="login()"
         class="w-full max-w-md p-4 border rounded shadow-lg bg-white">
+        <header class="w-full flex flex-col justify-center items-start">
+            <h1 class="text-4xl font-semibold text-center text-zinc-800 mb-2">Login</h1>
+            <small class="text-left text-gray-500 block">
+                Login para área administrativa, somente para usuários cadastrados e autorizados.
+            </small>
+        </header>
+        <hr class="border-gray-300 my-2" />
         <mat-form-field class="w-full">
             <mat-label>Email</mat-label>
             <input

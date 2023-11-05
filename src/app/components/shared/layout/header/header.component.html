@@ -3,12 +3,14 @@
     [hidden]="router.url === '/login' || router.url === '/register' ? true : false">
     <span class="mr-2 text-white text-4xl">CINE<span class="text-orange-500">IFF</span></span>
     <button mat-button routerLink="/" [color]="router.url === '/' ? 'accent' : 'primary'">
+        <mat-icon>home</mat-icon>
         Início
     </button>
     <button
         mat-button
         routerLink="/agenda"
         [color]="router.url === '/agenda' ? 'accent' : 'primary'">
+        <mat-icon>event</mat-icon>
         Calendário
     </button>
     <!-- <button
@@ -22,38 +24,30 @@
         mat-button
         routerLink="/reservar"
         [color]="router.url === '/reservar' ? 'accent' : 'primary'">
+        <mat-icon>event_seat</mat-icon>
         Reservar
     </button>
     <span class="fill-remaining-space"></span>
-    <button
-        mat-button
-        [matMenuTriggerFor]="menu"
-        *ngIf="isLogged() && isAdmin()"
-        color="primary">
+    <button mat-button [matMenuTriggerFor]="menu" *ngIf="isLogged() && isAdmin()" color="primary">
         <mat-icon>arrow_drop_down</mat-icon> Opções administrativas
     </button>
     <mat-menu #menu="matMenu">
-      <button
-          mat-menu-item
-          *ngIf="isLogged() && isAdmin()"
-          routerLink="/cadastrar">
-          Cadastrar usuários
-      </button>
-      <button
-          mat-menu-item
-          *ngIf="isLogged()"
-          routerLink="/reservas">
-          Reservas Pendententes
-      </button>
-      <button
-          mat-menu-item
-          *ngIf="isLogged()"
-          routerLink="/filmes">
-          Gerenciar filmes
-      </button>
+        <button mat-menu-item *ngIf="isLogged() && isAdmin()" routerLink="/cadastrar">
+            <mat-icon>person_add</mat-icon>
+            Cadastrar usuários
+        </button>
+        <button mat-menu-item *ngIf="isLogged()" routerLink="/reservas">
+            <mat-icon>event</mat-icon>
+            Reservas Pendententes
+        </button>
+        <button mat-menu-item *ngIf="isLogged()" routerLink="/filmes">
+            <mat-icon>movie</mat-icon>
+            Gerenciar filmes
+        </button>
     </mat-menu>
     <button mat-button *ngIf="!isLogged()" routerLink="/login" color="primary">
-        Área Administrativa
+        <mat-icon>lock</mat-icon>
+        Acessar Área Administrativa
     </button>
     <button mat-button *ngIf="isLogged()" (click)="logout()" color="primary">Sair</button>
 </header>

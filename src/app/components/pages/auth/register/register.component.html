@@ -1,6 +1,15 @@
 <div class="min-h-[calc(100vh-4rem)] flex items-center justify-center">
     <form (ngSubmit)="register()" class="w-full max-w-md p-4 border rounded shadow-lg bg-white">
-        <h2 class="text-xl font-semibold mb-4 text-zinc-800">Cadastrar Novos Usuários</h2>
+        <header class="w-full flex flex-col justify-center items-start">
+            <h1 class="text-4xl font-semibold text-center text-zinc-800 mb-2">
+                Cadastrar usuários
+            </h1>
+            <small class="text-left text-gray-500 block">
+                Cadastre usuários para ter acesso a área administrativa, este usuário vai poder
+                gerenciar reservas de eventos, e cadastrar filmes.
+            </small>
+        </header>
+        <hr class="border-gray-300 my-2" />
         <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
             <input

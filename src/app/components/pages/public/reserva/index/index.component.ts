@@ -37,7 +37,8 @@ export class IndexComponent implements OnInit {
         });
     }
 
-    aprovarSolicitacao(solicitacao: solicitarReserva) {
+    aprovarSolicitacao(solicitacao: solicitarReserva, event: any) {
+        event.stopPropagation();
         solicitacao.loading = true;
         this.solicitacaoService.aprovarSolicitacao(solicitacao).subscribe({
             next: res => {
@@ -51,7 +52,8 @@ export class IndexComponent implements OnInit {
         });
     }
 
-    reprovarSolicitacao(solicitacao: solicitarReserva) {
+    reprovarSolicitacao(solicitacao: solicitarReserva, event: any) {
+        event.stopPropagation();
         this.solicitacaoService.reprovarSolicitacao(solicitacao).subscribe({
             next: res => {
                 this.buscarSolicitacoes();

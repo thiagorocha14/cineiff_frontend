@@ -17,11 +17,15 @@ export class SolicitacaoService {
         return this.http.get(`${this.baseUrl}`);
     }
 
-    public aprovarSolicitacao(solicitacao: solicitarReserva) {
+    public deferirSolicitacao(solicitacao: solicitarReserva) {
         return this.http.put(`${this.baseUrl}/${solicitacao.id}`, {});
     }
 
-    public reprovarSolicitacao(solicitacao: solicitarReserva) {
+    public indeferirSolicitacao(solicitacao: solicitarReserva) {
         return this.http.delete(`${this.baseUrl}/${solicitacao.id}`);
+    }
+
+    public recuperarSolicitacao(solicitacao: solicitarReserva) {
+        return this.http.put(`${this.baseUrl}/${solicitacao.id}/recuperar`, {});
     }
 }

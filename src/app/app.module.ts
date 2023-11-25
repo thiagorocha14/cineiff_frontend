@@ -36,6 +36,7 @@ import { IndexComponent } from './components/pages/public/filmes/index/index.com
 import { FormComponent } from './components/pages/public/filmes/form/form.component';
 import { CarouselComponent } from './components/shared/layout/carousel/carousel.component';
 import { DialogReservaComponent } from './components/pages/public/reserva/index/dialog-reserva/dialog-reserva.component';
+import { ShowComponent } from './components/pages/public/reserva/show/show.component';
 
 @NgModule({
     declarations: [
@@ -53,6 +54,7 @@ import { DialogReservaComponent } from './components/pages/public/reserva/index/
         FormComponent,
         CarouselComponent,
         DialogReservaComponent,
+        ShowComponent,
     ],
     imports: [
         BrowserModule,

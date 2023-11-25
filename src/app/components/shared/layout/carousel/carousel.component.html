@@ -2,7 +2,10 @@
     <div class="relative w-full h-full">
         <div [@animSlider]="actual_item">
             <ng-container *ngFor="let item of items; let i = index">
-                <div class="absolute w-full h-full" *ngIf="i === actual_item">
+                <div
+                    class="absolute w-full h-full cursor-pointer"
+                    *ngIf="i === actual_item"
+                    routerLink="{{ item.link }}">
                     <img
                         alt="{{ item.title }}"
                         class="w-full h-full object-cover"

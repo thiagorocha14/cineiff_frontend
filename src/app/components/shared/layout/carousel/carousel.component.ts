@@ -1,5 +1,6 @@
 import { trigger, transition, query, style, animate, group } from '@angular/animations';
 import { Component, Input, OnInit, inject } from '@angular/core';
+import { LoadingService } from 'src/app/services/loading.service';
 import { ReservaService } from 'src/app/services/reserva.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { CarouselItem } from 'src/app/types/carousel-item/carousel-item';
@@ -67,6 +68,7 @@ const right = [
 export class CarouselComponent implements OnInit {
     private reservaService = inject(ReservaService);
     private toastService = inject(ToastService);
+    private loadingService = inject(LoadingService);
     @Input() items: CarouselItem[] = [];
     @Input() timer = 5000;
     interval: any;
@@ -77,26 +79,7 @@ export class CarouselComponent implements OnInit {
             this.next();
         }, this.timer);
         this.populaItens();
-        this.items = [
-            {
-                title: 'Tiquinho Soares',
-                description:
-                    'Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-                image: 'https://lncimg.lance.com.br/cdn-cgi/image/width=850,height=530,fit=crop,quality=75,format=webp/uploads/2023/06/tiquinho-soares-1-aspect-ratio-512-320-2.jpg',
-            },
-            {
-                title: 'Francisco Soares',
-                description:
-                    'Teste teste  teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste.',
-                image: 'https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/10/53244211569_1aa7d597c6_o-e1696801233951.jpg',
-            },
-            {
-                title: 'De Las Chagas',
-                description:
-                    'Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah.',
-                image: 'https://p2.trrsf.com/image/fget/cf/774/0/images.terra.com/2023/10/27/74666556-5327556134650701cba75kjpg.jpg',
-            },
-        ];
+        this.items = [];
     }
 
     next(): void {
@@ -118,13 +101,16 @@ export class CarouselComponent implements OnInit {
     }
 
     populaItens() {
-        this.reservaService.buscarReservasConfirmadas().subscribe({
+        this.loadingService.showLoading();
+        this.reservaService.buscarReservasComImagem().subscribe({
             next: (reservas: CarouselItem[]) => {
+                this.loadingService.hideLoading();
                 this.items = reservas;
             },
-            error: (err) => {
-                console.log(err);
-                this.toastService.showToastBottomCenter(err.error.error);
+            error: (err: any) => {
+                this.loadingService.hideLoading();
+                const erro = err.error.error ? err.error.error : err.error ? err.error : err;
+                this.toastService.showToastBottomCenter(erro);
             },
         });
     }

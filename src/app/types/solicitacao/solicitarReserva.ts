@@ -1,3 +1,5 @@
+import { Filme } from '../filme/filme';
+
 export type solicitarReserva = {
     id?: number;
     nome_evento: string;
@@ -15,4 +17,5 @@ export type solicitarReserva = {
     loading?: boolean;
     anexo?: File;
     filme_id?: number;
+    filme?: Filme;
 };

@@ -1,0 +1,126 @@
+<div class="page-size flex items-center justify-center">
+    <section
+        *ngIf="reserva"
+        class="flex flex-col w-page-size h-page-size px-4 py-2 border border-zinc-600 rounded shadow-lg bg-zinc-800">
+        <header class="w-full flex flex-row justify-start items-center gap-3 mb-5">
+            <img
+                class="max-h-64 max-w-6xl mb-5 border-collapse border-orange-400 border-2 p-1"
+                *ngIf="reserva.image; else semImagem"
+                src="{{ reserva.image }}"
+                alt="{{ dados_reserva.nome_evento }}" />
+            <ng-template #semImagem>
+                <div
+                    class="w-40 h-56 border-collapse border-orange-400 border-2 p-4 flex items-center justify-center uppercase text-orange-400">
+                    Evento sem imagem
+                </div>
+            </ng-template>
+            <div class="flex flex-col items-start justify-start gap-4 flex-1">
+                <div class="flex flex-row justify-between items-start w-full">
+                    <h1 class="text-4xl font-semibold text-center text-orange-400">
+                        {{ dados_reserva.nome_evento }}
+                    </h1>
+                    <button mat-raised-button color="accent" routerLink="cadastrar">
+                        <mat-icon>confirmation_number</mat-icon>
+                        Garantir Ingresso
+                    </button>
+                </div>
+                <hr class="border-orange-300 my-2 w-full" />
+                <div class="flex flex-row gap-2">
+                    <span class="text-orange-400 font-bold flex items-center gap-1">
+                        <mat-icon>event</mat-icon>
+                        Nome:
+                    </span>
+                    <span class="text-white">
+                        {{ dados_reserva.nome_evento }}
+                    </span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <span class="text-orange-400 font-bold flex items-center gap-1">
+                        <mat-icon>description</mat-icon>
+                        Descrição:
+                    </span>
+                    <span class="text-white">
+                        {{ dados_reserva.descricao }}
+                    </span>
+                </div>
+                <div class="flex flex-row gap-2">
+                    <span class="text-orange-400 font-bold flex items-center gap-1">
+                        <mat-icon>person</mat-icon>
+                        Solicitante:
+                    </span>
+                    <span class="text-white">
+                        {{ dados_reserva.nome_solicitante }} - {{ dados_reserva.email }}
+                    </span>
+                </div>
+            </div>
+        </header>
+        <main class="flex flex-col items-start justify-start gap-4 flex-1">
+            <hr class="border-orange-300 my-2 w-full" />
+            <div class="flex flex-row gap-2">
+                <span class="text-orange-400 font-bold flex items-center gap-1">
+                    <mat-icon>hourglass_top</mat-icon>
+                    Início:
+                </span>
+                <span class="text-white">
+                    {{ reserva.inicio | date: 'dd/MM/yyyy - HH:mm' }}
+                </span>
+            </div>
+            <div class="flex flex-row gap-2">
+                <span class="text-orange-400 font-bold flex items-center gap-1">
+                    <mat-icon>hourglass_bottom</mat-icon>
+                    Fim:
+                </span>
+                <span class="text-white">
+                    {{ reserva.fim | date: 'dd/MM/yyyy - HH:mm' }}
+                </span>
+            </div>
+            <div class="flex flex-row gap-2">
+                <span class="text-orange-400 font-bold flex items-center gap-1">
+                    <mat-icon>group</mat-icon>
+                    Público alvo:
+                </span>
+                <span class="text-white">
+                    {{ dados_reserva.publico_alvo }}
+                </span>
+            </div>
+            <div class="flex flex-row gap-2">
+                <span class="text-orange-400 font-bold flex items-center gap-1">
+                    <mat-icon>event_seat</mat-icon>
+                    Lugares disponíveis:
+                </span>
+                <span class="text-white"> {{ reserva.lugares_disponiveis }}/124 </span>
+            </div>
+            <ng-container *ngIf="filme">
+                <hr class="border-orange-300 my-2 w-full" />
+                <div class="flex flex-row gap-2">
+                    <span class="text-orange-400 font-bold flex items-center gap-1">
+                        <mat-icon>movie</mat-icon>
+                        Nome Filme:
+                    </span>
+                    <span class="text-white"> {{ filme.nome }} </span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-orange-400 font-bold flex items-center gap-1">
+                        <mat-icon>theaters</mat-icon>
+                        Sinopse:
+                    </span>
+                    <span class="text-white"> {{ filme.sinopse }} </span>
+                </div>
+                <div class="flex flex-row gap-2">
+                    <span class="text-orange-400 font-bold flex items-center gap-1">
+                        <mat-icon>schedule</mat-icon>
+                        Duração:
+                    </span>
+                    <span class="text-white"> {{ filme.duracao_minutos }} minutos </span>
+                </div>
+                <div class="flex flex-row gap-2">
+                    <span class="text-orange-400 font-bold flex items-center gap-1">
+                        <mat-icon>theater_comedy</mat-icon>
+                        Classificação indicativa:
+                    </span>
+                    <span class="text-white"> {{ filme.classificacao_indicativa }} </span>
+                </div>
+            </ng-container>
+        </main>
+    </section>
+</div>

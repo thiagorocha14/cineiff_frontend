@@ -7,6 +7,7 @@ import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 import { ReservaService } from 'src/app/services/reserva.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Router } from '@angular/router';
 registerLocaleData(ptBr);
 
 @Component({
@@ -45,7 +46,8 @@ export class CalendarComponent implements OnInit {
 
     constructor(
         private reservaService: ReservaService,
-        private loadingService: LoadingService
+        private loadingService: LoadingService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -92,5 +94,10 @@ export class CalendarComponent implements OnInit {
 
     closeOpenMonthViewDay() {
         this.activeDayIsOpen = false;
+    }
+
+    acessarEvento(event: CalendarEvent) {
+        const reserva = event.meta;
+        this.router.navigate(['/reserva', reserva.id]);
     }
 }

@@ -10,4 +10,6 @@ export type Reserva = {
     solicitacao_reserva_id: number;
     solicitacao_reserva: solicitarReserva;
     loading?: boolean;
+    image?: any;
+    lugares_disponiveis?: number;
 };

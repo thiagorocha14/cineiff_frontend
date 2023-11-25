@@ -67,6 +67,7 @@
                 [refresh]="refresh"
                 [activeDayIsOpen]="activeDayIsOpen"
                 (dayClicked)="dayClicked($event.day)"
+                (eventClicked)="acessarEvento($event.event)"
                 (eventTimesChanged)="eventTimesChanged($event)">
             </mwl-calendar-month-view>
             <mwl-calendar-week-view
@@ -74,6 +75,7 @@
                 [viewDate]="viewDate"
                 [events]="events"
                 [refresh]="refresh"
+                (eventClicked)="acessarEvento($event.event)"
                 (eventTimesChanged)="eventTimesChanged($event)">
             </mwl-calendar-week-view>
         </div>

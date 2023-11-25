@@ -10,11 +10,32 @@ export class SolicitacaoService {
     readonly baseUrl = 'http://localhost:8000/api/solicitacao-reserva';
 
     public solicitarReserva(data: solicitarReserva) {
-        return this.http.post(`${this.baseUrl}`, data);
+      const formData = new FormData();
+      formData.append('nome_evento', data.nome_evento);
+      formData.append('descricao', data.descricao);
+      formData.append('inicio', data.inicio);
+      formData.append('fim', data.fim);
+      formData.append('justificativa', data.justificativa);
+      formData.append('publico_alvo', data.publico_alvo);
+      formData.append('nome_solicitante', data.nome_solicitante);
+      formData.append('documento', data.documento);
+      formData.append('telefone', data.telefone);
+      formData.append('email', data.email);
+      formData.append('instituicao', data.instituicao);
+
+      if (data.filme_id) {
+        formData.append('filme_id', data.filme_id.toString());
+      }
+
+      if (data.anexo) {
+        formData.append('anexo', data.anexo);
+      }
+
+      return this.http.post(`${this.baseUrl}`, formData);
     }
 
     public listarSolicitacoes() {
-        return this.http.get(`${this.baseUrl}`);
+      return this.http.get(`${this.baseUrl}`);
     }
 
     public aprovarSolicitacao(solicitacao: solicitarReserva) {

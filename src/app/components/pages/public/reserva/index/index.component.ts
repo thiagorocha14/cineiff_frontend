@@ -38,6 +38,7 @@ export class IndexComponent implements OnInit {
     }
 
     aprovarSolicitacao(solicitacao: solicitarReserva) {
+        console.log('aprovando')
         solicitacao.loading = true;
         this.solicitacaoService.aprovarSolicitacao(solicitacao).subscribe({
             next: res => {
@@ -52,6 +53,7 @@ export class IndexComponent implements OnInit {
     }
 
     reprovarSolicitacao(solicitacao: solicitarReserva) {
+      console.log('reprovando')
         this.solicitacaoService.reprovarSolicitacao(solicitacao).subscribe({
             next: res => {
                 this.buscarSolicitacoes();

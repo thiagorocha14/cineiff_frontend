@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Reserva } from '../types/reserva/reserva';
 import { CalendarEvent } from 'angular-calendar';
+import { CarouselItem } from '../types/carousel-item/carousel-item';
 
 @Injectable({
     providedIn: 'root',
@@ -44,5 +45,9 @@ export class ReservaService {
             };
         });
         return eventos;
+    }
+
+    public buscarReservasConfirmadas() {
+        return this.http.get<CarouselItem[]>(`${this.baseUrl}s/confirmadas`);
     }
 }

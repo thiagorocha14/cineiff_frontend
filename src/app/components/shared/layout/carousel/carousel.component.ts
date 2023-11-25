@@ -1,11 +1,8 @@
 import { trigger, transition, query, style, animate, group } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
-
-interface CarouselItem {
-    title: string;
-    description: string;
-    image: string;
-}
+import { Component, Input, OnInit, inject } from '@angular/core';
+import { ReservaService } from 'src/app/services/reserva.service';
+import { ToastService } from 'src/app/services/toast.service';
+import { CarouselItem } from 'src/app/types/carousel-item/carousel-item';
 
 const left = [
     query(':enter, :leave', style({ width: '100%' }), { optional: true }),
@@ -68,6 +65,8 @@ const right = [
     ],
 })
 export class CarouselComponent implements OnInit {
+    private reservaService = inject(ReservaService);
+    private toastService = inject(ToastService);
     @Input() items: CarouselItem[] = [];
     @Input() timer = 5000;
     interval: any;
@@ -77,6 +76,7 @@ export class CarouselComponent implements OnInit {
         this.interval = setInterval(() => {
             this.next();
         }, this.timer);
+        this.populaItens();
         this.items = [
             {
                 title: 'Tiquinho Soares',
@@ -115,5 +115,17 @@ export class CarouselComponent implements OnInit {
 
     set(item: number): void {
         this.actual_item = item;
+    }
+
+    populaItens() {
+        this.reservaService.buscarReservasConfirmadas().subscribe({
+            next: (reservas: CarouselItem[]) => {
+                this.items = reservas;
+            },
+            error: (err) => {
+                console.log(err);
+                this.toastService.showToastBottomCenter(err.error.error);
+            },
+        });
     }
 }

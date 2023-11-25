@@ -13,4 +13,6 @@ export type solicitarReserva = {
     instituicao: string;
     status?: string;
     loading?: boolean;
+    anexo?: File;
+    filme_id?: number;
 };

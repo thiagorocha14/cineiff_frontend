@@ -32,7 +32,7 @@ export class DialogReservaComponent {
                 this.fechar();
             },
             error: err => {
-                solicitacao.loading = false;
+                this.solicitacao.loading = false;
                 console.log(err);
             },
         });
@@ -47,6 +47,7 @@ export class DialogReservaComponent {
                 this.fechar();
             },
             error: err => {
+                this.solicitacao.loading = false;
                 console.log(err);
             },
         });

@@ -63,6 +63,7 @@ export class FormComponent implements OnInit {
             telefone: ['', [Validators.required]],
             email: ['', [Validators.required, Validators.email]],
             instituicao: ['', [Validators.required]],
+            filme_id: [''],
         });
 
         this.buscarFilmes();
@@ -72,6 +73,7 @@ export class FormComponent implements OnInit {
         });
 
         this.filmeControl.valueChanges.subscribe(() => {
+            console.log('filmeControl => ', this.filmeControl.value);
             this.formReserva.patchValue({ filme_id: this.filmeControl.value?.id });
         });
     }
@@ -94,11 +96,19 @@ export class FormComponent implements OnInit {
     }
 
     fileChange(event: any) {
-        this.formReserva.patchValue({ anexo: event.target.files[0] });
-
-        if (this.formReserva.get('anexo')?.value) {
-            this.inputFileName!.nativeElement!.value = this.formReserva.get('anexo')?.value.name;
+        const formData: FormData = new FormData();
+        const fileUpload = event.target.files[0];
+        console.log('fileUpload => ', fileUpload);
+        if (!fileUpload) {
+            return;
         }
+
+        const fileName = fileUpload.name;
+        formData.append('file', fileUpload);
+        this.formReserva.patchValue({ anexo: fileUpload });
+        console.log('formData => ', formData);
+        this.formReserva.updateValueAndValidity();
+        this.inputFileName!.nativeElement!.value = fileName;
     }
 
     buscarFilmes() {

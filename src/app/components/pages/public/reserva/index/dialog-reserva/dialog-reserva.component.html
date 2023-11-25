@@ -100,22 +100,22 @@
 
 <div class="flex flex-row w-full justify-between px-3 py-2">
     <button mat-button mat-dialog-close>Cancelar</button>
-    <div class="flex flex-row gap-2">
+    <div class="flex flex-row gap-2" *ngIf="solicitacao.status === 'pendente'">
         <button
             mat-raised-button
             color="primary"
             class="text-white"
             [appPromisedBtn]="solicitacao.loading"
-            (click)="reprovarSolicitacao()">
-            Rejeitar
+            (click)="indeferirSolicitacao()">
+            Indeferir
         </button>
         <button
             mat-raised-button
             color="accent"
             class="text-white"
             [appPromisedBtn]="solicitacao.loading"
-            (click)="aprovarSolicitacao()">
-            Aprovar
+            (click)="deferirSolicitacao()">
+            Deferir
         </button>
     </div>
 </div>

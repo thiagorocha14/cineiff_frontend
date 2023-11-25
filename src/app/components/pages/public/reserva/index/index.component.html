@@ -1,101 +1,116 @@
 <div class="page-size flex items-center justify-center">
     <section
-        class="w-page-size h-page-size px-4 py-2 border border-zinc-600 rounded shadow-lg bg-zinc-800">
+        class="flex flex-col w-page-size h-page-size px-4 py-2 border border-zinc-600 rounded shadow-lg bg-zinc-800">
         <header class="w-full flex flex-col justify-center items-start">
             <h1 class="text-4xl font-semibold text-center text-orange-400 mb-2">Reservas</h1>
             <small class="text-left text-zinc-400 block">
-                Confira as reservas de eventos que foram solicitadas. É possível aprovar ou
-                rejeitar.
+                Confira as reservas de eventos que foram solicitadas. É possível deferir ou
+                indeferir.
             </small>
         </header>
         <hr class="border-orange-300 my-2" />
-        <table class="items-center overflow-auto table-fixed bg-transparent w-full">
-            <thead>
-                <tr class="bg-black">
-                    <th
-                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase whitespace-nowrap font-semibold text-left">
-                        Título
-                    </th>
-                    <th
-                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase whitespace-nowrap font-semibold text-left">
-                        Descrição
-                    </th>
-                    <th
-                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase whitespace-nowrap font-semibold text-left">
-                        Nome Solicitante
-                    </th>
-                    <th
-                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase whitespace-nowrap font-semibold text-left">
-                        Instituição
-                    </th>
-                    <th
-                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase whitespace-nowrap font-semibold text-center">
-                        Status
-                    </th>
-                    <th
-                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase whitespace-nowrap font-semibold text-center">
-                        Opções
-                    </th>
-                </tr>
-            </thead>
-            <tbody *ngIf="solicitacoes.length > 0; else semSolicitacoes">
-                <tr
-                    *ngFor="let solicitacao of solicitacoes"
-                    (click)="abrirDialogReserva(solicitacao)"
-                    class="bg-zinc-900 odd:bg-zinc-950 text-white hover:bg-zinc-700 hover:cursor-pointer">
-                    <td class="px-2 border-t-0 align-middle text-sm whitespace-nowrap py-2">
-                        {{ solicitacao.nome_evento }}
-                    </td>
-                    <td class="px-2 border-t-0 align-middle text-sm whitespace-nowrap py-2">
-                        {{ solicitacao.descricao }}
-                    </td>
-                    <td class="px-2 border-t-0 align-middle text-sm whitespace-nowrap py-2">
-                        {{ solicitacao.nome_solicitante }}
-                    </td>
-                    <td class="px-2 border-t-0 align-middle text-sm whitespace-nowrap py-2">
-                        {{ solicitacao.instituicao }}
-                    </td>
-                    <td
-                        class="px-2 border-t-0 align-middle text-sm whitespace-nowrap py-2 text-center">
-                        <span [class]="retornaClasseStatus(solicitacao.status)" class="uppercase">
-                            {{ solicitacao.status }}
-                        </span>
-                    </td>
-                    <td
-                        class="px-2 border-t-0 align-middle text-sm whitespace-nowrap py-2 text-center">
-                        <div class="flex flex-row justify-center items-center">
-                            <button
-                                mat-fab
-                                extended
-                                color="accent"
-                                [appPromisedBtn]="solicitacao.loading"
-                                class="text-white float-right"
-                                *ngIf="solicitacao.status === 'pendente'"
-                                matTooltip="Aprovar a solicitação"
-                                (click)="aprovarSolicitacao(solicitacao)">
-                                <mat-icon class="text-white">check</mat-icon>
-                            </button>
-                            <button
-                                mat-fab
-                                extended
-                                color="primary"
-                                class="text-white float-right"
-                                [appPromisedBtn]="solicitacao.loading"
-                                *ngIf="solicitacao.status === 'pendente'"
-                                matTooltip="Rejeitar a solicitação"
-                                (click)="reprovarSolicitacao(solicitacao)">
-                                <mat-icon class="text-white">close</mat-icon>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-            <ng-template #semSolicitacoes>
-                <tr class="bg-zinc-900">
-                    <td colspan="6" class="text-center py-2 text-gray-300">Não há solicitações</td>
-                </tr>
-            </ng-template>
-        </table>
+        <div class="d-block overflow-auto">
+            <table class="items-center table-fixed bg-transparent w-full">
+                <thead>
+                    <tr class="bg-black">
+                        <th
+                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
+                            Título
+                        </th>
+                        <th
+                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
+                            Descrição
+                        </th>
+                        <th
+                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
+                            Nome Solicitante
+                        </th>
+                        <th
+                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
+                            Instituição
+                        </th>
+                        <th
+                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-center">
+                            Status
+                        </th>
+                        <th
+                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-center">
+                            Opções
+                        </th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="solicitacoes.length > 0; else semSolicitacoes">
+                    <tr
+                        *ngFor="let solicitacao of solicitacoes"
+                        (click)="abrirDialogReserva(solicitacao)"
+                        class="bg-zinc-900 odd:bg-zinc-950 text-white hover:bg-zinc-700 hover:cursor-pointer">
+                        <td class="px-2 border-t-0 align-middle text-sm py-2">
+                            {{ solicitacao.nome_evento }}
+                        </td>
+                        <td class="px-2 border-t-0 align-middle text-sm py-2">
+                            {{ solicitacao.descricao }}
+                        </td>
+                        <td class="px-2 border-t-0 align-middle text-sm py-2">
+                            {{ solicitacao.nome_solicitante }}
+                        </td>
+                        <td class="px-2 border-t-0 align-middle text-sm py-2">
+                            {{ solicitacao.instituicao }}
+                        </td>
+                        <td class="px-2 border-t-0 align-middle text-sm py-2 text-center">
+                            <span
+                                [class]="retornaClasseStatus(solicitacao.status)"
+                                class="uppercase">
+                                {{ solicitacao.status }}
+                            </span>
+                        </td>
+                        <td class="px-2 border-t-0 align-middle text-sm py-2 text-center">
+                            <div class="flex flex-row justify-center items-center">
+                                <button
+                                    mat-fab
+                                    extended
+                                    color="accent"
+                                    [appPromisedBtn]="solicitacao.loading"
+                                    class="text-white float-right"
+                                    *ngIf="solicitacao.status === 'pendente'"
+                                    matTooltip="Deferir a solicitação"
+                                    (click)="deferirSolicitacao(solicitacao, $event)">
+                                    <mat-icon class="text-white">check</mat-icon>
+                                </button>
+                                <button
+                                    mat-fab
+                                    extended
+                                    color="warn"
+                                    class="text-white float-right"
+                                    [appPromisedBtn]="solicitacao.loading"
+                                    *ngIf="solicitacao.status === 'pendente'"
+                                    matTooltip="Indeferir a solicitação"
+                                    (click)="indeferirSolicitacao(solicitacao, $event)">
+                                    <mat-icon class="text-white">close</mat-icon>
+                                </button>
+                                <button
+                                    mat-fab
+                                    extended
+                                    color="primary"
+                                    class="text-white float-right"
+                                    [appPromisedBtn]="solicitacao.loading"
+                                    *ngIf="solicitacao.status === 'indeferido'"
+                                    matTooltip="Recuperar a solicitação"
+                                    (click)="recuperarSolicitacao(solicitacao, $event)">
+                                    <mat-icon class="text-white">autorenew</mat-icon>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <ng-template #semSolicitacoes>
+                    <tr class="bg-zinc-900">
+                        <td colspan="6" class="text-center py-2 text-gray-300">
+                            Não há solicitações
+                        </td>
+                    </tr>
+                </ng-template>
+            </table>
+        </div>
         <!-- </div> -->
     </section>
 </div>

@@ -37,10 +37,10 @@ export class IndexComponent implements OnInit {
         });
     }
 
-    aprovarSolicitacao(solicitacao: solicitarReserva) {
-        console.log('aprovando')
+    deferirSolicitacao(solicitacao: solicitarReserva, event: any) {
+        event.stopPropagation();
         solicitacao.loading = true;
-        this.solicitacaoService.aprovarSolicitacao(solicitacao).subscribe({
+        this.solicitacaoService.deferirSolicitacao(solicitacao).subscribe({
             next: res => {
                 solicitacao.loading = false;
                 this.buscarSolicitacoes();
@@ -52,13 +52,31 @@ export class IndexComponent implements OnInit {
         });
     }
 
-    reprovarSolicitacao(solicitacao: solicitarReserva) {
-      console.log('reprovando')
-        this.solicitacaoService.reprovarSolicitacao(solicitacao).subscribe({
+    indeferirSolicitacao(solicitacao: solicitarReserva, event: any) {
+        event.stopPropagation();
+        solicitacao.loading = true;
+        this.solicitacaoService.indeferirSolicitacao(solicitacao).subscribe({
             next: res => {
+                solicitacao.loading = false;
                 this.buscarSolicitacoes();
             },
             error: err => {
+                solicitacao.loading = false;
+                console.log(err);
+            },
+        });
+    }
+
+    recuperarSolicitacao(solicitacao: solicitarReserva, event: any) {
+        event.stopPropagation();
+        solicitacao.loading = true;
+        this.solicitacaoService.recuperarSolicitacao(solicitacao).subscribe({
+            next: res => {
+                solicitacao.loading = false;
+                this.buscarSolicitacoes();
+            },
+            error: err => {
+                solicitacao.loading = false;
                 console.log(err);
             },
         });
@@ -77,9 +95,9 @@ export class IndexComponent implements OnInit {
 
     retornaClasseStatus(status: any) {
         switch (status) {
-            case 'aprovado':
+            case 'deferido':
                 return 'badge-success';
-            case 'reprovado':
+            case 'indeferido':
                 return 'badge-danger';
             case 'pendente':
                 return 'badge-dark';

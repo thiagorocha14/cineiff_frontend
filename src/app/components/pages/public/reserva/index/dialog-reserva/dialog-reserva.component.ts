@@ -23,10 +23,10 @@ export class DialogReservaComponent {
         this.dialogRef.close();
     }
 
-    aprovarSolicitacao() {
+    deferirSolicitacao() {
         this.solicitacao.loading = true;
         const solicitacao = this.solicitacao;
-        this.solicitacaoService.aprovarSolicitacao(solicitacao).subscribe({
+        this.solicitacaoService.deferirSolicitacao(solicitacao).subscribe({
             next: res => {
                 this.solicitacao.loading = false;
                 this.fechar();
@@ -38,10 +38,10 @@ export class DialogReservaComponent {
         });
     }
 
-    reprovarSolicitacao() {
+    indeferirSolicitacao() {
         this.solicitacao.loading = true;
         const solicitacao = this.solicitacao;
-        this.solicitacaoService.reprovarSolicitacao(solicitacao).subscribe({
+        this.solicitacaoService.indeferirSolicitacao(solicitacao).subscribe({
             next: res => {
                 this.solicitacao.loading = false;
                 this.fechar();

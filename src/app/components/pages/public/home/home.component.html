@@ -1,1 +1,39 @@
-<app-carousel></app-carousel>
+<app-carousel [items]="items"></app-carousel>
+<div
+    class="flex items-center justify-center mt-8 overflow-x-hidden"
+    *ngIf="reservasConfirmadas.length > 0">
+    <section
+        class="flex flex-col w-event-size px-4 py-2 border border-orange-400 rounded shadow-lg bg-black mb-8">
+        <header class="w-full flex flex-col justify-center items-start">
+            <h1 class="text-4xl font-semibold text-center text-orange-400 mb-2">Eventos</h1>
+            <small class="text-left text-zinc-400 block">
+                Confira os próximos eventos que acontecerão no Cineteatro do IFF - Campus Itaperuna.
+            </small>
+        </header>
+        <hr class="border-orange-300 my-2" />
+        <main class="flex flex-row gap-x-20 flex-wrap ml-3 mt-4">
+            <div
+                *ngFor="let reserva of reservasConfirmadas"
+                class="flex flex-col cursor-pointer items-center rounded shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+                routerLink="/reserva/{{ reserva.id }}">
+                <span class="bg-orange-400 p-1 w-full text-center">{{
+                    reserva.solicitacao_reserva.nome_evento
+                }}</span>
+                <img
+                    class="w-52 h-72 object-cover border-collapse border-orange-400 border-2 p-1"
+                    *ngIf="reserva.image; else semImagem"
+                    src="{{ reserva.image }}"
+                    alt="{{ reserva.solicitacao_reserva.descricao }}" />
+                <ng-template #semImagem>
+                    <div
+                        class="w-52 h-72 border-collapse border-orange-400 border-2 p-4 flex items-center justify-center uppercase text-orange-400">
+                        Evento sem imagem
+                    </div>
+                </ng-template>
+                <span class="bg-orange-400 p-1 w-full text-center mb-6">{{
+                    reserva.inicio | date: 'dd/MM/yyyy - HH:mm'
+                }}</span>
+            </div>
+        </main>
+    </section>
+</div>

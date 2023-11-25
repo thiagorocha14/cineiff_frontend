@@ -35,11 +35,6 @@ export class ReservaService {
         return eventos;
     }
 
-    public buscarReservasComImagem() {
-        const params = new HttpParams().set('imagem', '1');
-        return this.http.get<CarouselItem[]>(`${this.baseUrl}s/confirmadas`, { params });
-    }
-
     public buscarReservasConfirmadas() {
         return this.http.get<Reserva[]>(`${this.baseUrl}s/confirmadas`);
     }

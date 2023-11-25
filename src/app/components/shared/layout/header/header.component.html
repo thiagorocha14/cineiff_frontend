@@ -1,7 +1,9 @@
 <header
     class="flex pr-4 pl-4 w-100 flex-row items-center whitespace-nowrap h-16 bg-zinc-800"
     [hidden]="router.url === '/login' || router.url === '/register' ? true : false">
-    <span class="mr-2 text-white text-4xl">CINE<span class="text-orange-500">IFF</span></span>
+    <span class="mr-2 text-white text-4xl cursor-pointer" routerLink="/"
+        >CINE<span class="text-orange-500">IFF</span></span
+    >
     <button mat-button routerLink="/" [color]="router.url === '/' ? 'accent' : 'primary'">
         <mat-icon>home</mat-icon>
         Início

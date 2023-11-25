@@ -66,9 +66,6 @@ const right = [
     ],
 })
 export class CarouselComponent implements OnInit {
-    private reservaService = inject(ReservaService);
-    private toastService = inject(ToastService);
-    private loadingService = inject(LoadingService);
     @Input() items: CarouselItem[] = [];
     @Input() timer = 5000;
     interval: any;
@@ -78,8 +75,6 @@ export class CarouselComponent implements OnInit {
         this.interval = setInterval(() => {
             this.next();
         }, this.timer);
-        this.populaItens();
-        this.items = [];
     }
 
     next(): void {
@@ -98,20 +93,5 @@ export class CarouselComponent implements OnInit {
 
     set(item: number): void {
         this.actual_item = item;
-    }
-
-    populaItens() {
-        this.loadingService.showLoading();
-        this.reservaService.buscarReservasComImagem().subscribe({
-            next: (reservas: CarouselItem[]) => {
-                this.loadingService.hideLoading();
-                this.items = reservas;
-            },
-            error: (err: any) => {
-                this.loadingService.hideLoading();
-                const erro = err.error.error ? err.error.error : err.error ? err.error : err;
-                this.toastService.showToastBottomCenter(erro);
-            },
-        });
     }
 }

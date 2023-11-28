@@ -27,23 +27,23 @@
             <thead>
                 <tr class="bg-black">
                     <th
-                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase whitespace-nowrap font-semibold text-left">
+                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
                         Nome
                     </th>
                     <th
-                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase whitespace-nowrap font-semibold text-left">
+                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
                         Sinopse
                     </th>
                     <th
-                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase whitespace-nowrap font-semibold text-left">
+                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
                         Classificação indicativa
                     </th>
                     <th
-                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase whitespace-nowrap font-semibold text-left">
+                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
                         Duração em minutos
                     </th>
                     <th
-                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase whitespace-nowrap font-semibold text-center">
+                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-center">
                         Opções
                     </th>
                 </tr>
@@ -52,19 +52,23 @@
                 <tr
                     *ngFor="let filme of filmes"
                     class="bg-zinc-900 odd:bg-zinc-950 text-white hover:bg-zinc-700">
-                    <td class="px-2 align-middle text-sm whitespace-nowrap py-2">
+                    <td class="px-2 align-middle text-sm py-2">
                         {{ filme.nome }}
                     </td>
-                    <td class="px-2 align-middle text-sm whitespace-nowrap py-2">
-                        {{ filme.sinopse }}
+                    <td class="px-2 align-middle text-sm py-2">
+                        {{
+                            filme.sinopse.length > 100
+                                ? filme.sinopse.substring(0, 100) + '...'
+                                : filme.sinopse
+                        }}
                     </td>
-                    <td class="px-2 align-middle text-sm whitespace-nowrap py-2">
+                    <td class="px-2 align-middle text-sm py-2">
                         {{ filme.classificacao_indicativa }}
                     </td>
-                    <td class="px-2 align-middle text-sm whitespace-nowrap py-2">
+                    <td class="px-2 align-middle text-sm py-2">
                         {{ filme.duracao_minutos }}
                     </td>
-                    <td class="px-2 align-middle text-sm whitespace-nowrap py-2 text-center">
+                    <td class="px-2 align-middle text-sm py-2 text-center">
                         <div class="flex flex-row justify-center items-center">
                             <button
                                 mat-fab

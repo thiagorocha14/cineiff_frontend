@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Reserva } from '../types/reserva/reserva';
 import { CalendarEvent } from 'angular-calendar';
-import { CarouselItem } from '../types/carousel-item/carousel-item';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root',
@@ -10,7 +10,7 @@ import { CarouselItem } from '../types/carousel-item/carousel-item';
 export class ReservaService {
     constructor(private http: HttpClient) {}
 
-    readonly baseUrl = 'http://localhost:8000/api/reserva';
+    readonly baseUrl = `${environment.apiUrl}/reserva`;
 
     public listarReservas() {
         return this.http.get(`${this.baseUrl}`);

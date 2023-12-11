@@ -12,4 +12,5 @@ export type Reserva = {
     loading?: boolean;
     image?: any;
     lugares_disponiveis?: number;
+    total_lugares?: number;
 };

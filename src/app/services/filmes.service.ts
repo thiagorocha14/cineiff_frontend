@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Filme } from '../types/filme/filme';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class FilmesService {
-    readonly baseUrl = 'http://localhost:8000/api/filmes';
+    readonly baseUrl = `${environment.apiUrl}/filmes`;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {}
 
     buscarFilmes() {
         return this.http.get<Filme[]>(`${this.baseUrl}`);
@@ -26,7 +27,7 @@ export class FilmesService {
         formData.append('duracao_minutos', filme.duracao_minutos);
 
         if (filme.anexo) {
-          formData.append('anexo', filme.anexo);
+            formData.append('anexo', filme.anexo);
         }
 
         return this.http.post(`${this.baseUrl}`, formData);
@@ -40,7 +41,7 @@ export class FilmesService {
         formData.append('duracao_minutos', filme.duracao_minutos);
 
         if (filme.anexo) {
-          formData.append('anexo', filme.anexo);
+            formData.append('anexo', filme.anexo);
         }
 
         return this.http.put(`${this.baseUrl}/${filme.id}`, formData);

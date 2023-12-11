@@ -88,7 +88,7 @@ export class FormComponent implements OnInit {
                     this.loading = false;
                 },
                 error: err => {
-                    this.toastService.showToastBottomCenter('Erro ao criar solicitação!');
+                    this.toastService.showErrorToast(err);
                     this.loading = false;
                 },
             });

@@ -176,14 +176,23 @@
                 </div>
             </section>
         </main>
-
-        <button
-            mat-raised-button
-            [appPromisedBtn]="loading"
-            class="text-white float-right mt-6"
-            color="accent"
-            type="submit">
-            Enviar Solicitação
-        </button>
+        <footer class="flex flex-row gap-1 justify-between items-center mt-6">
+            <small>
+                <b>
+                    Uso do Cineteatro Maestro José Carlos Ligiero é restrito a atividades
+                    educacionais e culturais da comunidade escolar. Proibida reserva para fins
+                    lucrativos, campanhas eleitorais ou outros propósitos não educacionais. Obrigado
+                    pela compreensão.
+                </b>
+            </small>
+            <div>
+                <button
+                    [appPromisedBtn]="loading"
+                    class="bg-orange-500 whitespace-nowrap text-white py-2 px-4 rounded hover:bg-orange-700 cursor-pointer transition duration-300 ease-in-out"
+                    type="submit">
+                    Enviar Solicitação
+                </button>
+            </div>
+        </footer>
     </form>
 </div>

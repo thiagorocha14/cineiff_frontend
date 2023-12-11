@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RegisterData } from '../types/auth/registerData';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root',
@@ -8,23 +9,25 @@ import { RegisterData } from '../types/auth/registerData';
 export class AuthService {
     constructor(private http: HttpClient) {}
 
+    readonly baseUrl = `${environment.apiUrl}/auth`;
+
     isLoggedIn() {
         return localStorage.getItem('token') ? true : false;
     }
 
     login(email: string, password: string) {
-        return this.http.post('http://localhost:8000/api/login', {
+        return this.http.post(`${environment.apiUrl}/login`, {
             email,
             password,
         });
     }
 
     register(data: RegisterData) {
-        return this.http.post('http://localhost:8000/api/register', data);
+        return this.http.post(`${environment.apiUrl}/register`, data);
     }
 
     logout() {
-        return this.http.post('http://localhost:8000/api/logout', {});
+        return this.http.post(`${environment.apiUrl}/logout`, {});
     }
 
     setToken(token: string) {

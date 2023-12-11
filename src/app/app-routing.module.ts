@@ -16,6 +16,8 @@ import { ShowComponent as ReservaShowComponent } from './components/pages/public
 import { IndexComponent as FilmesIndexComponent } from './components/pages/public/filmes/index/index.component';
 import { FormComponent as FilmesFormComponent } from './components/pages/public/filmes/form/form.component';
 
+import { ShowComponent as IngressoShowComponent } from './components/pages/public/ingresso/show/show.component';
+
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'cadastrar', component: RegisterComponent },
@@ -27,6 +29,7 @@ const routes: Routes = [
     { path: 'filmes', component: FilmesIndexComponent },
     { path: 'filmes/cadastrar', component: FilmesFormComponent },
     { path: 'filmes/editar/:id', component: FilmesFormComponent },
+    { path: 'ingresso/:uuid', component: IngressoShowComponent },
 ];
 
 @NgModule({

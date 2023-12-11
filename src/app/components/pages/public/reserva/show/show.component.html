@@ -19,7 +19,7 @@
                     <h1 class="text-4xl font-semibold text-center text-orange-400">
                         {{ dados_reserva.nome_evento }}
                     </h1>
-                    <button mat-raised-button color="accent" routerLink="cadastrar">
+                    <button mat-raised-button color="accent" (click)="abrirModalIngresso()">
                         <mat-icon>confirmation_number</mat-icon>
                         Garantir Ingresso
                     </button>
@@ -88,7 +88,9 @@
                     <mat-icon>event_seat</mat-icon>
                     Lugares disponíveis:
                 </span>
-                <span class="text-white"> {{ reserva.lugares_disponiveis }}/124 </span>
+                <span class="text-white">
+                    {{ reserva.lugares_disponiveis }}/{{ reserva.total_lugares }}
+                </span>
             </div>
             <ng-container *ngIf="filme">
                 <hr class="border-orange-300 my-2 w-full" />

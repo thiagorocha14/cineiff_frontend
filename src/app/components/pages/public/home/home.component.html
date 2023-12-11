@@ -1,5 +1,5 @@
 <app-carousel [items]="items"></app-carousel>
-<div
+<main
     class="flex items-center justify-center mt-8 overflow-x-hidden"
     *ngIf="reservasConfirmadas.length > 0">
     <section
@@ -11,7 +11,7 @@
             </small>
         </header>
         <hr class="border-orange-300 my-2" />
-        <main class="flex flex-row gap-x-20 flex-wrap ml-3 mt-4">
+        <article class="flex flex-row gap-x-20 flex-wrap ml-3 mt-4">
             <div
                 *ngFor="let reserva of reservasConfirmadas"
                 class="flex flex-col cursor-pointer items-center rounded shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
@@ -34,6 +34,39 @@
                     reserva.inicio | date: 'dd/MM/yyyy - HH:mm'
                 }}</span>
             </div>
-        </main>
+        </article>
     </section>
-</div>
+</main>
+<footer class="w-full flex flex-row justify-start items-center mt-4 p-16 bg-orange-500 mb-4">
+    <img
+        class="w-48 h-48 object-cover"
+        src="assets/images/logo_iff.png"
+        alt="Logo do Cineteatro do IFF - Campus Itaperuna" />
+    <section class="flex flex-col justify-center items-start">
+        <h5 class="text-2xl font-semibold text-black">Contato</h5>
+        <small class="text-black block">
+            Entre em contato conosco para tirar dúvidas, fazer sugestões ou reclamações.
+        </small>
+        <span class="text-black block mt-2">
+            <b>Email:</b>
+            <a href="mailto:cineiffitaperuna@gmail.com" class="text-black hover:text-gray-800">
+                cineiffitaperuna@gmail.com
+            </a>
+        </span>
+        <span class="text-black block mt-2">
+            <b>Telefone:</b>
+            <a href="tel:+55-22-3826-2300" class="text-black hover:text-gray-800">
+                +55 (22) 3826-2300
+            </a>
+        </span>
+        <span class="text-black block mt-2">
+            <b>Endereço:</b>
+            <a
+                href="https://maps.app.goo.gl/7cqoDpPwLNZ568mN6"
+                target="_blank"
+                class="text-black hover:text-gray-800">
+                Rodovia BR 356, Km3, Cidade Nova - Itaperuna, RJ - CEP 28.300-000
+            </a>
+        </span>
+    </section>
+</footer>

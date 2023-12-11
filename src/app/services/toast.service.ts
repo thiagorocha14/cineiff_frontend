@@ -24,4 +24,13 @@ export class ToastService {
             panelClass: ['success-snackbar'],
         });
     }
+
+    showErrorToast(message: string) {
+        this.snackBar.open(message, '', {
+            duration: 5000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+            panelClass: ['error-snackbar'],
+        });
+    }
 }

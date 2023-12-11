@@ -16,6 +16,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NgChartsModule } from 'ng2-charts';
+
 @NgModule({
     exports: [
         MatToolbarModule,
@@ -34,6 +36,7 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatMenuModule,
         NgxMatSelectSearchModule,
         MatDialogModule,
+        NgChartsModule,
     ],
 })
 export class AppMaterialModule {}

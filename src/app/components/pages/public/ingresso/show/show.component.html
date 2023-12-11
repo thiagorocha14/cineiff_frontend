@@ -1,0 +1,39 @@
+<div class="container" *ngIf="ingresso">
+    <div class="bp-card" data-clickthrough="link">
+        <div class="bp-card_label">
+            <div class="bd-border_solid"></div>
+            <div class="bd-border_dotted"></div>
+        </div>
+        <div class="bp-card_content">
+            <p class="secondary">
+                <b>{{ ingresso.documento }}</b>
+            </p>
+            <h4>{{ ingresso.nome_evento }}</h4>
+
+            <ul>
+                <span>
+                    <mat-icon>event</mat-icon>
+                    Data:
+                </span>
+                <li>{{ ingresso.data_inicio | date: 'dd/MM/yyyy - HH:mm' }}</li>
+                <li>até</li>
+                <li>{{ ingresso.data_fim | date: 'dd/MM/yyyy - HH:mm' }}</li>
+            </ul>
+
+            <ul>
+                <span>
+                    <mat-icon>location_on</mat-icon>
+                    Localização:
+                </span>
+                <li>
+                    Cineteatro do IFF Campus Itaperuna - Rodovia BR 356, Km3, Cidade Nova -
+                    Itaperuna, RJ - CEP 28.300-000
+                </li>
+            </ul>
+
+            <button class="price hover:cursor-pointer print:hidden" (click)="print()">
+                <mat-icon>print</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

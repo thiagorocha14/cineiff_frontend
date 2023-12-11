@@ -1,0 +1,43 @@
+<header class="px-3 py-2">
+    <h1 class="text-lg font-bold text-zinc-800">
+        Garantir Ingresso - {{ reserva.solicitacao_reserva.nome_evento }}
+    </h1>
+    <small>
+        <b>Lugares disponíveis:</b> {{ reserva.lugares_disponiveis }}/{{ reserva.total_lugares }}
+    </small>
+</header>
+<div mat-dialog-content>
+    <form [formGroup]="formIngresso">
+        <mat-form-field class="w-full">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="email" required />
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Documento</mat-label>
+            <input matInput placeholder="Documento" formControlName="documento" required />
+        </mat-form-field>
+
+        <small class="text-orange-800">
+            <b>Atenção!</b>
+            Escolha do lugar é por ordem de chegada. Ao confirmar a reserva, você não poderá mais
+            cancelar. Certifique-se de que os dados estão corretos.
+        </small>
+    </form>
+</div>
+
+<div class="flex flex-row w-full justify-between px-3 py-2">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <div class="flex flex-row gap-2">
+        <button
+            mat-raised-button
+            color="accent"
+            class="text-white"
+            (click)="garantirIngreso()"
+            [appPromisedBtn]="loading"
+            [disabled]="reserva.lugares_disponiveis === 0">
+            <mat-icon>confirmation_number</mat-icon>
+            Confirmar
+        </button>
+    </div>
+</div>

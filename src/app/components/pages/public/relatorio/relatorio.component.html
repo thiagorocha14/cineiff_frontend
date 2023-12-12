@@ -1,0 +1,117 @@
+<div class="page-size flex items-center justify-center">
+    <section
+        class="flex flex-col w-page-size h-page-size px-4 py-2 border border-zinc-600 rounded shadow-lg overflow-y-auto bg-zinc-800 print:bg-white print:w-full">
+        <header class="w-full flex flex-row justify-between print:hidden">
+            <section class="w-full flex flex-col justify-center items-start">
+                <h1 class="text-4xl font-semibold text-center text-orange-400 mb-2">Relatório</h1>
+                <small class="text-left text-zinc-400 block">
+                    Relatório de eventos realizados no CineTeatro do IFF Campus Itaperuna. Para
+                    exibir o relatório, selecione o período desejado.
+                </small>
+            </section>
+            <div class="flex flex-row gap-2 justify-between">
+                <div class="form-field w-full mb-4">
+                    <label for="inicio" class="block text-sm font-medium text-zinc-900"
+                        >Início</label
+                    >
+                    <input
+                        id="inicio"
+                        placeholder="Data de início"
+                        [ngModel]="inicio"
+                        (ngModelChange)="inicio = $event; gerarRelatorio()"
+                        type="datetime-local"
+                        class="border border-gray-300 rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-300 ease-in-out w-full" />
+                </div>
+                <div class="form-field w-full">
+                    <label for="fim" class="block text-sm font-medium text-zinc-900">Fim</label>
+                    <input
+                        id="fim"
+                        placeholder="Data de fim"
+                        [(ngModel)]="fim"
+                        (ngModelChange)="fim = $event; gerarRelatorio()"
+                        type="datetime-local"
+                        class="border border-gray-300 rounded px-3 py-2 outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-300 ease-in-out w-full" />
+                </div>
+            </div>
+        </header>
+        <main *ngIf="reservas.length > 0; else semReservas">
+            <hr class="border-orange-300 my-2" />
+            <h3 class="text-xl font-semibold mb-4 text-orange-500">Gráfico</h3>
+            <canvas
+                baseChart
+                class="chart w-full"
+                [data]="barChartData"
+                [options]="barChartOptions"
+                [type]="barChartType">
+            </canvas>
+            <hr class="border-orange-300 my-2" />
+            <h3 class="text-xl font-semibold mb-4 text-orange-500">Detalhes</h3>
+            <div class="flex flex-row justify-between items-center mb-2">
+                <span class="text-orange-500">
+                    <b>Quantidade Reservas:</b>
+                    {{ reservas.length }}
+                </span>
+                <span class="text-orange-500">
+                    <b>Quantidade Ingressos Reservados:</b>
+                    {{ total_ingressos }}
+                </span>
+            </div>
+            <table class="items-center table-fixed bg-transparent w-full">
+                <thead>
+                    <tr class="bg-black">
+                        <th
+                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
+                            Título
+                        </th>
+                        <th
+                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-center">
+                            Data Início
+                        </th>
+                        <th
+                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-center">
+                            Data Fim
+                        </th>
+                        <th
+                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-center">
+                            Ingressos Reservados
+                        </th>
+                        <th
+                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-center">
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let reserva of reservas"
+                        class="bg-zinc-900 odd:bg-zinc-950 text-white hover:bg-zinc-700r">
+                        <td class="px-2 border-t-0 align-middle text-sm py-2">
+                            {{ reserva.solicitacao_reserva.nome_evento }}
+                        </td>
+                        <td class="px-2 border-t-0 align-middle text-sm py-2 text-center">
+                            {{ reserva.inicio | date: 'dd/MM/yyyy - HH:mm' }}
+                        </td>
+                        <td class="px-2 border-t-0 align-middle text-sm py-2 text-center">
+                            {{ reserva.fim | date: 'dd/MM/yyyy - HH:mm' }}
+                        </td>
+                        <td class="px-2 border-t-0 align-middle text-sm py-2 text-center">
+                            {{ reserva.ingressos_reservados }}/{{ reserva.total_lugares }}
+                        </td>
+                        <td class="px-2 border-t-0 align-middle text-sm py-2 text-center">
+                            <span [class]="retornaClasseStatus(reserva.status)" class="uppercase">
+                                {{ reserva.status }}
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+        <ng-template #semReservas>
+            <main class="flex flex-row w-full p-32 justify-center">
+                <span class="text-orange-500">
+                    <b>Não há reservas para o período selecionado.</b>
+                </span>
+            </main>
+        </ng-template>
+    </section>
+</div>

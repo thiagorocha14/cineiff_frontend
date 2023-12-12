@@ -46,6 +46,10 @@
             <mat-icon>movie</mat-icon>
             Gerenciar filmes
         </button>
+        <button mat-menu-item *ngIf="isLogged()" routerLink="/relatorio">
+            <mat-icon>description</mat-icon>
+            Relatório
+        </button>
     </mat-menu>
     <button mat-button *ngIf="!isLogged()" routerLink="/login" color="primary">
         <mat-icon>lock</mat-icon>

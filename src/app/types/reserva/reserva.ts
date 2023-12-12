@@ -13,4 +13,5 @@ export type Reserva = {
     image?: any;
     lugares_disponiveis?: number;
     total_lugares?: number;
+    ingressos_reservados?: number;
 };

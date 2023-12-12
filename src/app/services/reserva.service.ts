@@ -42,4 +42,11 @@ export class ReservaService {
     public buscarReserva(id: number) {
         return this.http.get<Reserva>(`${this.baseUrl}/${id}`);
     }
+
+    public relatorio(data_inicio: string, data_fim: string) {
+        let params = new HttpParams();
+        params = params.append('data_inicio', data_inicio);
+        params = params.append('data_fim', data_fim);
+        return this.http.get(`${this.baseUrl}s/relatorio`, { params });
+    }
 }

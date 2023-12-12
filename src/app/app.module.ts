@@ -39,6 +39,7 @@ import { DialogReservaComponent } from './components/pages/public/reserva/index/
 import { ShowComponent as ReservaShowComponent } from './components/pages/public/reserva/show/show.component';
 import { DialogIngressoComponent } from './components/pages/public/reserva/show/dialog-ingresso/dialog-ingresso.component';
 import { ShowComponent as IngressoShowComponent } from './components/pages/public/ingresso/show/show.component';
+import { RelatorioComponent } from './components/pages/public/relatorio/relatorio.component';
 
 @NgModule({
     declarations: [
@@ -59,6 +60,7 @@ import { ShowComponent as IngressoShowComponent } from './components/pages/publi
         ReservaShowComponent,
         IngressoShowComponent,
         DialogIngressoComponent,
+        RelatorioComponent,
     ],
     imports: [
         BrowserModule,

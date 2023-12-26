@@ -4,6 +4,8 @@ import { SolicitacaoService } from 'src/app/services/solicitacao.service';
 import { solicitarReserva } from 'src/app/types/solicitacao/solicitarReserva';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogReservaComponent } from './dialog-reserva/dialog-reserva.component';
+import { DialogJustificativaComponent } from './dialog-justificativa/dialog-justificativa.component';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
     selector: 'app-index',
@@ -16,7 +18,8 @@ export class IndexComponent implements OnInit {
     constructor(
         private solicitacaoService: SolicitacaoService,
         private loadingService: LoadingService,
-        private dialog: MatDialog
+        private dialog: MatDialog,
+        private toastService: ToastService
     ) {}
 
     ngOnInit(): void {
@@ -55,15 +58,24 @@ export class IndexComponent implements OnInit {
     indeferirSolicitacao(solicitacao: solicitarReserva, event: any) {
         event.stopPropagation();
         solicitacao.loading = true;
-        this.solicitacaoService.indeferirSolicitacao(solicitacao).subscribe({
-            next: res => {
-                solicitacao.loading = false;
-                this.buscarSolicitacoes();
-            },
-            error: err => {
-                solicitacao.loading = false;
-                console.log(err);
-            },
+        const dialogRef = this.dialog.open(DialogJustificativaComponent);
+
+        dialogRef.afterClosed().subscribe(result => {
+            solicitacao.loading = false;
+            if (result) {
+                this.solicitacaoService.indeferirSolicitacao(solicitacao, result).subscribe({
+                    next: res => {
+                        solicitacao.loading = false;
+                        this.buscarSolicitacoes();
+                    },
+                    error: err => {
+                        solicitacao.loading = false;
+                        console.log(err);
+                    },
+                });
+            } else {
+                this.toastService.showErrorToast('É necessário informar uma justificativa');
+            }
         });
     }
 

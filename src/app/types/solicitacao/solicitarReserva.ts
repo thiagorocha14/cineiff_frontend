@@ -18,4 +18,5 @@ export type solicitarReserva = {
     anexo?: File;
     filme_id?: number;
     filme?: Filme;
+    justificativa_indeferimento?: string;
 };

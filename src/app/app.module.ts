@@ -40,6 +40,7 @@ import { ShowComponent as ReservaShowComponent } from './components/pages/public
 import { DialogIngressoComponent } from './components/pages/public/reserva/show/dialog-ingresso/dialog-ingresso.component';
 import { ShowComponent as IngressoShowComponent } from './components/pages/public/ingresso/show/show.component';
 import { RelatorioComponent } from './components/pages/public/relatorio/relatorio.component';
+import { DialogJustificativaComponent } from './components/pages/public/reserva/index/dialog-justificativa/dialog-justificativa.component';
 
 @NgModule({
     declarations: [
@@ -61,6 +62,7 @@ import { RelatorioComponent } from './components/pages/public/relatorio/relatori
         IngressoShowComponent,
         DialogIngressoComponent,
         RelatorioComponent,
+        DialogJustificativaComponent,
     ],
     imports: [
         BrowserModule,

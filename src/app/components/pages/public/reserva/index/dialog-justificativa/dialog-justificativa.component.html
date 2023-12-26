@@ -1,0 +1,22 @@
+<header class="px-3 py-2">
+    <h1 class="text-2xl font-bold text-zinc-800">
+        Justificativa
+    </h1>
+</header>
+<div mat-dialog-content>
+    <header>
+        <h4>Informe a justificativa para o indeferimento da solicitação</h4>
+    </header>
+    <textarea name="justificativa" id="justificativa" [(ngModel)]="justificativa" class="w-full rounded p-3 outline-2 outline mt-2"></textarea>
+</div>
+
+<div class="flex flex-row w-full justify-between px-3 py-2">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button
+        mat-raised-button
+        color="primary"
+        class="text-white"
+        (click)="enviarJustificativa()">
+        Enviar
+    </button>
+</div>

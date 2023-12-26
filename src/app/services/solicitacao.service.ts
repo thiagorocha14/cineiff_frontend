@@ -43,8 +43,10 @@ export class SolicitacaoService {
         return this.http.put(`${this.baseUrl}/${solicitacao.id}`, {});
     }
 
-    public indeferirSolicitacao(solicitacao: solicitarReserva) {
-        return this.http.delete(`${this.baseUrl}/${solicitacao.id}`);
+    public indeferirSolicitacao(solicitacao: solicitarReserva, justificativa: string) {
+        return this.http.delete(`${this.baseUrl}/${solicitacao.id}`, {
+            params: { justificativa_indeferimento: justificativa },
+        });
     }
 
     public recuperarSolicitacao(solicitacao: solicitarReserva) {

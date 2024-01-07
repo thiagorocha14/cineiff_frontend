@@ -40,12 +40,27 @@ export class SolicitacaoService {
     }
 
     public deferirSolicitacao(solicitacao: solicitarReserva) {
-        return this.http.put(`${this.baseUrl}/${solicitacao.id}`, {});
+        return this.http.put(`${this.baseUrl}/${solicitacao.id}`, {
+            nome_evento: solicitacao.nome_evento,
+            descricao: solicitacao.descricao,
+            inicio: solicitacao.inicio,
+            fim: solicitacao.fim,
+            justificativa: solicitacao.justificativa,
+            publico_alvo: solicitacao.publico_alvo,
+        });
     }
 
     public indeferirSolicitacao(solicitacao: solicitarReserva, justificativa: string) {
         return this.http.delete(`${this.baseUrl}/${solicitacao.id}`, {
-            params: { justificativa_indeferimento: justificativa },
+            params: {
+                justificativa_indeferimento: justificativa,
+                nome_evento: solicitacao.nome_evento,
+                descricao: solicitacao.descricao,
+                inicio: solicitacao.inicio,
+                fim: solicitacao.fim,
+                justificativa: solicitacao.justificativa,
+                publico_alvo: solicitacao.publico_alvo,
+            },
         });
     }
 

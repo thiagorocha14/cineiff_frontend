@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SolicitacaoService } from 'src/app/services/solicitacao.service';
 import { solicitarReserva } from 'src/app/types/solicitacao/solicitarReserva';
@@ -12,6 +12,8 @@ import { ToastService } from 'src/app/services/toast.service';
 })
 export class DialogReservaComponent {
     solicitacao: solicitarReserva;
+    @ViewChild('dataInicio') dataInicio!: ElementRef;
+    @ViewChild('dataFim') dataFim!: ElementRef;
 
     constructor(
         public dialogRef: MatDialogRef<DialogReservaComponent>,
@@ -64,5 +66,17 @@ export class DialogReservaComponent {
                 this.toastService.showErrorToast('É necessário informar uma justificativa');
             }
         });
+    }
+
+    editarDataInicio() {
+        if (this.dataInicio != null) {
+            this.dataInicio.nativeElement.showPicker();
+        }
+    }
+
+    editarDataFim() {
+        if (this.dataFim != null) {
+            this.dataFim.nativeElement.showPicker();
+        }
     }
 }

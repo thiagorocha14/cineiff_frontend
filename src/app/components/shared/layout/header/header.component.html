@@ -29,6 +29,13 @@
         <mat-icon>event_seat</mat-icon>
         Reservar
     </button>
+    <button
+        mat-button
+        routerLink="/sobre"
+        [color]="router.url === '/sobre' ? 'accent' : 'primary'">
+        <mat-icon>info</mat-icon>
+        Sobre
+    </button>
     <span class="fill-remaining-space"></span>
     <button mat-button [matMenuTriggerFor]="menu" *ngIf="isLogged() && isAdmin()" color="primary">
         <mat-icon>arrow_drop_down</mat-icon> Opções administrativas

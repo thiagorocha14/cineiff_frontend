@@ -38,6 +38,9 @@ export class FormComponent implements OnInit {
     public filmesFiltrados: Filme[] = [];
     protected _onDestroy = new Subject<void>();
 
+    protected revalidarData = false;
+    protected periodoAnterior: Date[] = [];
+
     constructor(
         private formBuilder: FormBuilder,
         private toastService: ToastService,
@@ -80,6 +83,15 @@ export class FormComponent implements OnInit {
 
     solicitarReserva() {
         if (this.formReserva.valid) {
+            if (
+                this.revalidarData &&
+                this.periodoAnterior[0] === this.formReserva.value.inicio &&
+                this.periodoAnterior[1] === this.formReserva.value.fim
+            ) {
+                this.toastService.showErrorToast('Já existe uma solicitação de reserva para esse período.');
+                this.loading = false;
+                return;
+            }
             this.loading = true;
             this.solicitacaoService.solicitarReserva(this.formReserva.value).subscribe({
                 next: res => {
@@ -88,9 +100,14 @@ export class FormComponent implements OnInit {
                     this.loading = false;
                 },
                 error: err => {
-                    this.toastService.showErrorToast(err);
-                    this.loading = false;
+                    if (err === 'Já existe uma solicitação de reserva para esse período.') {
+                        this.revalidarData = true;
+                        this.periodoAnterior = [this.formReserva.value.inicio, this.formReserva.value.fim];
+                        this.toastService.showErrorToast(err);
+                        this.loading = false;
+                    }
                 },
+
             });
         }
     }

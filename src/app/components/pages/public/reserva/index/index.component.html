@@ -93,7 +93,7 @@
                                     color="primary"
                                     class="text-white float-right"
                                     [appPromisedBtn]="solicitacao.loading"
-                                    *ngIf="solicitacao.status === 'indeferido'"
+                                    *ngIf="solicitacao.status !== 'pendente'"
                                     matTooltip="Recuperar a solicitação"
                                     (click)="recuperarSolicitacao(solicitacao, $event)">
                                     <mat-icon class="text-white">autorenew</mat-icon>

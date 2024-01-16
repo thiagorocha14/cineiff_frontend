@@ -82,6 +82,7 @@ export class RelatorioComponent {
 
     reservas: Reserva[] = [];
     total_ingressos = 0;
+    qtdeTentativasMalSucedidas = 0;
 
     constructor(
         private reservaService: ReservaService,
@@ -96,7 +97,13 @@ export class RelatorioComponent {
         this.reservaService.relatorio(this.inicio, this.fim).subscribe({
             next: reservas => {
                 this.loadingService.hideLoading();
-                this.reservas = reservas as Reserva[];
+                if (reservas.hasOwnProperty('reservas')) {
+                    this.reservas = (reservas as { reservas: Reserva[] }).reservas;
+                }
+                if (reservas.hasOwnProperty('qtdeTentativasMalSucedidas')) {
+                    this.qtdeTentativasMalSucedidas = (reservas as { qtdeTentativasMalSucedidas: number })
+                        .qtdeTentativasMalSucedidas;
+                }
                 this.total_ingressos = this.reservas
                     .map(reserva => reserva.ingressos_reservados || 0)
                     .reduce((a, b) => a + b, 0);

@@ -18,6 +18,7 @@ import { FormComponent as FilmesFormComponent } from './components/pages/public/
 
 import { ShowComponent as IngressoShowComponent } from './components/pages/public/ingresso/show/show.component';
 import { RelatorioComponent } from './components/pages/public/relatorio/relatorio.component';
+import { SobreComponent } from './components/pages/public/sobre/sobre.component';
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
     { path: 'filmes/editar/:id', component: FilmesFormComponent },
     { path: 'ingresso/:uuid', component: IngressoShowComponent },
     { path: 'relatorio', component: RelatorioComponent },
+    { path: 'sobre', component: SobreComponent },
 ];
 
 @NgModule({

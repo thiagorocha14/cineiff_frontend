@@ -1,5 +1,5 @@
 <header
-    class="flex pr-4 pl-4 w-100 flex-row items-center whitespace-nowrap h-16 bg-zinc-800 print:hidden"
+    class="flex pr-4 pl-4 w-100 flex-row flex-wrap items-center whitespace-nowrap h-16 bg-zinc-800 print:hidden"
     [hidden]="router.url === '/login' || router.url === '/register' ? true : false">
     <span class="mr-2 text-white text-4xl cursor-pointer" routerLink="/"
         >CINE<span class="text-orange-500">IFF</span></span
@@ -15,13 +15,6 @@
         <mat-icon>event</mat-icon>
         Calendário
     </button>
-    <!-- <button
-        mat-button
-        *ngIf="isLogged()"
-        routerLink="/reservas"
-        [color]="router.url === '/reservas' ? 'accent' : 'primary'">
-        Reservas Pendententes
-    </button> -->
     <button
         mat-button
         routerLink="/reservar"
@@ -29,10 +22,7 @@
         <mat-icon>event_seat</mat-icon>
         Reservar
     </button>
-    <button
-        mat-button
-        routerLink="/sobre"
-        [color]="router.url === '/sobre' ? 'accent' : 'primary'">
+    <button mat-button routerLink="/sobre" [color]="router.url === '/sobre' ? 'accent' : 'primary'">
         <mat-icon>info</mat-icon>
         Sobre
     </button>

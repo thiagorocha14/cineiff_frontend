@@ -45,19 +45,19 @@ $cineiff_frontend-app-background: mat.get-color-from-palette($cineiff_frontend-t
     }
 
     .page-size{
-        @apply min-h-[calc(100vh-4rem)];
+        @apply min-h-[calc(100vh-1rem)] sm:min-h-[calc(100vh-4rem)];
     }
 
     .w-page-size{
-        @apply w-[calc(100vw-25%)];
+        @apply w-[calc(100vw-10%)] sm:w-[calc(100vw-25%)];
     }
 
     .h-page-size{
-        @apply h-[calc(100vh-8rem)];
+        @apply h-[calc(100vh-2rem)] sm:h-[calc(100vh-8rem)];
     }
 
     .w-event-size{
-        @apply w-[calc(100vw-40%)];
+        @apply w-[calc(100vw-10%)] sm:w-[calc(100vw-40%)];
     }
 }
 @layer base {

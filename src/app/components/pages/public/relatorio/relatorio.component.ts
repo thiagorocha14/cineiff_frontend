@@ -101,8 +101,9 @@ export class RelatorioComponent {
                     this.reservas = (reservas as { reservas: Reserva[] }).reservas;
                 }
                 if (reservas.hasOwnProperty('qtdeTentativasMalSucedidas')) {
-                    this.qtdeTentativasMalSucedidas = (reservas as { qtdeTentativasMalSucedidas: number })
-                        .qtdeTentativasMalSucedidas;
+                    this.qtdeTentativasMalSucedidas = (
+                        reservas as { qtdeTentativasMalSucedidas: number }
+                    ).qtdeTentativasMalSucedidas;
                 }
                 this.total_ingressos = this.reservas
                     .map(reserva => reserva.ingressos_reservados || 0)

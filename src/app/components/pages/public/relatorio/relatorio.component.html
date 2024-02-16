@@ -1,7 +1,7 @@
 <div class="page-size flex items-center justify-center">
     <section
         class="flex flex-col w-page-size h-page-size px-4 py-2 border border-zinc-600 rounded shadow-lg overflow-y-auto bg-zinc-800 print:bg-white print:w-full">
-        <header class="w-full flex flex-row justify-between print:hidden">
+        <header class="w-full flex flex-col sm:flex-row justify-between print:hidden">
             <section class="w-full flex flex-col justify-center items-start">
                 <h1 class="text-4xl font-semibold text-center text-orange-400 mb-2">Relatório</h1>
                 <small class="text-left text-zinc-400 block">
@@ -9,7 +9,7 @@
                     exibir o relatório, selecione o período desejado.
                 </small>
             </section>
-            <div class="flex flex-row gap-2 justify-between">
+            <div class="flex flex-col sm:flex-row gap-2 justify-between">
                 <div class="form-field w-full mb-4">
                     <label for="inicio" class="block text-sm font-medium text-zinc-900"
                         >Início</label
@@ -46,13 +46,13 @@
             </canvas>
             <hr class="border-orange-300 my-2" />
             <h3 class="text-xl font-semibold mb-4 text-orange-500">Detalhes</h3>
-            <div class="flex flex-row justify-between items-center mb-2">
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-2">
                 <span class="text-orange-500">
                     <b>Quantidade Reservas:</b>
                     {{ reservas.length }}
                 </span>
                 <span class="text-orange-500">
-                    <b>Quantidade tentativas malsucediadas:</b>
+                    <b>Quantidade tentativas malsucedidas:</b>
                     {{ qtdeTentativasMalSucedidas }}
                 </span>
                 <span class="text-orange-500">
@@ -60,55 +60,59 @@
                     {{ total_ingressos }}
                 </span>
             </div>
-            <table class="items-center table-fixed bg-transparent w-full">
-                <thead>
-                    <tr class="bg-black">
-                        <th
-                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
-                            Título
-                        </th>
-                        <th
-                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-center">
-                            Data Início
-                        </th>
-                        <th
-                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-center">
-                            Data Fim
-                        </th>
-                        <th
-                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-center">
-                            Ingressos Reservados
-                        </th>
-                        <th
-                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-center">
-                            Status
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr
-                        *ngFor="let reserva of reservas"
-                        class="bg-zinc-900 odd:bg-zinc-950 text-white hover:bg-zinc-700r">
-                        <td class="px-2 border-t-0 align-middle text-sm py-2">
-                            {{ reserva.solicitacao_reserva.nome_evento }}
-                        </td>
-                        <td class="px-2 border-t-0 align-middle text-sm py-2 text-center">
-                            {{ reserva.inicio | date: 'dd/MM/yyyy - HH:mm' }}
-                        </td>
-                        <td class="px-2 border-t-0 align-middle text-sm py-2 text-center">
-                            {{ reserva.fim | date: 'dd/MM/yyyy - HH:mm' }}
-                        </td>
-                        <td class="px-2 border-t-0 align-middle text-sm py-2 text-center">
-                            {{ reserva.ingressos_reservados }}/{{ reserva.total_lugares }}
-                        </td>
-                        <td class="px-2 border-t-0 align-middle text-sm py-2 text-center">
-                            <span [class]="retornaClasseStatus(reserva.status)" class="uppercase">
-                                {{ reserva.status }}
-                            </span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="overflow-auto">
+                <table class="items-center table-fixed bg-transparent w-full min-w-[1000px]">
+                    <thead>
+                        <tr class="bg-black">
+                            <th
+                                class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
+                                Título
+                            </th>
+                            <th
+                                class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-center">
+                                Data Início
+                            </th>
+                            <th
+                                class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-center">
+                                Data Fim
+                            </th>
+                            <th
+                                class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-center">
+                                Ingressos Reservados
+                            </th>
+                            <th
+                                class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-center">
+                                Status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let reserva of reservas"
+                            class="bg-zinc-900 odd:bg-zinc-950 text-white hover:bg-zinc-700r">
+                            <td class="px-2 border-t-0 align-middle text-sm py-2">
+                                {{ reserva.solicitacao_reserva.nome_evento }}
+                            </td>
+                            <td class="px-2 border-t-0 align-middle text-sm py-2 text-center">
+                                {{ reserva.inicio | date: 'dd/MM/yyyy - HH:mm' }}
+                            </td>
+                            <td class="px-2 border-t-0 align-middle text-sm py-2 text-center">
+                                {{ reserva.fim | date: 'dd/MM/yyyy - HH:mm' }}
+                            </td>
+                            <td class="px-2 border-t-0 align-middle text-sm py-2 text-center">
+                                {{ reserva.ingressos_reservados }}/{{ reserva.total_lugares }}
+                            </td>
+                            <td class="px-2 border-t-0 align-middle text-sm py-2 text-center">
+                                <span
+                                    [class]="retornaClasseStatus(reserva.status)"
+                                    class="uppercase">
+                                    {{ reserva.status }}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </main>
         <ng-template #semReservas>
             <main class="flex flex-row w-full p-32 justify-center">

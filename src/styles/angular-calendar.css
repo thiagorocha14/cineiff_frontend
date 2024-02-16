@@ -48,6 +48,11 @@
 .cal-month-view .cal-day-cell {
     min-height: 100px;
 }
+@media (max-width: 767px) {
+    .cal-month-view .cal-day-cell {
+        min-height: 50px;
+    }
+}
 .cal-month-view .cal-day-cell:not(:last-child) {
     border-right: 1px solid;
 }

@@ -96,7 +96,7 @@ export class IndexComponent implements OnInit {
 
     abrirDialogReserva(solicitacao: solicitarReserva) {
         const dialogRef = this.dialog.open(DialogReservaComponent, {
-            width: '60vw',
+            width: '1000px',
             data: solicitacao,
         });
 

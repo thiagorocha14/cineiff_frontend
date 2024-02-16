@@ -11,6 +11,8 @@ import { ToastService } from 'src/app/services/toast.service';
     styleUrls: ['./dialog-reserva.component.scss'],
 })
 export class DialogReservaComponent {
+    public minDate = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(':'));
+
     solicitacao: solicitarReserva;
     @ViewChild('dataInicio') dataInicio!: ElementRef;
     @ViewChild('dataFim') dataFim!: ElementRef;
@@ -39,7 +41,7 @@ export class DialogReservaComponent {
             },
             error: err => {
                 this.solicitacao.loading = false;
-                console.log(err);
+                this.toastService.showErrorToast(err);
             },
         });
     }
@@ -59,7 +61,7 @@ export class DialogReservaComponent {
                     },
                     error: err => {
                         solicitacao.loading = false;
-                        console.log(err);
+                        this.toastService.showErrorToast(err);
                     },
                 });
             } else {

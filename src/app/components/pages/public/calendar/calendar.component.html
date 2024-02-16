@@ -1,6 +1,6 @@
 <div class="page-size flex items-center justify-center">
     <div
-        class="w-page-size h-page-size px-4 py-2 border border-zinc-600 rounded shadow-lg bg-zinc-800">
+        class="w-page-size h-page-size px-4 py-2 border border-zinc-600 rounded shadow-lg bg-zinc-800 overflow-auto">
         <header class="w-full flex flex-col justify-center items-start">
             <h1 class="text-4xl font-semibold text-center text-orange-400 mb-2">
                 Calendário de Eventos
@@ -11,23 +11,30 @@
             </small>
         </header>
         <hr class="border-orange-300 my-2" />
-        <div class="overflow-auto">
-            <div class="flex justify-between items-center px-4 pb-2 bg-black">
+        <div class="block h-52 sm:h-4/5">
+            <div class="flex justify-between items-center md:px-4 md:pb-2 bg-black">
                 <div class="flex justify-center items-center">
                     <button
                         mat-icon-button
                         color="accent"
+                        class="small-icon-button"
                         mwlCalendarPreviousView
                         [view]="view"
                         [(viewDate)]="viewDate"
                         (viewDateChange)="closeOpenMonthViewDay()">
                         <mat-icon>keyboard_arrow_left</mat-icon>
                     </button>
-                    <button mat-icon-button mwlCalendarToday color="accent" [(viewDate)]="viewDate">
+                    <button
+                        mat-icon-button
+                        class="small-icon-button"
+                        mwlCalendarToday
+                        color="accent"
+                        [(viewDate)]="viewDate">
                         <mat-icon>today</mat-icon>
                     </button>
                     <button
                         mat-icon-button
+                        class="small-icon-button"
                         color="accent"
                         mwlCalendarNextView
                         [view]="view"
@@ -37,13 +44,14 @@
                     </button>
                 </div>
                 <div>
-                    <h2 class="uppercase font-bold text-orange-500">
+                    <h2 class="uppercase font-bold text-orange-500 text-xs md:text-base">
                         {{ viewDate | calendarDate: view + 'ViewTitle' : 'pt' }}
                     </h2>
                 </div>
                 <div class="flex justify-center items-center">
                     <button
                         mat-button
+                        class="small-mat-button"
                         (click)="setView(CalendarView.Month)"
                         [color]="view === CalendarView.Month ? 'accent' : 'primary'"
                         (click)="view = CalendarView.Month">
@@ -52,6 +60,7 @@
                     </button>
                     <button
                         mat-button
+                        class="small-mat-button"
                         (click)="setView(CalendarView.Week)"
                         [color]="view === CalendarView.Week ? 'accent' : 'primary'"
                         (click)="view = CalendarView.Week">
@@ -60,7 +69,7 @@
                     </button>
                 </div>
             </div>
-            <div [ngSwitch]="view" class="block overflow-auto h-4/5">
+            <div [ngSwitch]="view">
                 <mwl-calendar-month-view
                     *ngSwitchCase="'month'"
                     [viewDate]="viewDate"

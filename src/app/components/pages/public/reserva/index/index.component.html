@@ -10,7 +10,7 @@
         </header>
         <hr class="border-orange-300 my-2" />
         <div class="d-block overflow-auto">
-            <table class="items-center table-fixed bg-transparent w-full">
+            <table class="items-center table-fixed bg-transparent min-w-[1000px]">
                 <thead>
                     <tr class="bg-black">
                         <th
@@ -20,6 +20,10 @@
                         <th
                             class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
                             Descrição
+                        </th>
+                        <th
+                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
+                            Período
                         </th>
                         <th
                             class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
@@ -49,6 +53,10 @@
                         </td>
                         <td class="px-2 border-t-0 align-middle text-sm py-2">
                             {{ solicitacao.descricao }}
+                        </td>
+                        <td class="px-2 border-t-0 align-middle text-sm py-2">
+                            {{ solicitacao.inicio | date: 'dd/MM/yyyy h:mm' }} -
+                            {{ solicitacao.fim | date: 'dd/MM/yyyy h:mm' }}
                         </td>
                         <td class="px-2 border-t-0 align-middle text-sm py-2">
                             {{ solicitacao.nome_solicitante }}

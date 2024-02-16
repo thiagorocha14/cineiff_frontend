@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
@@ -13,7 +13,13 @@ export class HeaderComponent {
         public router: Router,
         private authService: AuthService,
         private loadingService: LoadingService
-    ) {}
+    ) {
+        this.router.events.subscribe((val: any) => {
+            if (val instanceof NavigationEnd) {
+                this.hideMenu();
+            }
+        });
+    }
 
     isLogged() {
         return this.authService.isLoggedIn();
@@ -41,5 +47,24 @@ export class HeaderComponent {
         console.error(err);
         localStorage.removeItem('token');
         this.loadingService.hideLoading();
+    }
+
+    toggleMenu() {
+        const menu = document.getElementById('navbar-solid-bg');
+        if (menu) {
+            menu.classList.toggle('hidden');
+        }
+    }
+
+    hideMenu() {
+        const menu = document.getElementById('navbar-solid-bg');
+
+        if (!menu) {
+            return;
+        }
+
+        if (menu.classList.contains('hidden') === false) {
+            menu.classList.add('hidden');
+        }
     }
 }

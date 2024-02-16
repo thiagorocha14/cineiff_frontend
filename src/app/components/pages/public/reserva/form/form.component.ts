@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { SolicitacaoService } from 'src/app/services/solicitacao.service';
-import * as moment from 'moment';
 import { ToastService } from 'src/app/services/toast.service';
 import { Filme } from 'src/app/types/filme/filme';
 import { FilmesService } from 'src/app/services/filmes.service';
@@ -30,7 +29,7 @@ export class FormComponent implements OnInit {
     public stepMinute = 1;
     public stepSecond = 1;
     public color: ThemePalette = 'primary';
-    public minDate: any;
+    public minDate = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(':'));
     public maxDate: any;
     public filmeControl: FormControl<null | Filme> = new FormControl<null | Filme>(null);
     public filtroFilmeControl: FormControl<null | string> = new FormControl<string>('');
@@ -76,7 +75,6 @@ export class FormComponent implements OnInit {
         });
 
         this.filmeControl.valueChanges.subscribe(() => {
-            console.log('filmeControl => ', this.filmeControl.value);
             this.formReserva.patchValue({ filme_id: this.filmeControl.value?.id });
         });
     }
@@ -88,7 +86,9 @@ export class FormComponent implements OnInit {
                 this.periodoAnterior[0] === this.formReserva.value.inicio &&
                 this.periodoAnterior[1] === this.formReserva.value.fim
             ) {
-                this.toastService.showErrorToast('Já existe uma solicitação de reserva para esse período.');
+                this.toastService.showErrorToast(
+                    'Já existe uma solicitação de reserva para esse período.'
+                );
                 this.loading = false;
                 return;
             }
@@ -100,14 +100,17 @@ export class FormComponent implements OnInit {
                     this.loading = false;
                 },
                 error: err => {
+                    this.toastService.showErrorToast(err);
+                    this.loading = false;
+
                     if (err === 'Já existe uma solicitação de reserva para esse período.') {
                         this.revalidarData = true;
-                        this.periodoAnterior = [this.formReserva.value.inicio, this.formReserva.value.fim];
-                        this.toastService.showErrorToast(err);
-                        this.loading = false;
+                        this.periodoAnterior = [
+                            this.formReserva.value.inicio,
+                            this.formReserva.value.fim,
+                        ];
                     }
                 },
-
             });
         }
     }

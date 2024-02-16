@@ -11,33 +11,34 @@
             </small>
         </header>
         <hr class="border-orange-300 my-2" />
-        <article class="flex flex-row gap-x-20 flex-wrap ml-3 mt-4">
+        <article class="flex flex-row gap-x-2 sm:gap-x-10 2xl:gap-x-20 flex-wrap sm:ml-3 mt-4">
             <div
                 *ngFor="let reserva of reservasConfirmadas"
                 class="flex flex-col cursor-pointer items-center rounded shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
                 routerLink="/reserva/{{ reserva.id }}">
-                <span class="bg-orange-400 p-1 w-full text-center">{{
+                <span class="bg-orange-400 p-1 w-full text-center text-xs sm:text-base">{{
                     reserva.solicitacao_reserva.nome_evento
                 }}</span>
                 <img
-                    class="w-52 h-72 object-cover border-collapse border-orange-400 border-2 p-1"
+                    class="w-36 h-52 sm:w-52 sm:h-72 object-cover border-collapse border-orange-400 border-2 p-1"
                     *ngIf="reserva.image; else semImagem"
                     src="{{ reserva.image }}"
                     alt="{{ reserva.solicitacao_reserva.descricao }}" />
                 <ng-template #semImagem>
                     <div
-                        class="w-52 h-72 border-collapse border-orange-400 border-2 p-4 flex items-center justify-center uppercase text-orange-400">
+                        class="w-36 h-52 sm:w-52 sm:h-72 border-collapse border-orange-400 border-2 p-4 flex items-center justify-center uppercase text-orange-400">
                         Evento sem imagem
                     </div>
                 </ng-template>
-                <span class="bg-orange-400 p-1 w-full text-center mb-6">{{
+                <span class="bg-orange-400 p-1 w-full text-center mb-6 text-xs sm:text-base">{{
                     reserva.inicio | date: 'dd/MM/yyyy - HH:mm'
                 }}</span>
             </div>
         </article>
     </section>
 </main>
-<footer class="w-full flex flex-row justify-start items-center mt-4 p-16 bg-orange-500 mb-4">
+<footer
+    class="w-full flex flex-col gap-3 sm: gap-0 p-4 sm:flex-row justify-start items-center mt-4 sm:p-16 bg-orange-500 mb-4">
     <img
         class="w-48 h-48 object-cover"
         src="assets/images/logo_iff.png"

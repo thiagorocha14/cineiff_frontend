@@ -22,6 +22,7 @@ export class ShowComponent {
     dados_reserva: solicitarReserva = {} as solicitarReserva;
     filme: Filme | false = false;
     id = 0;
+    eventoJaOcorreu = false;
 
     constructor(
         private router: Router,
@@ -42,12 +43,13 @@ export class ShowComponent {
             this.reserva = res;
             this.dados_reserva = this.reserva.solicitacao_reserva;
             this.filme = this.dados_reserva.filme || false;
+            this.eventoJaOcorreu = new Date(this.dados_reserva.fim) < new Date();
         });
     }
 
     abrirModalIngresso() {
         const dialogRef = this.dialog.open(DialogIngressoComponent, {
-            width: '37vw',
+            width: '500px',
             data: this.reserva,
         });
 

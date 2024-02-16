@@ -11,7 +11,7 @@
             </div>
             <button mat-raised-button color="accent" routerLink="cadastrar">
                 <span class="material-icons">add_circle_outline</span>
-                &nbsp; Cadastrar
+                <span class="hidden sm:block"> &nbsp; Cadastrar </span>
             </button>
         </header>
         <hr class="border-orange-300 my-2" />
@@ -23,84 +23,86 @@
                 (keyup)="filtrar()"
                 placeholder="Digite o nome do filme" />
         </mat-form-field>
-        <table class="items-center overflow-auto table-fixed bg-transparent w-full">
-            <thead>
-                <tr class="bg-black">
-                    <th
-                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
-                        Nome
-                    </th>
-                    <th
-                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
-                        Sinopse
-                    </th>
-                    <th
-                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
-                        Classificação indicativa
-                    </th>
-                    <th
-                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
-                        Duração em minutos
-                    </th>
-                    <th
-                        class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-center">
-                        Opções
-                    </th>
-                </tr>
-            </thead>
-            <tbody *ngIf="filmes.length > 0; else semFilmes">
-                <tr
-                    *ngFor="let filme of filmes"
-                    class="bg-zinc-900 odd:bg-zinc-950 text-white hover:bg-zinc-700">
-                    <td class="px-2 align-middle text-sm py-2">
-                        {{ filme.nome }}
-                    </td>
-                    <td class="px-2 align-middle text-sm py-2">
-                        {{
-                            filme.sinopse.length > 100
-                                ? filme.sinopse.substring(0, 100) + '...'
-                                : filme.sinopse
-                        }}
-                    </td>
-                    <td class="px-2 align-middle text-sm py-2">
-                        {{ filme.classificacao_indicativa }}
-                    </td>
-                    <td class="px-2 align-middle text-sm py-2">
-                        {{ filme.duracao_minutos }}
-                    </td>
-                    <td class="px-2 align-middle text-sm py-2 text-center">
-                        <div class="flex flex-row justify-center items-center">
-                            <button
-                                mat-fab
-                                extended
-                                color="accent"
-                                [appPromisedBtn]="filme.loading"
-                                class="text-white float-right"
-                                matTooltip="Editar o filme"
-                                routerLink="editar/{{ filme.id }}">
-                                <mat-icon class="text-white">edit</mat-icon>
-                            </button>
-                            <button
-                                mat-fab
-                                extended
-                                color="primary"
-                                class="text-white float-right"
-                                [appPromisedBtn]="filme.loading"
-                                matTooltip="Excluir o filme"
-                                (click)="excluir(filme)">
-                                <mat-icon class="text-white">close</mat-icon>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-            <ng-template #semFilmes>
-                <tr class="bg-zinc-900">
-                    <td colspan="5" class="text-center py-2 text-gray-300">
-                        Nenhum filme cadastrado
-                    </td>
-                </tr>
-            </ng-template>
-        </table>
+        <div class="overflow-auto">
+            <table class="items-center table-fixed bg-transparent w-full min-w-[1000px]">
+                <thead>
+                    <tr class="bg-black">
+                        <th
+                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
+                            Nome
+                        </th>
+                        <th
+                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
+                            Sinopse
+                        </th>
+                        <th
+                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
+                            Classificação indicativa
+                        </th>
+                        <th
+                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-left">
+                            Duração em minutos
+                        </th>
+                        <th
+                            class="px-2 text-orange-500 align-middle py-2 text-sm uppercase font-semibold text-center">
+                            Opções
+                        </th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="filmes.length > 0; else semFilmes">
+                    <tr
+                        *ngFor="let filme of filmes"
+                        class="bg-zinc-900 odd:bg-zinc-950 text-white hover:bg-zinc-700">
+                        <td class="px-2 align-middle text-sm py-2">
+                            {{ filme.nome }}
+                        </td>
+                        <td class="px-2 align-middle text-sm py-2">
+                            {{
+                                filme.sinopse.length > 100
+                                    ? filme.sinopse.substring(0, 100) + '...'
+                                    : filme.sinopse
+                            }}
+                        </td>
+                        <td class="px-2 align-middle text-sm py-2">
+                            {{ filme.classificacao_indicativa }}
+                        </td>
+                        <td class="px-2 align-middle text-sm py-2">
+                            {{ filme.duracao_minutos }}
+                        </td>
+                        <td class="px-2 align-middle text-sm py-2 text-center">
+                            <div class="flex flex-row justify-center items-center">
+                                <button
+                                    mat-fab
+                                    extended
+                                    color="accent"
+                                    [appPromisedBtn]="filme.loading"
+                                    class="text-white float-right"
+                                    matTooltip="Editar o filme"
+                                    routerLink="editar/{{ filme.id }}">
+                                    <mat-icon class="text-white">edit</mat-icon>
+                                </button>
+                                <button
+                                    mat-fab
+                                    extended
+                                    color="primary"
+                                    class="text-white float-right"
+                                    [appPromisedBtn]="filme.loading"
+                                    matTooltip="Excluir o filme"
+                                    (click)="excluir(filme)">
+                                    <mat-icon class="text-white">close</mat-icon>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <ng-template #semFilmes>
+                    <tr class="bg-zinc-900">
+                        <td colspan="5" class="text-center py-2 text-gray-300">
+                            Nenhum filme cadastrado
+                        </td>
+                    </tr>
+                </ng-template>
+            </table>
+        </div>
     </section>
 </div>

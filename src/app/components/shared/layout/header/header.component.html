@@ -1,56 +1,128 @@
 <header
-    class="flex pr-4 pl-4 w-100 flex-row flex-wrap items-center whitespace-nowrap h-16 bg-zinc-800 print:hidden"
+    class="flex w-100 relative sm:static flex-row flex-wrap items-center whitespace-nowrap h-16 bg-zinc-800 print:hidden"
     [hidden]="router.url === '/login' || router.url === '/register' ? true : false">
-    <span class="mr-2 text-white text-4xl cursor-pointer" routerLink="/"
+    <span class="ml-4 mr-2 text-white text-4xl cursor-pointer" routerLink="/"
         >CINE<span class="text-orange-500">IFF</span></span
     >
-    <button mat-button routerLink="/" [color]="router.url === '/' ? 'accent' : 'primary'">
-        <mat-icon>home</mat-icon>
-        Início
-    </button>
+    <span class="block sm:hidden fill-remaining-space"></span>
     <button
-        mat-button
-        routerLink="/agenda"
-        [color]="router.url === '/agenda' ? 'accent' : 'primary'">
-        <mat-icon>event</mat-icon>
-        Calendário
+        type="button"
+        class="inline-flex items-center mr-4 p-2 w-10 h-10 justify-center text-sm text-white rounded-lg sm:hidden hover:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-700"
+        (click)="toggleMenu()">
+        <span class="sr-only">Open main menu</span>
+        <svg
+            class="w-5 h-5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 17 14">
+            <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15" />
+        </svg>
     </button>
-    <button
-        mat-button
-        routerLink="/reservar"
-        [color]="router.url === '/reservar' ? 'accent' : 'primary'">
-        <mat-icon>event_seat</mat-icon>
-        Reservar
-    </button>
-    <button mat-button routerLink="/sobre" [color]="router.url === '/sobre' ? 'accent' : 'primary'">
-        <mat-icon>info</mat-icon>
-        Sobre
-    </button>
-    <span class="fill-remaining-space"></span>
-    <button mat-button [matMenuTriggerFor]="menu" *ngIf="isLogged() && isAdmin()" color="primary">
-        <mat-icon>arrow_drop_down</mat-icon> Opções administrativas
-    </button>
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item *ngIf="isLogged() && isAdmin()" routerLink="/cadastrar">
-            <mat-icon>person_add</mat-icon>
-            Cadastrar usuários
+    <div
+        class="hidden w-full absolute top-16 sm:static sm:block sm:w-auto z-10"
+        id="navbar-solid-bg">
+        <div
+            class="flex w-full flex-col items-start pl-2 pb-1 bg-zinc-800 sm:flex-row sm:p-0 sm:items-center sm:mt-0 sm:border-0 sm:bg-transparent">
+            <button mat-button routerLink="/" [color]="router.url === '/' ? 'accent' : 'primary'">
+                <mat-icon>home</mat-icon>
+                Início
+            </button>
+            <button
+                mat-button
+                routerLink="/agenda"
+                [color]="router.url === '/agenda' ? 'accent' : 'primary'">
+                <mat-icon>event</mat-icon>
+                Calendário
+            </button>
+            <button
+                mat-button
+                routerLink="/reservar"
+                [color]="router.url === '/reservar' ? 'accent' : 'primary'">
+                <mat-icon>event_seat</mat-icon>
+                Reservar
+            </button>
+            <button
+                mat-button
+                routerLink="/sobre"
+                [color]="router.url === '/sobre' ? 'accent' : 'primary'">
+                <mat-icon>info</mat-icon>
+                Sobre
+            </button>
+            <div class="sm:hidden flex flex-col items-start">
+                <button
+                    mat-button
+                    [matMenuTriggerFor]="menu"
+                    *ngIf="isLogged() && isAdmin()"
+                    color="primary">
+                    <mat-icon>arrow_drop_down</mat-icon> Opções administrativas
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item *ngIf="isLogged() && isAdmin()" routerLink="/cadastrar">
+                        <mat-icon>person_add</mat-icon>
+                        Cadastrar usuários
+                    </button>
+                    <button mat-menu-item *ngIf="isLogged()" routerLink="/reservas">
+                        <mat-icon>event</mat-icon>
+                        Reservas Pendententes
+                    </button>
+                    <button mat-menu-item *ngIf="isLogged()" routerLink="/filmes">
+                        <mat-icon>movie</mat-icon>
+                        Gerenciar filmes
+                    </button>
+                    <button mat-menu-item *ngIf="isLogged()" routerLink="/relatorio">
+                        <mat-icon>description</mat-icon>
+                        Relatório
+                    </button>
+                </mat-menu>
+                <button mat-button *ngIf="!isLogged()" routerLink="/login" color="primary">
+                    <mat-icon>lock</mat-icon>
+                    Acessar Área Administrativa
+                </button>
+                <button mat-button *ngIf="isLogged()" (click)="logout()" color="primary">
+                    Sair
+                </button>
+            </div>
+        </div>
+    </div>
+    <span class="hidden sm:block fill-remaining-space"></span>
+    <div class="hidden w-full sm:block sm:w-auto">
+        <button
+            mat-button
+            [matMenuTriggerFor]="menu"
+            *ngIf="isLogged() && isAdmin()"
+            color="primary">
+            <mat-icon>arrow_drop_down</mat-icon> Opções administrativas
         </button>
-        <button mat-menu-item *ngIf="isLogged()" routerLink="/reservas">
-            <mat-icon>event</mat-icon>
-            Reservas Pendententes
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item *ngIf="isLogged() && isAdmin()" routerLink="/cadastrar">
+                <mat-icon>person_add</mat-icon>
+                Cadastrar usuários
+            </button>
+            <button mat-menu-item *ngIf="isLogged()" routerLink="/reservas">
+                <mat-icon>event</mat-icon>
+                Reservas Pendententes
+            </button>
+            <button mat-menu-item *ngIf="isLogged()" routerLink="/filmes">
+                <mat-icon>movie</mat-icon>
+                Gerenciar filmes
+            </button>
+            <button mat-menu-item *ngIf="isLogged()" routerLink="/relatorio">
+                <mat-icon>description</mat-icon>
+                Relatório
+            </button>
+        </mat-menu>
+        <button class="mr-4" mat-button *ngIf="!isLogged()" routerLink="/login" color="primary">
+            <mat-icon>lock</mat-icon>
+            Acessar Área Administrativa
         </button>
-        <button mat-menu-item *ngIf="isLogged()" routerLink="/filmes">
-            <mat-icon>movie</mat-icon>
-            Gerenciar filmes
+        <button class="mr-4" mat-button *ngIf="isLogged()" (click)="logout()" color="primary">
+            Sair
         </button>
-        <button mat-menu-item *ngIf="isLogged()" routerLink="/relatorio">
-            <mat-icon>description</mat-icon>
-            Relatório
-        </button>
-    </mat-menu>
-    <button mat-button *ngIf="!isLogged()" routerLink="/login" color="primary">
-        <mat-icon>lock</mat-icon>
-        Acessar Área Administrativa
-    </button>
-    <button mat-button *ngIf="isLogged()" (click)="logout()" color="primary">Sair</button>
+    </div>
 </header>

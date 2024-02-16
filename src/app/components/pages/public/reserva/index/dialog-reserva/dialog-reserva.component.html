@@ -7,85 +7,129 @@
     <header>
         <h2 class="text-xl font-bold mb-4 text-zinc-800">Informações do Evento</h2>
     </header>
-    <div class="flex flex-row mt-4 gap-1">
+    <div
+        class="flex flex-col sm:flex-row mt-4 gap-1"
+        *ngIf="solicitacao.status === 'pendente'; else eventoGerenciadoInfo">
         <div class="flex flex-col grow">
             <span class="text-lg font-bold text-zinc-700">Nome Evento:</span>
             <mat-form-field class="w-full">
-                <input
-                    matInput
-                    [(ngModel)]="solicitacao.nome_evento"
-                />
+                <input matInput [(ngModel)]="solicitacao.nome_evento" />
             </mat-form-field>
         </div>
         <div class="flex flex-col grow">
             <span class="text-lg font-bold text-zinc-700">Descrição:</span>
             <mat-form-field class="w-full">
-                <input
-                    matInput
-                    [(ngModel)]="solicitacao.descricao"
-                />
+                <input matInput [(ngModel)]="solicitacao.descricao" />
             </mat-form-field>
         </div>
         <div class="flex flex-col grow">
             <span class="text-lg font-bold text-zinc-700">Justificativa:</span>
             <mat-form-field class="w-full">
-                <input
-                    matInput
-                    [(ngModel)]="solicitacao.justificativa"
-                />
+                <input matInput [(ngModel)]="solicitacao.justificativa" />
             </mat-form-field>
         </div>
     </div>
+    <ng-template #eventoGerenciadoInfo>
+        <div class="flex flex-col sm:flex-row mt-4 gap-1">
+            <div class="flex flex-col w-[36rem]">
+                <span class="text-lg font-bold text-zinc-700">Nome Evento:</span>
+                <span>
+                    {{ solicitacao.nome_evento }}
+                </span>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-lg font-bold text-zinc-700">Descrição:</span>
+                <span>
+                    {{ solicitacao.descricao }}
+                </span>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-lg font-bold text-zinc-700">Justificativa:</span>
+                <span>
+                    {{ solicitacao.justificativa }}
+                </span>
+            </div>
+        </div>
+    </ng-template>
     <hr class="border-gray-300 my-4" />
     <header>
         <h2 class="text-xl font-bold mb-4 text-zinc-800">Informações da Reserva</h2>
     </header>
-    <div class="flex flex-row justify-between items-center">
-        <div class="flex flex-row gap-3">
+    <div
+        class="flex flex-col sm:flex-row justify-between"
+        *ngIf="solicitacao.status === 'pendente'; else eventoGerenciadoReserva">
+        <div class="flex flex-col sm:flex-row gap-3">
             <div class="flex flex-col">
                 <span class="text-lg font-bold text-zinc-700">Inicio:</span>
-                <input type="datetime-local" name="dataInicio" id="dataInicio" [(ngModel)]="solicitacao.inicio" #dataInicio>
+                <input
+                    type="datetime-local"
+                    name="dataInicio"
+                    id="dataInicio"
+                    min="{{ minDate }}"
+                    [(ngModel)]="solicitacao.inicio"
+                    #dataInicio />
             </div>
             <div class="flex flex-col">
                 <span class="text-lg font-bold text-zinc-700">Fim:</span>
-                <input type="datetime-local" name="dataFim" id="dataFim" [(ngModel)]="solicitacao.fim" #dataFim>
+                <input
+                    type="datetime-local"
+                    name="dataFim"
+                    id="dataFim"
+                    min="{{ minDate }}"
+                    [(ngModel)]="solicitacao.fim"
+                    #dataFim />
             </div>
         </div>
         <div class="flex flex-col">
             <span class="text-lg font-bold text-zinc-700">Status:</span>
             <mat-form-field class="w-full uppercase">
-                <input
-                    matInput
-                    [value]="solicitacao.status"
-                    disabled="true"
-                    >
+                <input matInput [value]="solicitacao.status" disabled="true" />
             </mat-form-field>
         </div>
         <div class="flex flex-col" *ngIf="solicitacao.filme_id">
-            <span class=" text-lg font-bold text-zinc-700">Filme:</span>
+            <span class="text-lg font-bold text-zinc-700">Filme:</span>
             <mat-form-field class="w-full">
-                <input
-                    matInput
-                    [value]="solicitacao.filme?.nome"
-                    disabled="true"
-                />
+                <input matInput [value]="solicitacao.filme?.nome" disabled="true" />
             </mat-form-field>
         </div>
         <div class="flex flex-col">
             <span class="text-lg font-bold text-zinc-700">Público alvo:</span>
             <mat-form-field class="w-full">
-                <input
-                    matInput
-                    [(ngModel)]="solicitacao.publico_alvo"
-                />
+                <input matInput [(ngModel)]="solicitacao.publico_alvo" />
             </mat-form-field>
         </div>
     </div>
+    <ng-template #eventoGerenciadoReserva>
+        <div class="flex flex-col sm:flex-row justify-between">
+            <div class="flex flex-row gap-12">
+                <div class="flex flex-col">
+                    <span class="text-lg font-bold text-zinc-700">Inicio:</span>
+                    <span>{{ solicitacao.inicio | date: 'dd/MM/yyyy h:mm' }}</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-lg font-bold text-zinc-700">Fim:</span>
+                    <span>{{ solicitacao.fim | date: 'dd/MM/yyyy h:mm' }}</span>
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-lg font-bold text-zinc-700">Status:</span>
+                <span class="uppercase">{{ solicitacao.status }}</span>
+            </div>
+            <div class="flex flex-col" *ngIf="solicitacao.filme_id">
+                <span class="text-lg font-bold text-zinc-700">Filme:</span>
+                <span>{{ solicitacao.filme?.nome }}</span>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-lg font-bold text-zinc-700">Público alvo:</span>
+                <span>{{ solicitacao.publico_alvo }}</span>
+            </div>
+        </div>
+    </ng-template>
     <hr class="border-gray-300 my-4" />
     <header>
         <h2 class="text-xl font-bold mb-4 text-zinc-800">Informações do Solicitante</h2>
     </header>
-    <div class="flex flex-row justify-between mb-4">
+    <div class="flex flex-col sm:flex-row justify-between mb-4">
         <div class="flex flex-col">
             <span class="text-lg font-bold text-zinc-700">Solicitante:</span>
             <span>{{ solicitacao.nome_solicitante }}</span>
@@ -110,9 +154,9 @@
     <hr class="border-gray-300 my-4" />
 </div>
 
-<div class="flex flex-row w-full justify-between px-3 py-2">
+<div class="flex flex-col sm:flex-row w-full justify-between px-3 py-2">
     <button mat-button mat-dialog-close>Cancelar</button>
-    <div class="flex flex-row gap-2" *ngIf="solicitacao.status === 'pendente'">
+    <div class="flex flex-col sm:flex-row gap-2" *ngIf="solicitacao.status === 'pendente'">
         <button
             mat-raised-button
             color="primary"

@@ -95,7 +95,9 @@ export class FormComponent implements OnInit {
             this.loading = true;
             this.solicitacaoService.solicitarReserva(this.formReserva.value).subscribe({
                 next: res => {
-                    this.toastService.showToastBottomCenter('Solicitação criada com sucesso!');
+                    this.toastService.showToastBottomCenter(
+                        'Solicitação criada com sucesso! Assim que sua solicitação for aceita ou negada, você será notificado por e-mail.'
+                    );
                     this.formReserva.reset();
                     this.loading = false;
                 },

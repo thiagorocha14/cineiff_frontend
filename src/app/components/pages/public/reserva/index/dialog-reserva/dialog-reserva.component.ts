@@ -52,7 +52,7 @@ export class DialogReservaComponent {
         const dialogRef = this.dialog.open(DialogJustificativaComponent);
 
         dialogRef.afterClosed().subscribe(result => {
-            solicitacao.loading = false;
+            solicitacao.loading = true;
             if (result) {
                 this.solicitacaoService.indeferirSolicitacao(solicitacao, result).subscribe({
                     next: res => {

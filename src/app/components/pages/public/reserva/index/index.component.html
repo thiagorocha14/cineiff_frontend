@@ -101,7 +101,7 @@
                                     color="primary"
                                     class="text-white float-right"
                                     [appPromisedBtn]="solicitacao.loading"
-                                    *ngIf="solicitacao.status !== 'pendente'"
+                                    *ngIf="solicitacao.status === 'indeferido'"
                                     matTooltip="Recuperar a solicitação"
                                     (click)="recuperarSolicitacao(solicitacao, $event)">
                                     <mat-icon class="text-white">autorenew</mat-icon>
@@ -112,7 +112,7 @@
                 </tbody>
                 <ng-template #semSolicitacoes>
                     <tr class="bg-zinc-900">
-                        <td colspan="6" class="text-center py-2 text-gray-300">
+                        <td colspan="7" class="text-center py-2 text-gray-300">
                             Não há solicitações
                         </td>
                     </tr>

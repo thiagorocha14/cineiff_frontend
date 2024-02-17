@@ -61,7 +61,6 @@ export class IndexComponent implements OnInit {
         const dialogRef = this.dialog.open(DialogJustificativaComponent);
 
         dialogRef.afterClosed().subscribe(result => {
-            solicitacao.loading = false;
             if (result) {
                 this.solicitacaoService.indeferirSolicitacao(solicitacao, result).subscribe({
                     next: res => {

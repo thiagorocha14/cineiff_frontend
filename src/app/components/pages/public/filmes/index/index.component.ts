@@ -48,10 +48,8 @@ export class IndexComponent implements OnInit {
                     this.buscarFilmes();
                 },
                 error: error => {
-                    this.toastService.showToastBottomCenter(
-                        error.error.error || 'Erro ao excluir filme'
-                    );
-                    console.log(error);
+                    this.loadingService.hideLoading();
+                    this.toastService.showToastBottomCenter(error);
                 },
             });
         }

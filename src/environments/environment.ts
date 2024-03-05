@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://api.cineiff.live/api',
+    apiUrl: 'https://api.cineiff.live/api',
 };

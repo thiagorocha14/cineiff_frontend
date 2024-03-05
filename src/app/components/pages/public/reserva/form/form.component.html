@@ -52,14 +52,12 @@
                             required />
                     </mat-form-field>
 
-                    <mat-form-field
-                        class="w-full"
-                        *ngIf="filmesFiltrados && filmesFiltrados.length > 0">
+                    <mat-form-field class="w-full">
                         <mat-select [formControl]="filmeControl" placeholder="Filme" #singleSelect>
                             <mat-option>
                                 <ngx-mat-select-search
                                     placeholderLabel="Filtrar filmes"
-                                    noEntriesFoundLabel="'Filme não encontrado'"
+                                    noEntriesFoundLabel="Filme não encontrado"
                                     [formControl]="filtroFilmeControl">
                                 </ngx-mat-select-search>
                             </mat-option>

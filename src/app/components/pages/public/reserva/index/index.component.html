@@ -52,7 +52,11 @@
                             {{ solicitacao.nome_evento }}
                         </td>
                         <td class="px-2 border-t-0 align-middle text-sm py-2">
-                            {{ solicitacao.descricao }}
+                            {{
+                                solicitacao.descricao.length > 100
+                                    ? solicitacao.descricao.substring(0, 100) + '...'
+                                    : solicitacao.descricao
+                            }}
                         </td>
                         <td class="px-2 border-t-0 align-middle text-sm py-2">
                             {{ solicitacao.inicio | date: 'dd/MM/yyyy h:mm' }} -

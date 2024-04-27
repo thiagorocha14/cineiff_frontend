@@ -11,26 +11,27 @@
             </small>
         </header>
         <hr class="border-orange-300 my-2" />
-        <article class="flex flex-row gap-x-2 sm:gap-x-10 2xl:gap-x-20 flex-wrap sm:ml-3 mt-4">
+        <article
+            class="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 justify-center items-center gap-x-3 gap-y-1">
             <div
                 *ngFor="let reserva of reservasConfirmadas"
                 class="flex flex-col cursor-pointer items-center rounded shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
                 routerLink="/reserva/{{ reserva.id }}">
-                <span class="bg-orange-400 p-1 w-full text-center text-xs sm:text-base">{{
+                <span class="bg-orange-400 p-1 w-52 text-center text-base">{{
                     reserva.solicitacao_reserva.nome_evento
                 }}</span>
                 <img
-                    class="w-36 h-52 sm:w-52 sm:h-72 object-cover border-collapse border-orange-400 border-2 p-1"
+                    class="w-52 h-72 object-cover border-collapse border-orange-400 border-2 p-1"
                     *ngIf="reserva.image; else semImagem"
                     src="{{ reserva.image }}"
                     alt="{{ reserva.solicitacao_reserva.descricao }}" />
                 <ng-template #semImagem>
                     <div
-                        class="w-36 h-52 sm:w-52 sm:h-72 border-collapse border-orange-400 border-2 p-4 flex items-center justify-center uppercase text-orange-400">
+                        class="w-52 h-72 border-collapse border-orange-400 border-2 p-4 flex items-center justify-center uppercase text-orange-400">
                         Evento sem imagem
                     </div>
                 </ng-template>
-                <span class="bg-orange-400 p-1 w-full text-center mb-6 text-xs sm:text-base">{{
+                <span class="bg-orange-400 p-1 w-52 text-center mb-6 text-base">{{
                     reserva.inicio | date: 'dd/MM/yyyy - HH:mm'
                 }}</span>
             </div>
